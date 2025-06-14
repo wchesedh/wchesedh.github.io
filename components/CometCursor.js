@@ -68,13 +68,13 @@ export default function CometCursor({ active }) {
           position: 'fixed',
           top: 0,
           left: 0,
-          width: 40,
-          height: 40,
+          width: 25,
+          height: 25,
           pointerEvents: 'none',
           zIndex: 9999,
           borderRadius: '50%',
-          boxShadow: '0 0 30px 10px rgba(0, 234, 255, 1), 0 0 80px 30px rgba(0, 234, 255, 0.5)', // Most prominent glow
-          background: 'radial-gradient(circle at 30% 30%, #fff 80%, #00eaff 100%)', // Max brightness for head
+          boxShadow: '0 0 6px 1px rgba(0, 234, 255, 0.2), 0 0 10px 3px rgba(0, 234, 255, 0.1)',
+          background: 'radial-gradient(circle at 30% 30%, #ccc 30%, #0090a0 100%)',
           mixBlendMode: 'screen',
         }}
       />
@@ -87,14 +87,14 @@ export default function CometCursor({ active }) {
             position: 'fixed',
             top: 0,
             left: 0,
-            width: 24,
-            height: 24,
+            width: 12,
+            height: 12,
             pointerEvents: 'none',
             zIndex: 9998,
             borderRadius: '50%',
-            background: 'radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8) 30%, rgba(0, 234, 255, 0.7) 100%)', // Max visible tail colors
-            filter: 'blur(3px)', // More blur for a smoother, thicker trail
-            opacity: 0.9,
+            background: 'radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2) 30%, rgba(0, 150, 160, 0.15) 100%)',
+            filter: 'blur(0.8px)',
+            opacity: 0.25,
             transition: 'opacity 0.05s',
             mixBlendMode: 'screen',
           }}

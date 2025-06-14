@@ -19,51 +19,172 @@ const projectLinks = [
 
 function FinancialVisualization() {
   const ref = useRef()
+  const materialRef = useRef()
+  const [isHovered, setIsHovered] = useState(false)
 
   useFrame(({ clock }) => {
     if (ref.current) {
       ref.current.rotation.y = clock.getElapsedTime() * 0.05
       ref.current.rotation.x = clock.getElapsedTime() * 0.02
     }
+    if (materialRef.current) {
+      materialRef.current.uniforms.time.value = clock.getElapsedTime()
+      materialRef.current.uniforms.isHovered.value = isHovered ? 1.0 : 0.0
+    }
   })
 
-  const lineGeometry = useMemo(() => {
-    const geometry = new THREE.BufferGeometry()
-    const vertices = []
-    const numPoints = 10
-    const corePosition = new THREE.Vector3(0, 0, 0)
+  const uniforms = useMemo(() => ({
+    time: { value: 0 },
+    isHovered: { value: 0 }
+  }), [])
 
-    for (let i = 0; i < numPoints; i++) {
-      const angle = (i / numPoints) * Math.PI * 2
-      const radius = 1
-      const x = Math.cos(angle) * radius
-      const y = Math.sin(angle) * radius
-      const z = (Math.random() - 0.5) * 0.5
-      vertices.push(corePosition.x, corePosition.y, corePosition.z)
-      vertices.push(x, y, z)
+  const vertexShader = `
+    varying vec2 vUv;
+    varying vec3 vPosition;
+    
+    void main() {
+      vUv = uv;
+      vPosition = position;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
     }
+  `
 
-    geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3))
-    return geometry
-  }, [])
+  const fragmentShader = `
+    uniform float time;
+    uniform float isHovered;
+    varying vec2 vUv;
+    varying vec3 vPosition;
+    
+    float PI = 3.14159265359;
+
+    // Noise functions
+    float random(vec2 st) {
+      return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+    }
+    
+    float noise(vec2 st) {
+      vec2 i = floor(st);
+      vec2 f = fract(st);
+      
+      float a = random(i);
+      float b = random(i + vec2(1.0, 0.0));
+      float c = random(i + vec2(0.0, 1.0));
+      float d = random(i + vec2(1.0, 1.0));
+      
+      vec2 u = f * f * (3.0 - 2.0 * f);
+      return mix(a, b, u.x) + (c - a)* u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
+    }
+    
+    void main() {
+      // Calculate radial distance from center
+      float radialDistance = length(vUv - vec2(0.5));
+      
+      // Time for animation
+      float t = time;
+      
+      // *** Original Sun/Supernova Core ***
+      float coreIntensity = 1.0 - smoothstep(0.0, 0.3, radialDistance);
+      float corePulse = sin(t * 2.0) * 0.1 + 0.9;
+      
+      // Original Energy Waves
+      float wave1 = sin(radialDistance * 20.0 - t * 5.0) * 0.5 + 0.5;
+      float wave2 = sin(radialDistance * 15.0 + t * 3.0) * 0.5 + 0.5;
+      float energyWaves = (wave1 + wave2) * 0.5;
+      float energyMask = smoothstep(0.3, 0.7, radialDistance);
+      
+      // *** New Dynamic Sun Effects ***
+      
+      // Subtle Explosions (bright spots)
+      float explosionNoise1 = noise(vUv * 8.0 + t * 7.0);
+      float explosionNoise2 = noise(vUv * 12.0 - t * 9.0);
+      float explosionNoise3 = noise(vUv * 10.0 + t * 6.0);
+      float combinedExplosionNoise = (explosionNoise1 + explosionNoise2 + explosionNoise3) / 3.0;
+      float explosionEffect = smoothstep(0.7, 1.0, combinedExplosionNoise) * (sin(t * 15.0) * 0.5 + 0.5); // Pulsing for flicker
+      explosionEffect *= (1.0 - radialDistance); // More intense closer to center
+
+      // Subtle Dark Spots (sunspots)
+      float darkSpotNoise1 = noise(vUv * 5.0 - t * 2.0);
+      float darkSpotNoise2 = noise(vUv * 7.0 + t * 3.0);
+      float combinedDarkSpotNoise = (darkSpotNoise1 + darkSpotNoise2) / 2.0;
+      float darkSpotEffect = smoothstep(0.4, 0.6, combinedDarkSpotNoise);
+      darkSpotEffect *= (1.0 - radialDistance * 0.5); // More defined closer to center
+
+      // Original Dynamic Noise for surface detail
+      float noise1 = noise(vUv * 4.0 + t * 3.0);
+      float noise2 = noise(vUv * 3.0 - t * 2.0);
+      float noise3 = noise(vUv * 5.0 + t * 4.0);
+      float combinedNoise = (noise1 + noise2 + noise3) / 3.0;
+      
+      // Sun/supernova colors
+      vec3 coreColor = vec3(1.0, 0.9, 0.6); // Bright yellow-white core
+      vec3 energyColor = vec3(1.0, 0.4, 0.1); // Orange energy
+      vec3 outerColor = vec3(0.5, 0.1, 0.8); // Purple outer glow
+      
+      // Mix colors based on distance from core
+      vec3 finalColor = mix(coreColor, energyColor, energyMask);
+      finalColor = mix(finalColor, outerColor, smoothstep(0.5, 1.0, radialDistance));
+      
+      // Add pulsing core
+      finalColor += coreColor * coreIntensity * corePulse;
+      
+      // Add energy waves
+      finalColor += energyColor * energyWaves * energyMask;
+      
+      // Add noise-based detail
+      finalColor += vec3(1.0, 0.6, 0.2) * combinedNoise * 0.3;
+
+      // Apply subtle explosions (add light to areas)
+      finalColor += coreColor * explosionEffect * 0.7; // Brighter core color for explosions
+
+      // Apply subtle dark spots (subtract light from areas)
+      finalColor -= finalColor * darkSpotEffect * 0.4; // Reduce existing color for dark spots
+      
+      // Calculate alpha with glow
+      float alpha = smoothstep(1.0, 0.0, radialDistance) * 0.8;
+      alpha += coreIntensity * corePulse * 0.5;
+      alpha += energyWaves * energyMask * 0.3;
+
+      // Adjust alpha for explosions and dark spots
+      alpha += explosionEffect * 0.3; // Make explosions more opaque
+      alpha -= darkSpotEffect * 0.2; // Make dark spots slightly more transparent/less visible
+
+      // Add ray effect on hover
+      if (isHovered > 0.5) {
+        float raySpeed = t * 20.0;
+        float rayWidth = 0.05;
+        float numRays = 10.0;
+        
+        for (float i = 0.0; i < numRays; i++) {
+          float angle = atan(vUv.y - 0.5, vUv.x - 0.5);
+          float rayPattern = fract(angle * (numRays / (2.0 * PI)) + raySpeed + i * 0.5);
+          float rayIntensity = smoothstep(0.0, rayWidth, rayPattern) - smoothstep(rayWidth, rayWidth * 2.0, rayPattern);
+          finalColor += vec3(1.0, 1.0, 0.5) * rayIntensity * 0.8;
+          alpha += rayIntensity * 0.5;
+        }
+      }
+      
+      gl_FragColor = vec4(finalColor, alpha);
+    }
+  `
 
   return (
     <group ref={ref}>
-      <mesh>
-        <octahedronGeometry args={[0.5, 0]} />
-        <meshStandardMaterial color="#00ff88" emissive="#00ff88" emissiveIntensity={0.3} wireframe />
+      <mesh
+        onPointerOver={() => setIsHovered(true)}
+        onPointerOut={() => setIsHovered(false)}
+      >
+        <sphereGeometry args={[1, 64, 64]} />
+        <shaderMaterial
+          ref={materialRef}
+          vertexShader={vertexShader}
+          fragmentShader={fragmentShader}
+          uniforms={uniforms}
+          transparent={true}
+          side={THREE.DoubleSide}
+          depthWrite={false}
+          blending={THREE.AdditiveBlending}
+        />
       </mesh>
-      <lineSegments geometry={lineGeometry}>
-        <lineBasicMaterial color="#00ccff" opacity={0.6} transparent />
-      </lineSegments>
-      {[...Array(5)].map((_, i) => (
-        <Float key={i} speed={2 + Math.random()} rotationIntensity={0.5} floatIntensity={0.2}>
-          <mesh position={[(Math.random() - 0.5) * 2, (Math.random() - 0.5) * 2, (Math.random() - 0.5) * 2]}>
-            <sphereGeometry args={[0.05, 16, 16]} />
-            <meshStandardMaterial color="#ff3366" emissive="#ff3366" emissiveIntensity={0.5} />
-          </mesh>
-        </Float>
-      ))}
     </group>
   )
 }
