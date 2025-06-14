@@ -7,6 +7,7 @@ import * as THREE from 'three'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import CometCursor from './CometCursor'
+import { FireShader } from './FireShader'
 
 const projectLinks = [
   { name: 'University Online Document Request', url: 'https://sis.cmu.edu.ph/odrms', image: '/images/odrms.png', description: 'Online Document Request Management System for CMU students and staff.' },
@@ -70,56 +71,14 @@ function FinancialVisualization() {
 function ProjectOrb({ position, url, name, image, onClickOrb }) {
   const ref = useRef()
   const meshRef = useRef()
-  const materialRef = useRef()
   const texture = useTexture(image)
   const [hovered, hover] = useState(false)
-  const [isExploding, setIsExploding] = useState(false)
-
-  const defaultEmissiveColor = useMemo(() => new THREE.Color(0x000000), [])
-  const hoverEmissiveColor = useMemo(() => new THREE.Color(0xFF4500), [])
 
   useFrame(({ camera }) => {
     if (meshRef.current) {
       meshRef.current.lookAt(camera.position)
-
-      if (materialRef.current) {
-        if (hovered && !isExploding) {
-          materialRef.current.emissive.lerp(hoverEmissiveColor, 0.1)
-          materialRef.current.emissiveIntensity = THREE.MathUtils.lerp(materialRef.current.emissiveIntensity, 2, 0.1)
-        } else if (!isExploding) {
-          materialRef.current.emissive.lerp(defaultEmissiveColor, 0.1)
-          materialRef.current.emissiveIntensity = THREE.MathUtils.lerp(materialRef.current.emissiveIntensity, 0, 0.1)
-        }
-      }
-
-      if (isExploding) {
-        if (ref.current.scale.x > 0.01) {
-          ref.current.scale.lerp(new THREE.Vector3(0.01, 0.01, 0.01), 0.2)
-          if (materialRef.current) {
-            materialRef.current.opacity = THREE.MathUtils.lerp(materialRef.current.opacity, 0, 0.2)
-          }
-        } else {
-          setIsExploding(false)
-          if (ref.current) {
-            ref.current.scale.set(1, 1, 1)
-            ref.current.position.copy(position)
-          }
-          if (materialRef.current) {
-            materialRef.current.opacity = 1
-            materialRef.current.emissive.copy(defaultEmissiveColor)
-            materialRef.current.emissiveIntensity = 0
-          }
-          onClickOrb({ name, url, image, description: projectLinks.find(p => p.name === name).description })
-        }
-      }
     }
   })
-
-  const handleClick = () => {
-    if (!isExploding) {
-      setIsExploding(true)
-    }
-  }
 
   return (
     <Float speed={2} rotationIntensity={0} floatIntensity={0.5}>
@@ -128,21 +87,27 @@ function ProjectOrb({ position, url, name, image, onClickOrb }) {
         position={position}
         onPointerOver={() => hover(true)}
         onPointerOut={() => hover(false)}
-        onClick={handleClick}
+        onClick={() => onClickOrb({ name, url, image, description: projectLinks.find(p => p.name === name).description })}
         style={{ cursor: 'pointer' }}
-        scale={hovered && !isExploding ? 1.1 : 1}
+        scale={hovered ? 1.1 : 1}
       >
+        {/* Base orb */}
         <mesh ref={meshRef}>
           <sphereGeometry args={[0.3, 32, 32]} />
           <meshStandardMaterial
-            ref={materialRef}
             map={texture}
             transparent={true}
             side={THREE.DoubleSide}
-            emissive={defaultEmissiveColor}
-            emissiveIntensity={0}
           />
         </mesh>
+        
+        {/* Fire effect overlay */}
+        {hovered && (
+          <mesh>
+            <sphereGeometry args={[0.31, 32, 32]} />
+            <FireShader active={true} />
+          </mesh>
+        )}
       </group>
     </Float>
   )
