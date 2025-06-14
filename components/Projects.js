@@ -1,4 +1,5 @@
-'use client'
+"use client"
+
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls, Float, Text, useTexture } from '@react-three/drei'
 import { useRef, useState, useEffect, useMemo } from 'react'
@@ -23,7 +24,6 @@ function FinancialVisualization() {
     }
   })
 
-  // Create dynamic lines connecting to points
   const lineGeometry = useMemo(() => {
     const geometry = new THREE.BufferGeometry()
     const vertices = []
@@ -35,9 +35,7 @@ function FinancialVisualization() {
       const radius = 1
       const x = Math.cos(angle) * radius
       const y = Math.sin(angle) * radius
-      const z = (Math.random() - 0.5) * 0.5 // Slight depth variation
-
-      // Connect to central core
+      const z = (Math.random() - 0.5) * 0.5
       vertices.push(corePosition.x, corePosition.y, corePosition.z)
       vertices.push(x, y, z)
     }
@@ -48,18 +46,13 @@ function FinancialVisualization() {
 
   return (
     <group ref={ref}>
-      {/* Central Core */}
       <mesh>
         <octahedronGeometry args={[0.5, 0]} />
         <meshStandardMaterial color="#00ff88" emissive="#00ff88" emissiveIntensity={0.3} wireframe />
       </mesh>
-
-      {/* Dynamic Connecting Lines */}
       <lineSegments geometry={lineGeometry}>
         <lineBasicMaterial color="#00ccff" opacity={0.6} transparent />
       </lineSegments>
-
-      {/* Floating Points (optional for more complexity) */}
       {[...Array(5)].map((_, i) => (
         <Float key={i} speed={2 + Math.random()} rotationIntensity={0.5} floatIntensity={0.2}>
           <mesh position={[(Math.random() - 0.5) * 2, (Math.random() - 0.5) * 2, (Math.random() - 0.5) * 2]}>
@@ -85,7 +78,7 @@ function ProjectOrb({ position, url, name, image, onClickOrb }) {
   })
 
   return (
-    <Float speed={2} rotationIntensity={0} floatIntensity={0.5}> 
+    <Float speed={2} rotationIntensity={0} floatIntensity={0.5}>
       <group
         ref={ref}
         position={position}
@@ -93,9 +86,9 @@ function ProjectOrb({ position, url, name, image, onClickOrb }) {
         onPointerOut={() => hover(false)}
         onClick={() => onClickOrb({ name, url, image, description: projectLinks.find(p => p.name === name).description })}
         style={{ cursor: 'pointer' }}
-        scale={hovered ? 1.1 : 1} 
+        scale={hovered ? 1.1 : 1}
       >
-        <mesh ref={meshRef}> 
+        <mesh ref={meshRef}>
           <sphereGeometry args={[0.3, 32, 32]} />
           <meshBasicMaterial map={texture} transparent={true} side={THREE.DoubleSide} />
         </mesh>
@@ -114,26 +107,28 @@ function ProjectModal({ project, onClose }) {
     >
       <div
         className="bg-gray-800 rounded-lg shadow-xl p-6 md:p-8 max-w-lg w-full transform transition-all duration-300 scale-100 opacity-100"
-        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
+        onClick={(e) => e.stopPropagation()}
       >
-        <button
-          className="absolute top-3 right-3 text-white text-2xl font-bold leading-none hover:text-gray-400 focus:outline-none"
-          onClick={onClose}
-        >
-          &times;
-        </button>
         <div className="flex flex-col items-center mb-4">
           <img src={project.image} alt={project.name} className="w-full h-auto max-h-96 object-contain mb-4" />
           <h3 className="text-3xl font-bold text-white text-center mb-2">{project.name}</h3>
           <p className="text-gray-300 text-center mb-4">{project.description}</p>
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold shadow hover:from-blue-600 hover:to-purple-700 transition-all text-lg"
-          >
-            Visit Site
-          </a>
+          <div className="flex space-x-4">
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold shadow hover:from-blue-600 hover:to-purple-700 transition-all text-lg"
+            >
+              Visit Site
+            </a>
+            <button
+              onClick={onClose}
+              className="px-6 py-3 rounded-full bg-gray-700 text-white font-semibold shadow hover:bg-gray-600 transition-all text-lg"
+            >
+              Close
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -142,19 +137,29 @@ function ProjectModal({ project, onClose }) {
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const handleOrbClick = (project) => {
     setSelectedProject(project)
   }
 
   return (
-    <div className="relative w-full h-screen bg-gradient-to-b from-gray-900 to-black flex items-center justify-center">
+    <div className={`relative w-full ${isMobile ? 'min-h-screen' : 'h-screen'} bg-gradient-to-b from-gray-900 to-black flex items-center justify-center`}>
       <Canvas camera={{ position: [0, 0, 5], fov: 75 }} shadows>
         <ambientLight intensity={0.8} />
         <pointLight position={[10, 10, 10]} intensity={1} castShadow />
         <pointLight position={[-10, -10, 10]} intensity={0.8} castShadow />
         <directionalLight position={[5, 5, 5]} intensity={0.7} castShadow />
-        <FinancialVisualization /> 
+        <FinancialVisualization />
         {projectLinks.map((project, index) => {
           const angle = (index / projectLinks.length) * Math.PI * 2
           const radius = 3
@@ -171,7 +176,7 @@ export default function Projects() {
             />
           )
         })}
-        <OrbitControls enablePan={true} enableZoom={false} autoRotate={false} autoRotateSpeed={1} />
+        <OrbitControls enablePan={false} enableZoom={false} autoRotate={false} autoRotateSpeed={1} />
       </Canvas>
       <h1 className="absolute top-10 text-4xl font-bold text-white z-10">My Projects</h1>
       <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
