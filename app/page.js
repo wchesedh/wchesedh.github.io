@@ -1,5 +1,6 @@
 import Hero3D from '../components/Hero3d'
 import Image from 'next/image'
+import Projects from '../components/Projects'
 
 export default function Home() {
   return (
@@ -14,13 +15,13 @@ export default function Home() {
               <div className="relative w-32 h-32 md:w-40 md:h-40 mb-8 animate-float">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 animate-glow"></div>
                 <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white/20">
-                  <Image
+        <Image
                     src="/images/profilePic.png"
                     alt="Profile Picture"
                     fill
                     className="object-cover"
-                    priority
-                  />
+          priority
+        />
                 </div>
               </div>
               <h1 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
@@ -152,6 +153,11 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </main>
+
+      {/* Projects Section */}
+      <section className="py-20">
+        <Projects />
+      </section>
+      </main>
   )
 }
