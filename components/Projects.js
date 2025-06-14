@@ -5,6 +5,7 @@ import { OrbitControls, Float, Text, useTexture } from '@react-three/drei'
 import { useRef, useState, useEffect, useMemo } from 'react'
 import * as THREE from 'three'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 
 const projectLinks = [
   { name: 'University Online Document Request', url: 'https://sis.cmu.edu.ph/odrms', image: '/images/odrms.png', description: 'Online Document Request Management System for CMU students and staff.' },
@@ -138,6 +139,7 @@ function ProjectModal({ project, onClose }) {
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null)
   const [isMobile, setIsMobile] = useState(false)
+  const [activeTab, setActiveTab] = useState('3d')
 
   useEffect(() => {
     const checkMobile = () => {
@@ -153,38 +155,79 @@ export default function Projects() {
   }
 
   return (
-    <section id="projects" className={`py-4 px-4 bg-gradient-to-b from-gray-900 to-black min-h-screen relative flex flex-col items-center`}>
-      <h2 className="absolute top-4 left-1/2 -translate-x-1/2 text-4xl md:text-5xl font-bold text-white z-10">My Projects</h2>
-
-      <div className="flex-grow w-full max-w-6xl flex justify-center items-center h-[90vh]">
-        <Canvas camera={{ position: [0, 0, 5], fov: 75 }} shadows className="w-full h-full">
-          <ambientLight intensity={0.8} />
-          <pointLight position={[10, 10, 10]} intensity={1} castShadow />
-          <pointLight position={[-10, -10, 10]} intensity={0.8} castShadow />
-          <directionalLight position={[5, 5, 5]} intensity={0.7} castShadow />
-          <FinancialVisualization />
-          {projectLinks.map((project, index) => {
-            const angle = (index / projectLinks.length) * Math.PI * 2
-            const radius = 3
-            const x = Math.cos(angle) * radius
-            const z = Math.sin(angle) * radius
-            return (
-              <ProjectOrb
-                key={project.name}
-                position={[x, 0, z]}
-                url={project.url}
-                name={project.name}
-                image={project.image}
-                onClickOrb={handleOrbClick}
-              />
-            )
-          })}
-          <OrbitControls enablePan={false} enableZoom={false} autoRotate={false} autoRotateSpeed={1} />
-        </Canvas>
+    <section id="projects" className={`bg-gradient-to-b from-gray-900 to-black min-h-screen flex flex-col items-center ${isMobile ? 'min-h-[auto]' : 'h-screen'}`}>
+      <h2 className="text-4xl md:text-5xl font-bold text-white text-center pt-8 mb-8">My Projects</h2>
+      <div className="flex justify-center space-x-4 mb-8">
+        <button
+          onClick={() => setActiveTab('3d')}
+          className={`px-6 py-2 rounded-full font-semibold transition-all ${activeTab === '3d' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-blue-700 hover:text-white'}`}
+        >
+          3D View
+        </button>
+        <button
+          onClick={() => setActiveTab('all')}
+          className={`px-6 py-2 rounded-full font-semibold transition-all ${activeTab === 'all' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-blue-700 hover:text-white'}`}
+        >
+          View All
+        </button>
       </div>
-
+      {activeTab === '3d' ? (
+        <div className="flex-grow w-full max-w-6xl flex justify-center items-center h-[90vh]">
+          <Canvas camera={{ position: [0, 0, 5], fov: 75 }} shadows className="w-full h-full">
+            <ambientLight intensity={0.8} />
+            <pointLight position={[10, 10, 10]} intensity={1} castShadow />
+            <pointLight position={[-10, -10, 10]} intensity={0.8} castShadow />
+            <directionalLight position={[5, 5, 5]} intensity={0.7} castShadow />
+            <FinancialVisualization />
+            {projectLinks.map((project, index) => {
+              const angle = (index / projectLinks.length) * Math.PI * 2
+              const radius = 3
+              const x = Math.cos(angle) * radius
+              const z = Math.sin(angle) * radius
+              return (
+                <ProjectOrb
+                  key={project.name}
+                  position={[x, 0, z]}
+                  url={project.url}
+                  name={project.name}
+                  image={project.image}
+                  onClickOrb={handleOrbClick}
+                />
+              )
+            })}
+            <OrbitControls enablePan={false} enableZoom={false} autoRotate={false} autoRotateSpeed={1} />
+          </Canvas>
+        </div>
+      ) : (
+        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {projectLinks.map((project) => (
+            <motion.div
+              key={project.name}
+              className="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col cursor-pointer hover:scale-[1.02] transition-transform"
+              onClick={() => setSelectedProject(project)}
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="relative w-full h-48">
+                <Image src={project.image} alt={project.name} fill className="object-cover" />
+              </div>
+              <div className="p-6 flex-1 flex flex-col">
+                <h3 className="text-xl font-bold text-white mb-2">{project.name}</h3>
+                <p className="text-gray-300 text-sm mb-4 flex-1">{project.description}</p>
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full hover:from-blue-600 hover:to-purple-700 transition-all text-sm mt-auto"
+                  onClick={e => e.stopPropagation()}
+                >
+                  Visit Site
+                </a>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      )}
       <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
-
       <footer className="w-full bg-gray-900 py-4 mt-auto">
         <div className="flex justify-center space-x-4">
           <a href="https://github.com/wchesedh" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
