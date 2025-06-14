@@ -85,7 +85,7 @@ function ProjectOrb({ position, url, name, image, onClickOrb }) {
   })
 
   return (
-    <Float speed={2} rotationIntensity={0} floatIntensity={0.5}>
+    <Float speed={2} rotationIntensity={0} floatIntensity={0.5}> 
       <group
         ref={ref}
         position={position}
@@ -154,7 +154,7 @@ export default function Projects() {
         <pointLight position={[10, 10, 10]} intensity={1} castShadow />
         <pointLight position={[-10, -10, 10]} intensity={0.8} castShadow />
         <directionalLight position={[5, 5, 5]} intensity={0.7} castShadow />
-        <FinancialVisualization />
+        <FinancialVisualization /> 
         {projectLinks.map((project, index) => {
           const angle = (index / projectLinks.length) * Math.PI * 2
           const radius = 3
