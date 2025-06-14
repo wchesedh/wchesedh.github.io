@@ -7,11 +7,11 @@ import * as THREE from 'three'
 import Image from 'next/image'
 
 const projectLinks = [
-  { name: 'aguaboo.com', url: 'https://aguaboo.com', image: '/images/aguaboo.png', description: 'A modern water delivery platform for ordering and management.' },
-  { name: 'sis.cmu.edu.ph/odrms', url: 'https://sis.cmu.edu.ph/odrms', image: '/images/odrms.png', description: 'Online Document Request Management System for CMU students and staff.' },
-  { name: 'apps.cmu.edu.ph/hrodrs', url: 'https://apps.cmu.edu.ph/hrodrs', image: '/images/hrodrs.png', description: 'HR Online Document Request System for CMU employees.' },
-  { name: 'apps.cmu.edu.ph/cmupress', url: 'https://apps.cmu.edu.ph/cmupress', image: '/images/cmupress.png', description: 'CMU Press platform for academic publishing and resources.' },
-  { name: 'Bullisch Bulls', url: 'https://bull-token-site.vercel.app/', image: '/images/bullisch1.png', description: 'Successful launch of BULL token on Solana' },
+  { name: 'University Online Document Request', url: 'https://sis.cmu.edu.ph/odrms', image: '/images/odrms.png', description: 'Online Document Request Management System for CMU students and staff.' },
+  { name: 'HR Online Document Request', url: 'https://apps.cmu.edu.ph/hrodrs', image: '/images/hrodrs.png', description: 'HR Online Document Request System for CMU employees.' },
+  { name: 'CMUPress', url: 'https://apps.cmu.edu.ph/cmupress', image: '/images/cmupress.png', description: 'CMU Press platform for academic publishing and resources.' },
+  { name: 'Aguaboo', url: 'https://aguaboo.com', image: '/images/aguaboo.png', description: 'A modern water delivery platform for ordering and management.' },
+  { name: 'Bullisch Bull Official Site', url: 'https://bull-token-site.vercel.app/', image: '/images/bullisch1.png', description: 'Successful launch of BULL token on Solana' },
 ]
 
 function FinancialVisualization() {
@@ -153,33 +153,51 @@ export default function Projects() {
   }
 
   return (
-    <div className={`relative w-full ${isMobile ? 'min-h-screen' : 'h-screen'} bg-gradient-to-b from-gray-900 to-black flex items-center justify-center`}>
-      <Canvas camera={{ position: [0, 0, 5], fov: 75 }} shadows>
-        <ambientLight intensity={0.8} />
-        <pointLight position={[10, 10, 10]} intensity={1} castShadow />
-        <pointLight position={[-10, -10, 10]} intensity={0.8} castShadow />
-        <directionalLight position={[5, 5, 5]} intensity={0.7} castShadow />
-        <FinancialVisualization />
-        {projectLinks.map((project, index) => {
-          const angle = (index / projectLinks.length) * Math.PI * 2
-          const radius = 3
-          const x = Math.cos(angle) * radius
-          const z = Math.sin(angle) * radius
-          return (
-            <ProjectOrb
-              key={project.name}
-              position={[x, 0, z]}
-              url={project.url}
-              name={project.name}
-              image={project.image}
-              onClickOrb={handleOrbClick}
-            />
-          )
-        })}
-        <OrbitControls enablePan={false} enableZoom={false} autoRotate={false} autoRotateSpeed={1} />
-      </Canvas>
-      <h1 className="absolute top-10 text-4xl font-bold text-white z-10">My Projects</h1>
+    <section id="projects" className={`py-4 px-4 bg-gradient-to-b from-gray-900 to-black min-h-screen relative flex flex-col items-center`}>
+      <h2 className="absolute top-4 left-1/2 -translate-x-1/2 text-4xl md:text-5xl font-bold text-white z-10">My Projects</h2>
+
+      <div className="flex-grow w-full max-w-6xl flex justify-center items-center h-[90vh]">
+        <Canvas camera={{ position: [0, 0, 5], fov: 75 }} shadows className="w-full h-full">
+          <ambientLight intensity={0.8} />
+          <pointLight position={[10, 10, 10]} intensity={1} castShadow />
+          <pointLight position={[-10, -10, 10]} intensity={0.8} castShadow />
+          <directionalLight position={[5, 5, 5]} intensity={0.7} castShadow />
+          <FinancialVisualization />
+          {projectLinks.map((project, index) => {
+            const angle = (index / projectLinks.length) * Math.PI * 2
+            const radius = 3
+            const x = Math.cos(angle) * radius
+            const z = Math.sin(angle) * radius
+            return (
+              <ProjectOrb
+                key={project.name}
+                position={[x, 0, z]}
+                url={project.url}
+                name={project.name}
+                image={project.image}
+                onClickOrb={handleOrbClick}
+              />
+            )
+          })}
+          <OrbitControls enablePan={false} enableZoom={false} autoRotate={false} autoRotateSpeed={1} />
+        </Canvas>
+      </div>
+
       <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
-    </div>
+
+      <footer className="w-full bg-gray-900 py-4 mt-auto">
+        <div className="flex justify-center space-x-4">
+          <a href="https://github.com/wchesedh" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+            GitHub
+          </a>
+          <a href="https://linkedin.com/in/weljo-chesedh" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+            LinkedIn
+          </a>
+          <a href="https://twitter.com/wchesedh" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+            Twitter
+          </a>
+        </div>
+      </footer>
+    </section>
   )
 } 

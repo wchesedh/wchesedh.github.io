@@ -24,7 +24,7 @@ export default function AboutSection() {
             className="space-y-6"
           >
             <p className="text-gray-300 text-lg leading-relaxed">
-              I am a passionate full-stack developer with a strong foundation in web technologies and a keen eye for creating intuitive user experiences. My journey in software development has equipped me with the skills to build robust, scalable applications that solve real-world problems.
+              I am a passionate Full Stack Developer with a strong focus on creating modern, responsive web applications. With expertise in both frontend and backend technologies, I strive to build intuitive and efficient solutions that enhance user experiences.
             </p>
             <p className="text-gray-300 text-lg leading-relaxed">
               With expertise in both front-end and back-end development, I specialize in creating seamless, responsive web applications using modern technologies and best practices. I'm constantly learning and adapting to new technologies to stay at the forefront of web development.
