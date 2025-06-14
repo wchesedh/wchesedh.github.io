@@ -8,6 +8,7 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import CometCursor from './CometCursor'
 import { FireShader } from './FireShader'
+import { AsteroidBelt } from './AsteroidBelt'
 
 const projectLinks = [
   { name: 'University Online Document Request', url: 'https://sis.cmu.edu.ph/odrms', image: '/images/odrms.png', description: 'Online Document Request Management System for CMU students and staff.' },
@@ -20,22 +21,9 @@ const projectLinks = [
 function FinancialVisualization() {
   const ref = useRef()
   const materialRef = useRef()
-  const [isHovered, setIsHovered] = useState(false)
-
-  useFrame(({ clock }) => {
-    if (ref.current) {
-      ref.current.rotation.y = clock.getElapsedTime() * 0.05
-      ref.current.rotation.x = clock.getElapsedTime() * 0.02
-    }
-    if (materialRef.current) {
-      materialRef.current.uniforms.time.value = clock.getElapsedTime()
-      materialRef.current.uniforms.isHovered.value = isHovered ? 1.0 : 0.0
-    }
-  })
 
   const uniforms = useMemo(() => ({
-    time: { value: 0 },
-    isHovered: { value: 0 }
+    time: { value: 0 }
   }), [])
 
   const vertexShader = `
@@ -51,7 +39,6 @@ function FinancialVisualization() {
 
   const fragmentShader = `
     uniform float time;
-    uniform float isHovered;
     varying vec2 vUv;
     varying vec3 vPosition;
     
@@ -148,20 +135,6 @@ function FinancialVisualization() {
       alpha += explosionEffect * 0.3; // Make explosions more opaque
       alpha -= darkSpotEffect * 0.2; // Make dark spots slightly more transparent/less visible
 
-      // Add ray effect on hover
-      if (isHovered > 0.5) {
-        float raySpeed = t * 20.0;
-        float rayWidth = 0.05;
-        float numRays = 10.0;
-        
-        for (float i = 0.0; i < numRays; i++) {
-          float angle = atan(vUv.y - 0.5, vUv.x - 0.5);
-          float rayPattern = fract(angle * (numRays / (2.0 * PI)) + raySpeed + i * 0.5);
-          float rayIntensity = smoothstep(0.0, rayWidth, rayPattern) - smoothstep(rayWidth, rayWidth * 2.0, rayPattern);
-          finalColor += vec3(1.0, 1.0, 0.5) * rayIntensity * 0.8;
-          alpha += rayIntensity * 0.5;
-        }
-      }
       
       gl_FragColor = vec4(finalColor, alpha);
     }
@@ -169,11 +142,8 @@ function FinancialVisualization() {
 
   return (
     <group ref={ref}>
-      <mesh
-        onPointerOver={() => setIsHovered(true)}
-        onPointerOut={() => setIsHovered(false)}
-      >
-        <sphereGeometry args={[1, 64, 64]} />
+      <mesh>
+        <sphereGeometry args={[2, 64, 64]} />
         <shaderMaterial
           ref={materialRef}
           vertexShader={vertexShader}
@@ -353,6 +323,7 @@ export default function Projects() {
             <pointLight position={[-10, -10, 10]} intensity={0.8} castShadow />
             <directionalLight position={[5, 5, 5]} intensity={0.7} castShadow />
             <FinancialVisualization />
+            <AsteroidBelt />
             <group>
               {projectLinks.map((project, index) => {
                 const startAngleOffset = (index / projectLinks.length) * Math.PI * 2 // Distribute evenly
