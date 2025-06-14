@@ -189,48 +189,76 @@ function FinancialVisualization() {
   )
 }
 
-function ProjectOrb({ position, url, name, image, onClickOrb }) {
+function ProjectOrb({ url, name, image, onClickOrb, orbitalRadius, orbitalSpeed, startAngleOffset }) {
   const ref = useRef()
   const meshRef = useRef()
   const texture = useTexture(image)
   const [hovered, hover] = useState(false)
+  const [mousePos, setMousePos] = useState([0, 0])
 
-  useFrame(({ camera }) => {
+  useFrame(({ camera, clock }) => {
     if (meshRef.current) {
       meshRef.current.lookAt(camera.position)
     }
+    // Orbital motion
+    const t = clock.getElapsedTime() * orbitalSpeed
+    const x = Math.cos(startAngleOffset + t) * orbitalRadius
+    const z = Math.sin(startAngleOffset + t) * orbitalRadius
+    const y = Math.sin(t * 0.5 + startAngleOffset) * 0.5 // Add subtle up and down motion
+
+    if (ref.current) {
+      ref.current.position.set(x, y, z)
+    }
   })
 
+  // Handle mouse move to get relative position within the orb
+  const handlePointerMove = (event) => {
+    if (meshRef.current) {
+      // Get intersection point in local coordinates of the mesh
+      const intersection = event.point.clone().sub(meshRef.current.position);
+
+      // Normalize to -1 to 1 range across the sphere
+      const normalizedX = intersection.x / (0.3); // 0.3 is sphere radius
+      const normalizedY = intersection.y / (0.3);
+      setMousePos([normalizedX, normalizedY]);
+    }
+  };
+
   return (
-    <Float speed={2} rotationIntensity={0} floatIntensity={0.5}>
-      <group
-        ref={ref}
-        position={position}
-        onPointerOver={() => hover(true)}
-        onPointerOut={() => hover(false)}
-        onClick={() => onClickOrb({ name, url, image, description: projectLinks.find(p => p.name === name).description })}
-        style={{ cursor: 'pointer' }}
-        scale={hovered ? 1.1 : 1}
-      >
-        {/* Base orb */}
-        <mesh ref={meshRef}>
-          <sphereGeometry args={[0.3, 32, 32]} />
-          <meshStandardMaterial
-            map={texture}
-            transparent={true}
-            side={THREE.DoubleSide}
-          />
+    <group
+      ref={ref}
+      // position is now handled by useFrame hook
+      onPointerOver={(e) => {
+        hover(true);
+        handlePointerMove(e); // Capture initial position on hover
+      }}
+      onPointerOut={() => {
+        hover(false);
+        setMousePos([0, 0]); // Reset on hover out
+      }}
+      onPointerMove={handlePointerMove} // Update position on move
+      onClick={() => onClickOrb({ name, url, image, description: projectLinks.find(p => p.name === name).description })}
+      style={{ cursor: 'pointer' }}
+      scale={hovered ? 1.1 : 1}
+    >
+      {/* Base orb */}
+      <mesh ref={meshRef}>
+        <sphereGeometry args={[0.3, 32, 32]} />
+        <meshStandardMaterial
+          map={texture}
+          transparent={true}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+      
+      {/* Fire effect overlay */}
+      {hovered && (
+        <mesh>
+          <sphereGeometry args={[0.31, 32, 32]} />
+          <FireShader active={true} mousePos={mousePos} /> {/* Pass mousePos to FireShader */}
         </mesh>
-        
-        {/* Fire effect overlay */}
-        {hovered && (
-          <mesh>
-            <sphereGeometry args={[0.31, 32, 32]} />
-            <FireShader active={true} />
-          </mesh>
-        )}
-      </group>
-    </Float>
+      )}
+    </group>
   )
 }
 
@@ -291,6 +319,9 @@ export default function Projects() {
     setSelectedProject(project)
   }
 
+  const orbitalRadius = 3.5 // Radius of the orbit, adjust as needed
+  const orbitalSpeed = 0.2 // Speed of revolution, adjust as needed
+
   return (
     <section id="projects" className={`bg-gradient-to-b from-gray-900 to-black min-h-screen flex flex-col items-center ${isMobile ? 'min-h-[auto]' : 'h-screen'}`}>
       <h2 className="text-4xl md:text-5xl font-bold text-white text-center pt-8 mb-8">My Projects</h2>
@@ -322,22 +353,24 @@ export default function Projects() {
             <pointLight position={[-10, -10, 10]} intensity={0.8} castShadow />
             <directionalLight position={[5, 5, 5]} intensity={0.7} castShadow />
             <FinancialVisualization />
-            {projectLinks.map((project, index) => {
-              const angle = (index / projectLinks.length) * Math.PI * 2
-              const radius = 3
-              const x = Math.cos(angle) * radius
-              const z = Math.sin(angle) * radius
-              return (
-                <ProjectOrb
-                  key={project.name}
-                  position={[x, 0, z]}
-                  url={project.url}
-                  name={project.name}
-                  image={project.image}
-                  onClickOrb={handleOrbClick}
-                />
-              )
-            })}
+            <group>
+              {projectLinks.map((project, index) => {
+                const startAngleOffset = (index / projectLinks.length) * Math.PI * 2 // Distribute evenly
+
+                return (
+                  <ProjectOrb
+                    key={project.name}
+                    url={project.url}
+                    name={project.name}
+                    image={project.image}
+                    onClickOrb={handleOrbClick}
+                    orbitalRadius={orbitalRadius} // Pass orbital props
+                    orbitalSpeed={orbitalSpeed}
+                    startAngleOffset={startAngleOffset}
+                  />
+                )
+              })}
+            </group>
             <OrbitControls enablePan={false} enableZoom={false} autoRotate={false} autoRotateSpeed={1} />
           </Canvas>
         </div>
