@@ -1,23 +1,54 @@
 "use client"
 
 import { motion } from 'framer-motion'
+import { FaReact, FaNodeJs, FaPython, FaDocker, FaAws, FaGit, FaLinux, FaHtml5, FaServer, FaCode, FaPhp } from 'react-icons/fa'
+import { SiNextdotjs, SiTailwindcss, SiDjango, SiPostgresql, SiMongodb, SiSolidity, SiEthereum, SiVercel, SiStripe, SiSupabase, SiTypescript, SiWeb3DotJs } from 'react-icons/si'
 
 const skills = [
   {
     category: 'Frontend',
-    technologies: ['React', 'Next.js', 'Tailwind CSS', 'HTML/CSS', 'JavaScript/TypeScript'],
+    technologies: [
+      { name: 'React', icon: FaReact, color: '#61DAFB' },
+      { name: 'Next.js', icon: SiNextdotjs, color: '#000000' },
+      { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#06B6D4' },
+      { name: 'HTML/CSS', icon: FaHtml5, color: '#E34F26' },
+      { name: 'JavaScript/TypeScript', icon: SiTypescript, color: '#3178C6' },
+    ],
   },
   {
     category: 'Backend',
-    technologies: ['Node.js', 'Express', 'Python', 'Django', 'PostgreSQL', 'MongoDB'],
+    technologies: [
+      { name: 'Node.js', icon: FaNodeJs, color: '#339933' },
+      { name: 'Express', icon: FaServer, color: '#000000' },
+      { name: 'Python', icon: FaPython, color: '#3776AB' },
+      { name: 'Django', icon: SiDjango, color: '#092E20' },
+      { name: 'PostgreSQL', icon: SiPostgresql, color: '#336791' },
+      { name: 'MongoDB', icon: SiMongodb, color: '#47A248' },
+      { name: 'PHP', icon: FaPhp, color: '#777BB4' },
+      { name: 'VB', icon: FaCode, color: '#92278F' },
+    ],
   },
   {
-    category: 'DevOps',
-    technologies: ['Docker', 'AWS', 'CI/CD', 'Git', 'Linux'],
+    category: 'DevOps & Platforms',
+    technologies: [
+      { name: 'Docker', icon: FaDocker, color: '#2496ED' },
+      { name: 'AWS', icon: FaAws, color: '#FF9900' },
+      { name: 'CI/CD', icon: FaGit, color: '#F05032' },
+      { name: 'Git', icon: FaGit, color: '#F05032' },
+      { name: 'Linux', icon: FaLinux, color: '#FCC624' },
+      { name: 'Vercel', icon: SiVercel, color: '#000000' },
+      { name: 'Stripe', icon: SiStripe, color: '#00AFFB' },
+      { name: 'Supabase', icon: SiSupabase, color: '#3ECF8E' },
+    ],
   },
   {
     category: 'Blockchain',
-    technologies: ['Solidity', 'Web3.js', 'Ethereum', 'Smart Contracts'],
+    technologies: [
+      { name: 'Solidity', icon: SiSolidity, color: '#363636' },
+      { name: 'Web3.js', icon: SiEthereum, color: '#F16822' },
+      { name: 'Ethereum', icon: SiEthereum, color: '#627EEA' },
+      { name: 'Smart Contracts', icon: SiSolidity, color: '#363636' },
+    ],
   },
 ]
 
@@ -38,9 +69,9 @@ export default function SkillsSection() {
               <h3 className="text-2xl font-bold text-white mb-4">{skill.category}</h3>
               <ul className="space-y-2">
                 {skill.technologies.map((tech) => (
-                  <li key={tech} className="text-gray-300 flex items-center">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                    {tech}
+                  <li key={tech.name} className="text-gray-300 flex items-center">
+                    {tech.icon && <tech.icon className="w-6 h-6 mr-2" style={{ color: tech.color }} />}
+                    {tech.name}
                   </li>
                 ))}
               </ul>

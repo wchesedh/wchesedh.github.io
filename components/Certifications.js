@@ -43,16 +43,20 @@ const certificationsData = [
 export default function Certifications() {
   return (
     <section id="certifications" className="bg-gradient-to-b from-black to-gray-900 min-h-screen flex flex-col items-center py-16">
-      <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-12">Certifications</h2>
+      <h2
+        className="text-4xl md:text-5xl font-bold text-white text-center mb-12"
+      >
+        Certifications
+      </h2>
       <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
         {certificationsData.map((cert) => (
           <div
             key={cert.id}
             className="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col items-center p-6 transform transition-transform duration-300 hover:scale-105"
           >
-            <div className="relative w-full h-48 mb-4">
+            <a href={cert.image} target="_blank" rel="noopener noreferrer" className="relative w-full h-48 mb-4 block cursor-pointer">
               <Image src={cert.image} alt={cert.title} layout="fill" objectFit="contain" />
-            </div>
+            </a>
             <h3 className="text-xl font-bold text-white text-center mb-2">{cert.title}</h3>
             <p className="text-gray-300 text-center text-sm">{cert.description}</p>
           </div>
