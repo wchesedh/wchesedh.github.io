@@ -3,17 +3,47 @@
 import Image from 'next/image'
 import Hero3D from './Hero3d'
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
 export default function HeroSection() {
-  const scrollToProjects = () => {
-    const projectsSection = document.getElementById('projects')
-    if (projectsSection) {
-      projectsSection.scrollIntoView({ behavior: 'smooth' })
+  const [isInProjects3D, setIsInProjects3D] = useState(false)
+  const [showButton, setShowButton] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const projectsSection = document.getElementById('projects')
+      const projectsRect = projectsSection?.getBoundingClientRect()
+      const isInProjects = projectsRect && projectsRect.top <= 0 && projectsRect.bottom >= 0
+      
+      // Check if we're in the 3D view of projects
+      const activeTab = document.querySelector('#projects button.bg-blue-600')
+      const is3DView = activeTab?.textContent?.trim() === '3D View'
+      
+      setIsInProjects3D(isInProjects && is3DView)
+      setShowButton(window.scrollY > 300)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId)
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' })
     }
   }
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+  const handleNavigation = (direction) => {
+    if (isInProjects3D) {
+      if (direction === 'up') {
+        scrollToSection('skills')
+      } else {
+        scrollToSection('certifications')
+      }
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
   }
 
   return (
@@ -54,7 +84,7 @@ export default function HeroSection() {
             className="flex flex-col sm:flex-row justify-center gap-4 mb-12"
           >
             <button
-              onClick={scrollToProjects}
+              onClick={scrollToSection}
               className="px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold shadow-lg hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105"
             >
               View Projects
@@ -85,12 +115,26 @@ export default function HeroSection() {
         </div>
       </section>
 
-      <button
-        onClick={scrollToTop}
-        className="fixed bottom-20 right-4 bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700 transition-colors"
-      >
-        ↑
-      </button>
+      {showButton && (
+        <div className="fixed bottom-20 right-4 flex flex-col gap-2">
+          <button
+            onClick={() => handleNavigation('up')}
+            className="bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700 transition-colors"
+            title={isInProjects3D ? "Go to Skills" : "Back to Top"}
+          >
+            ↑
+          </button>
+          {isInProjects3D && (
+            <button
+              onClick={() => handleNavigation('down')}
+              className="bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700 transition-colors"
+              title="Go to Certifications"
+            >
+              ↓
+            </button>
+          )}
+        </div>
+      )}
     </>
   )
 } 

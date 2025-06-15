@@ -309,6 +309,7 @@ export default function Projects() {
           View All
         </button>
       </div>
+
       {activeTab === '3d' ? (
         <div
           className="flex-grow w-full max-w-6xl flex justify-center items-center h-[90vh] relative"
@@ -326,8 +327,7 @@ export default function Projects() {
             <AsteroidBelt />
             <group>
               {projectLinks.map((project, index) => {
-                const startAngleOffset = (index / projectLinks.length) * Math.PI * 2 // Distribute evenly
-
+                const startAngleOffset = (index / projectLinks.length) * Math.PI * 2
                 return (
                   <ProjectOrb
                     key={project.name}
@@ -335,7 +335,7 @@ export default function Projects() {
                     name={project.name}
                     image={project.image}
                     onClickOrb={handleOrbClick}
-                    orbitalRadius={orbitalRadius} // Pass orbital props
+                    orbitalRadius={orbitalRadius}
                     orbitalSpeed={orbitalSpeed}
                     startAngleOffset={startAngleOffset}
                   />

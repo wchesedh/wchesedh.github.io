@@ -45,7 +45,7 @@ const certificationsData = [
 
 export default function Certifications() {
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-black to-gray-900">
+    <section id="certifications" className="py-20 px-4 bg-gradient-to-b from-black to-gray-900">
       <div className="max-w-6xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: 50 }}
