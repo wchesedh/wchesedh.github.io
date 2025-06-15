@@ -56,14 +56,23 @@ export default function SkillsSection() {
   return (
     <section className="py-20 px-4 bg-gradient-to-b from-gray-900 to-black">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-12">Skills & Technologies</h2>
+        <motion.h2
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl font-bold text-white text-center mb-12"
+        >
+          Skills & Technologies
+        </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {skills.map((skill) => (
+          {skills.map((skill, index) => (
             <motion.div
               key={skill.category}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.7, delay: index * 0.15, type: "spring", stiffness: 100 }}
               className="bg-gray-800 rounded-lg p-6 shadow-lg"
             >
               <h3 className="text-2xl font-bold text-white mb-4">{skill.category}</h3>

@@ -1,5 +1,8 @@
+"use client"
+
 import React from 'react'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 
 const certificationsData = [
   {
@@ -42,25 +45,35 @@ const certificationsData = [
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="bg-gradient-to-b from-black to-gray-900 min-h-screen flex flex-col items-center py-16">
-      <h2
-        className="text-4xl md:text-5xl font-bold text-white text-center mb-12"
-      >
-        Certifications
-      </h2>
-      <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
-        {certificationsData.map((cert) => (
-          <div
-            key={cert.id}
-            className="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col items-center p-6 transform transition-transform duration-300 hover:scale-105"
-          >
-            <a href={cert.image} target="_blank" rel="noopener noreferrer" className="relative w-full h-48 mb-4 block cursor-pointer">
-              <Image src={cert.image} alt={cert.title} layout="fill" objectFit="contain" />
-            </a>
-            <h3 className="text-xl font-bold text-white text-center mb-2">{cert.title}</h3>
-            <p className="text-gray-300 text-center text-sm">{cert.description}</p>
-          </div>
-        ))}
+    <section className="py-20 px-4 bg-gradient-to-b from-black to-gray-900">
+      <div className="max-w-6xl mx-auto">
+        <motion.h2
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl font-bold text-white text-center mb-12"
+        >
+          Certifications
+        </motion.h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {certificationsData.map((cert, index) => (
+            <motion.div
+              key={cert.id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.7, delay: index * 0.15, type: "spring", stiffness: 100 }}
+              className="bg-gray-800 rounded-lg p-6 shadow-lg flex flex-col items-center text-center"
+            >
+              <a href={cert.image} target="_blank" rel="noopener noreferrer" className="relative w-full h-48 mb-4 block cursor-pointer">
+                <Image src={cert.image} alt={cert.title} layout="fill" objectFit="contain" />
+              </a>
+              <h3 className="text-xl font-bold text-white text-center mb-2">{cert.title}</h3>
+              <p className="text-gray-300 text-center text-sm">{cert.description}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
