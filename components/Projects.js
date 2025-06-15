@@ -375,19 +375,6 @@ export default function Projects() {
         </div>
       )}
       <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
-      <footer className="w-full bg-gray-900 py-4 mt-auto">
-        <div className="flex justify-center space-x-4">
-          <a href="https://github.com/wchesedh" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-            GitHub
-          </a>
-          <a href="https://linkedin.com/in/weljo-chesedh" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-            LinkedIn
-          </a>
-          <a href="https://twitter.com/wchesedh" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-            Twitter
-          </a>
-        </div>
-      </footer>
     </section>
   )
 } 
