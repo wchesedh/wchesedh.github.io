@@ -9,7 +9,7 @@ import * as random from 'maath/random'
 function ForceBarrier({ radius = 5, segments = 32 }) {
   const barrierRef = useRef()
   const time = useRef(0)
-
+  
   const barrierGeometry = useMemo(() => {
     const geometry = new THREE.RingGeometry(radius - 0.1, radius + 0.1, segments)
     return geometry
@@ -27,7 +27,7 @@ function ForceBarrier({ radius = 5, segments = 32 }) {
     <group ref={barrierRef}>
       <mesh geometry={barrierGeometry} rotation={[Math.PI / 2, 0, 0]}>
         <meshBasicMaterial 
-          color="#00ff88" 
+          color="#00ff88"
           transparent 
           opacity={0.1} 
           side={THREE.DoubleSide}
@@ -35,20 +35,20 @@ function ForceBarrier({ radius = 5, segments = 32 }) {
       </mesh>
       <mesh geometry={barrierGeometry} rotation={[0, Math.PI / 2, 0]}>
         <meshBasicMaterial 
-          color="#00ccff" 
+            color="#00ccff"
           transparent 
           opacity={0.1} 
           side={THREE.DoubleSide}
-        />
-      </mesh>
+          />
+        </mesh>
       <mesh geometry={barrierGeometry} rotation={[0, 0, Math.PI / 2]}>
         <meshBasicMaterial 
-          color="#ff3366" 
+            color="#ff3366"
           transparent 
           opacity={0.1} 
           side={THREE.DoubleSide}
-        />
-      </mesh>
+          />
+        </mesh>
     </group>
   )
 }
@@ -56,7 +56,7 @@ function ForceBarrier({ radius = 5, segments = 32 }) {
 function EnergyParticles({ count = 1000 }) {
   const particlesRef = useRef()
   const time = useRef(0)
-
+  
   const particles = useMemo(() => {
     const positions = new Float32Array(count * 3)
     const colors = new Float32Array(count * 3)
@@ -184,8 +184,9 @@ function Tesseract({ depth = 0, maxDepth = 2, scale = 1.5, position = [0, 0, 0],
       <lineSegments geometry={geometry}>
         <lineBasicMaterial 
           color={depth === 0 ? "#00ff88" : "#00ccff"} 
-          opacity={0.3 - (depth / maxDepth) * 0.2} 
+          opacity={0.7 - (depth / maxDepth) * 0.4} 
           transparent 
+          linewidth={depth === 0 ? 2 : 1}
         />
       </lineSegments>
 
@@ -194,28 +195,28 @@ function Tesseract({ depth = 0, maxDepth = 2, scale = 1.5, position = [0, 0, 0],
           <Tesseract 
             depth={depth + 1} 
             maxDepth={maxDepth} 
-            scale={scale * 0.5} 
+            scale={scale * 0.6} 
             position={[scale * 0.5, scale * 0.5, scale * 0.5]} 
             rotation={[Math.PI / 4, Math.PI / 4, 0]}
           />
           <Tesseract 
             depth={depth + 1} 
             maxDepth={maxDepth} 
-            scale={scale * 0.5} 
+            scale={scale * 0.6} 
             position={[-scale * 0.5, scale * 0.5, scale * 0.5]} 
             rotation={[-Math.PI / 4, Math.PI / 4, 0]}
           />
           <Tesseract 
             depth={depth + 1} 
             maxDepth={maxDepth} 
-            scale={scale * 0.5} 
+            scale={scale * 0.6} 
             position={[scale * 0.5, -scale * 0.5, scale * 0.5]} 
             rotation={[Math.PI / 4, -Math.PI / 4, 0]}
           />
           <Tesseract 
             depth={depth + 1} 
             maxDepth={maxDepth} 
-            scale={scale * 0.5} 
+            scale={scale * 0.6} 
             position={[-scale * 0.5, -scale * 0.5, scale * 0.5]} 
             rotation={[-Math.PI / 4, -Math.PI / 4, 0]}
           />
@@ -228,20 +229,20 @@ function Tesseract({ depth = 0, maxDepth = 2, scale = 1.5, position = [0, 0, 0],
 function Scene() {
   return (
     <group>
-      <Tesseract scale={1.5} maxDepth={2} />
-      <ForceBarrier radius={4} />
-      <EnergyParticles count={500} />
-      <ambientLight intensity={0.3} />
-      <pointLight position={[10, 10, 10]} intensity={0.5} />
-      <pointLight position={[-10, -10, -10]} intensity={0.3} />
+      <Tesseract scale={2} maxDepth={2} />
+      <ForceBarrier radius={5} />
+      <EnergyParticles count={300} />
+      <ambientLight intensity={0.4} />
+      <pointLight position={[10, 10, 10]} intensity={0.6} />
+      <pointLight position={[-10, -10, -10]} intensity={0.4} />
     </group>
   )
 }
 
 export default function Hero3D() {
   return (
-    <div className="absolute inset-0 opacity-50">
-      <Canvas camera={{ position: [0, 0, 10], fov: 45 }}>
+    <div className="absolute inset-0 opacity-70">
+      <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
         <Scene />
         <OrbitControls 
           enableZoom={false}
