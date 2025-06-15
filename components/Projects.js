@@ -11,11 +11,11 @@ import { FireShader } from './FireShader'
 import { AsteroidBelt } from './AsteroidBelt'
 
 const projectLinks = [
-  { name: 'University Online Document Request', url: 'https://sis.cmu.edu.ph/odrms', image: '/images/odrms.png', description: 'Online Document Request Management System for CMU students and staff.' },
-  { name: 'HR Online Document Request', url: 'https://apps.cmu.edu.ph/hrodrs', image: '/images/hrodrs.png', description: 'HR Online Document Request System for CMU employees.' },
-  { name: 'CMUPress', url: 'https://apps.cmu.edu.ph/cmupress', image: '/images/cmupress.png', description: 'CMU Press platform for academic publishing and resources.' },
   { name: 'Aguaboo', url: 'https://aguaboo.com', image: '/images/aguaboo.png', description: 'A modern water delivery platform for ordering and management.' },
   { name: 'Bullisch Bull Official Site', url: 'https://bull-token-site.vercel.app/', image: '/images/bullisch1.png', description: 'Successful launch of BULL token on Solana' },
+  { name: 'University Online Document Request', url: 'https://sis.cmu.edu.ph/odrms', image: '/images/odrms.png', description: 'Online Document Request Management System for CMU students and staff.' },
+  { name: 'CMUPress', url: 'https://apps.cmu.edu.ph/cmupress', image: '/images/cmupress.png', description: 'CMU Press platform for academic publishing and resources.' },
+  { name: 'HR Online Document Request', url: 'https://apps.cmu.edu.ph/hrodrs', image: '/images/hrodrs.png', description: 'HR Online Document Request System for CMU employees.' },
 ]
 
 function FinancialVisualization() {
@@ -245,23 +245,30 @@ function ProjectModal({ project, onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col items-center mb-4">
-          <img src={project.image} alt={project.name} className="w-full h-auto max-h-96 object-contain mb-4" />
+          <img src={project.image} alt={project.name} className="w-full h-auto max-h-96 object-contain mb-4 rounded-lg" />
           <h3 className="text-3xl font-bold text-white text-center mb-2">{project.name}</h3>
-          <p className="text-gray-300 text-center mb-4">{project.description}</p>
-          <div className="flex space-x-4">
+          <p className="text-gray-300 text-center mb-6">{project.description}</p>
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <a
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold shadow hover:from-blue-600 hover:to-purple-700 transition-all text-lg"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium shadow-lg hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 text-center"
             >
-              Visit Site
+              <span>Visit Site</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+              </svg>
             </a>
             <button
               onClick={onClose}
-              className="px-6 py-3 rounded-full bg-gray-700 text-white font-semibold shadow hover:bg-gray-600 transition-all text-lg"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-gray-700 text-white font-medium shadow-lg hover:bg-gray-600 transform hover:scale-105 transition-all duration-300 text-center"
             >
-              Close
+              <span>Close</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
             </button>
           </div>
         </div>
@@ -289,91 +296,123 @@ export default function Projects() {
     setSelectedProject(project)
   }
 
-  const orbitalRadius = 3.5 // Radius of the orbit, adjust as needed
-  const orbitalSpeed = 0.2 // Speed of revolution, adjust as needed
+  const orbitalRadius = 3.5
+  const orbitalSpeed = 0.2
 
   return (
-    <section id="projects" className={`bg-gradient-to-b from-gray-900 to-black min-h-screen flex flex-col items-center ${isMobile ? 'min-h-[auto]' : 'h-screen'}`}>
-      <h2 className="text-4xl md:text-5xl font-bold text-white text-center pt-8 mb-8">My Projects</h2>
-      <div className="flex justify-center space-x-4 mb-8">
-        <button
-          onClick={() => setActiveTab('3d')}
-          className={`px-6 py-2 rounded-full font-semibold transition-all ${activeTab === '3d' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-blue-700 hover:text-white'}`}
-        >
-          3D View
-        </button>
-        <button
-          onClick={() => setActiveTab('all')}
-          className={`px-6 py-2 rounded-full font-semibold transition-all ${activeTab === 'all' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-blue-700 hover:text-white'}`}
-        >
-          View All
-        </button>
-      </div>
+    <section id="projects" className="relative bg-gradient-to-b from-gray-900 to-black py-20">
+      <div className="max-w-6xl mx-auto px-4">
+        <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-8">My Projects</h2>
+        <div className="flex justify-center space-x-4 mb-8">
+          <button
+            onClick={() => setActiveTab('3d')}
+            className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${activeTab === '3d' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-blue-700 hover:text-white'}`}
+          >
+            3D View
+          </button>
+          <button
+            onClick={() => setActiveTab('all')}
+            className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${activeTab === 'all' ? 'bg-blue-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-blue-700 hover:text-white'}`}
+          >
+            View All
+          </button>
+        </div>
 
-      {activeTab === '3d' ? (
-        <div
-          className="flex-grow w-full max-w-6xl flex justify-center items-center h-[90vh] relative"
-          onMouseEnter={() => setShowComet(true)}
-          onMouseLeave={() => setShowComet(false)}
-          style={{ cursor: showComet ? 'none' : 'default' }}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="relative"
         >
-          <CometCursor active={showComet} />
-          <Canvas camera={{ position: [0, 0, 5], fov: 75 }} shadows className="w-full h-full">
-            <ambientLight intensity={0.8} />
-            <pointLight position={[10, 10, 10]} intensity={1} castShadow />
-            <pointLight position={[-10, -10, 10]} intensity={0.8} castShadow />
-            <directionalLight position={[5, 5, 5]} intensity={0.7} castShadow />
-            <FinancialVisualization />
-            <AsteroidBelt />
-            <group>
-              {projectLinks.map((project, index) => {
-                const startAngleOffset = (index / projectLinks.length) * Math.PI * 2
-                return (
-                  <ProjectOrb
-                    key={project.name}
-                    url={project.url}
-                    name={project.name}
-                    image={project.image}
-                    onClickOrb={handleOrbClick}
-                    orbitalRadius={orbitalRadius}
-                    orbitalSpeed={orbitalSpeed}
-                    startAngleOffset={startAngleOffset}
-                  />
-                )
-              })}
-            </group>
-            <OrbitControls enablePan={false} enableZoom={false} autoRotate={false} autoRotateSpeed={1} />
-          </Canvas>
-        </div>
-      ) : (
-        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 px-4">
-          {projectLinks.map((project) => (
+          {activeTab === '3d' ? (
             <motion.div
-              key={project.name}
-              className="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col cursor-pointer hover:scale-[1.02] transition-transform"
-              onClick={() => setSelectedProject(project)}
-              whileHover={{ scale: 1.02 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.5 }}
+              className="flex-grow w-full flex justify-center items-center h-[80vh] relative"
+              onMouseEnter={() => setShowComet(true)}
+              onMouseLeave={() => setShowComet(false)}
+              style={{ cursor: showComet ? 'none' : 'default' }}
             >
-              <div className="relative w-full h-48">
-                <Image src={project.image} alt={project.name} fill className="object-cover" />
-              </div>
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-bold text-white mb-2">{project.name}</h3>
-                <p className="text-gray-300 text-sm mb-4 flex-1">{project.description}</p>
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full hover:from-blue-600 hover:to-purple-700 transition-all text-sm mt-auto"
-                  onClick={e => e.stopPropagation()}
-                >
-                  Visit Site
-                </a>
-              </div>
+              <CometCursor active={showComet} />
+              <Canvas camera={{ position: [0, 0, 5], fov: 75 }} shadows className="w-full h-full">
+                <ambientLight intensity={0.8} />
+                <pointLight position={[10, 10, 10]} intensity={1} castShadow />
+                <pointLight position={[-10, -10, 10]} intensity={0.8} castShadow />
+                <directionalLight position={[5, 5, 5]} intensity={0.7} castShadow />
+                <FinancialVisualization />
+                <AsteroidBelt />
+                <group>
+                  {projectLinks.map((project, index) => {
+                    const startAngleOffset = (index / projectLinks.length) * Math.PI * 2
+                    return (
+                      <ProjectOrb
+                        key={project.name}
+                        url={project.url}
+                        name={project.name}
+                        image={project.image}
+                        onClickOrb={handleOrbClick}
+                        orbitalRadius={orbitalRadius}
+                        orbitalSpeed={orbitalSpeed}
+                        startAngleOffset={startAngleOffset}
+                      />
+                    )
+                  })}
+                </group>
+                <OrbitControls enablePan={false} enableZoom={false} autoRotate={false} autoRotateSpeed={1} />
+              </Canvas>
             </motion.div>
-          ))}
-        </div>
-      )}
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.5 }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+            >
+              {projectLinks.map((project) => (
+                <motion.div
+                  key={project.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col cursor-pointer transform transition-transform duration-300 hover:scale-[1.02]"
+                  onClick={() => setSelectedProject(project)}
+                >
+                  <div className="relative w-full aspect-video">
+                    <Image 
+                      src={project.image} 
+                      alt={project.name} 
+                      fill 
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </div>
+                  <div className="p-6 flex-1 flex flex-col">
+                    <h3 className="text-xl font-bold text-white mb-2">{project.name}</h3>
+                    <p className="text-gray-300 text-sm mb-4 flex-1">{project.description}</p>
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium shadow-lg hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 text-sm"
+                      onClick={e => e.stopPropagation()}
+                    >
+                      <span>Visit Site</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                        <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                      </svg>
+                    </a>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
+        </motion.div>
+      </div>
       <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </section>
   )

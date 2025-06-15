@@ -13,14 +13,22 @@ export default function HeroSection() {
     const handleScroll = () => {
       const projectsSection = document.getElementById('projects')
       const projectsRect = projectsSection?.getBoundingClientRect()
-      const isInProjects = projectsRect && projectsRect.top <= 0 && projectsRect.bottom >= 0
+      
+      // Calculate how much of the projects section is visible
+      const windowHeight = window.innerHeight
+      const projectsVisibleHeight = Math.min(projectsRect?.bottom || 0, windowHeight) - Math.max(projectsRect?.top || 0, 0)
+      const projectsTotalHeight = projectsRect?.height || 0
+      const projectsVisibilityRatio = projectsVisibleHeight / projectsTotalHeight
       
       // Check if we're in the 3D view of projects
       const activeTab = document.querySelector('#projects button.bg-blue-600')
       const is3DView = activeTab?.textContent?.trim() === '3D View'
       
-      setIsInProjects3D(isInProjects && is3DView)
-      setShowButton(window.scrollY > 300)
+      // Set isInProjects3D to true only if projects section is mostly visible (more than 60%) and in 3D view
+      setIsInProjects3D(projectsVisibilityRatio > 0.6 && is3DView)
+      
+      // Show button when scrolled past hero section
+      setShowButton(window.scrollY > windowHeight * 0.5)
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -116,21 +124,25 @@ export default function HeroSection() {
       </section>
 
       {showButton && (
-        <div className="fixed bottom-20 right-4 flex flex-col gap-2">
+        <div className="fixed bottom-8 right-8 z-50 flex flex-col gap-3">
           <button
             onClick={() => handleNavigation('up')}
-            className="bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700 transition-colors"
+            className="w-10 h-10 flex items-center justify-center bg-gray-800/90 backdrop-blur-sm text-white rounded-full shadow-lg hover:bg-gray-700 transition-all duration-300 hover:scale-110 border border-gray-700"
             title={isInProjects3D ? "Go to Skills" : "Back to Top"}
           >
-            ↑
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clipRule="evenodd" />
+            </svg>
           </button>
           {isInProjects3D && (
             <button
               onClick={() => handleNavigation('down')}
-              className="bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700 transition-colors"
+              className="w-10 h-10 flex items-center justify-center bg-gray-800/90 backdrop-blur-sm text-white rounded-full shadow-lg hover:bg-gray-700 transition-all duration-300 hover:scale-110 border border-gray-700"
               title="Go to Certifications"
             >
-              ↓
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
             </button>
           )}
         </div>
