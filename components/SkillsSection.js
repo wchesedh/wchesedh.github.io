@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { FaReact, FaNodeJs, FaPython, FaDocker, FaAws, FaGit, FaLinux, FaHtml5, FaServer, FaCode, FaPhp } from 'react-icons/fa'
-import { SiNextdotjs, SiTailwindcss, SiDjango, SiPostgresql, SiMongodb, SiSolidity, SiEthereum, SiVercel, SiStripe, SiSupabase, SiTypescript, SiWeb3DotJs } from 'react-icons/si'
+import { SiNextdotjs, SiTailwindcss, SiDjango, SiPostgresql, SiMongodb, SiSolidity, SiEthereum, SiVercel, SiStripe, SiSupabase, SiTypescript, SiWeb3DotJs, SiLaravel, SiCodeigniter, SiDotnet } from 'react-icons/si'
 
 const skills = [
   {
@@ -22,10 +22,12 @@ const skills = [
       { name: 'Express', icon: FaServer, color: '#000000' },
       { name: 'Python', icon: FaPython, color: '#3776AB' },
       { name: 'Django', icon: SiDjango, color: '#092E20' },
+      { name: 'PHP', icon: FaPhp, color: '#777BB4' },
+      { name: 'Laravel', icon: SiLaravel, color: '#FF2D20' },
+      { name: 'CodeIgniter', icon: SiCodeigniter, color: '#EF4223' },
+      { name: 'ASP VB.NET', icon: SiDotnet, color: '#512BD4' },
       { name: 'PostgreSQL', icon: SiPostgresql, color: '#336791' },
       { name: 'MongoDB', icon: SiMongodb, color: '#47A248' },
-      { name: 'PHP', icon: FaPhp, color: '#777BB4' },
-      { name: 'VB', icon: FaCode, color: '#92278F' },
     ],
   },
   {

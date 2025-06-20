@@ -27,7 +27,7 @@ export default function AboutSection() {
               I am a passionate Full Stack Developer with a strong focus on creating modern, responsive web applications. With expertise in both frontend and backend technologies, I strive to build intuitive and efficient solutions that enhance user experiences.
             </p>
             <p className="text-gray-300 text-lg leading-relaxed">
-              With expertise in both front-end and back-end development, I specialize in creating seamless, responsive web applications using modern technologies and best practices. I'm constantly learning and adapting to new technologies to stay at the forefront of web development.
+              With expertise in both front-end and back-end development, I specialize in creating responsive web applications using modern technologies and best practices. I'm constantly learning and adapting to new technologies to stay at the forefront of web development.
             </p>
           </motion.div>
 
@@ -45,11 +45,11 @@ export default function AboutSection() {
               </div>
               <div>
                 <h4 className="text-xl text-purple-400 mb-2">Backend Development</h4>
-                <p className="text-gray-300">Node.js, Express, MongoDB, PostgreSQL, RESTful APIs</p>
+                <p className="text-gray-300">Node.js, Express, MongoDB, PostgreSQL, Laravel, CodeIgniter, RESTful APIs</p>
               </div>
               <div>
                 <h4 className="text-xl text-green-400 mb-2">Programming Languages</h4>
-                <p className="text-gray-300">JavaScript, TypeScript, Python, PHP, SQL</p>
+                <p className="text-gray-300">JavaScript, TypeScript, Python, PHP, ASP VB.NET, SQL</p>
               </div>
               <div>
                 <h4 className="text-xl text-yellow-400 mb-2">Tools & Technologies</h4>

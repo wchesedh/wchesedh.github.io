@@ -1,12 +1,11 @@
 // components/Hero3D.tsx
 'use client'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { OrbitControls, Points, PointMaterial } from '@react-three/drei'
-import { useRef, useMemo, useState } from 'react'
+import { OrbitControls } from '@react-three/drei'
+import { useRef, useMemo } from 'react'
 import * as THREE from 'three'
-import * as random from 'maath/random'
 
-function ForceBarrier({ radius = 5, segments = 32 }) {
+function ForceBarrier({ radius = 5, segments = 16 }) {
   const barrierRef = useRef()
   const time = useRef(0)
   
@@ -18,8 +17,7 @@ function ForceBarrier({ radius = 5, segments = 32 }) {
   useFrame((state, delta) => {
     time.current += delta
     if (barrierRef.current) {
-      barrierRef.current.rotation.z = time.current * 0.2
-      barrierRef.current.rotation.x = Math.sin(time.current * 0.5) * 0.1
+      barrierRef.current.rotation.z = time.current * 0.1
     }
   })
 
@@ -29,7 +27,7 @@ function ForceBarrier({ radius = 5, segments = 32 }) {
         <meshBasicMaterial 
           color="#00ff88"
           transparent 
-          opacity={0.1} 
+          opacity={0.05} 
           side={THREE.DoubleSide}
         />
       </mesh>
@@ -37,7 +35,7 @@ function ForceBarrier({ radius = 5, segments = 32 }) {
         <meshBasicMaterial 
             color="#00ccff"
           transparent 
-          opacity={0.1} 
+          opacity={0.05} 
           side={THREE.DoubleSide}
           />
         </mesh>
@@ -45,7 +43,7 @@ function ForceBarrier({ radius = 5, segments = 32 }) {
         <meshBasicMaterial 
             color="#ff3366"
           transparent 
-          opacity={0.1} 
+          opacity={0.05} 
           side={THREE.DoubleSide}
           />
         </mesh>
@@ -53,7 +51,7 @@ function ForceBarrier({ radius = 5, segments = 32 }) {
   )
 }
 
-function EnergyParticles({ count = 1000 }) {
+function EnergyParticles({ count = 150 }) {
   const particlesRef = useRef()
   const time = useRef(0)
   
@@ -81,7 +79,7 @@ function EnergyParticles({ count = 1000 }) {
   useFrame((state, delta) => {
     time.current += delta
     if (particlesRef.current) {
-      particlesRef.current.rotation.y = time.current * 0.1
+      particlesRef.current.rotation.y = time.current * 0.05
     }
   })
 
@@ -102,21 +100,21 @@ function EnergyParticles({ count = 1000 }) {
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.02}
+        size={0.03}
         vertexColors
         transparent
-        opacity={0.6}
+        opacity={0.4}
         sizeAttenuation
       />
     </points>
   )
 }
 
-function Tesseract({ depth = 0, maxDepth = 2, scale = 1.5, position = [0, 0, 0], rotation = [0, 0, 0] }) {
+function Tesseract({ scale = 1.5, position = [0, 0, 0], rotation = [0, 0, 0] }) {
   const groupRef = useRef()
   const time = useRef(0)
   
-  // Define tesseract vertices (4D cube projected to 3D)
+  // Simplified tesseract vertices (4D cube projected to 3D)
   const vertices = useMemo(() => {
     const v = []
     const s = scale * 0.5
@@ -137,10 +135,10 @@ function Tesseract({ depth = 0, maxDepth = 2, scale = 1.5, position = [0, 0, 0],
     return v
   }, [scale])
 
-  // Define edges of the tesseract
+  // Define edges of the tesseract (simplified)
   const edges = useMemo(() => {
     const e = []
-    // Connect vertices to form edges
+    // Connect vertices to form edges - reduced connections for performance
     const connections = [
       [0, 1], [1, 2], [2, 3], [3, 0], // bottom face
       [4, 5], [5, 6], [6, 7], [7, 4], // top face
@@ -148,8 +146,7 @@ function Tesseract({ depth = 0, maxDepth = 2, scale = 1.5, position = [0, 0, 0],
       [8, 9], [9, 10], [10, 11], [11, 8], // inner bottom
       [12, 13], [13, 14], [14, 15], [15, 12], // inner top
       [8, 12], [9, 13], [10, 14], [11, 15], // inner vertical
-      [0, 8], [1, 9], [2, 10], [3, 11], // connecting edges
-      [4, 12], [5, 13], [6, 14], [7, 15]  // connecting edges
+      [0, 8], [4, 12] // key connecting edges only
     ]
 
     connections.forEach(([a, b]) => {
@@ -169,13 +166,11 @@ function Tesseract({ depth = 0, maxDepth = 2, scale = 1.5, position = [0, 0, 0],
     return geo
   }, [edges])
 
-  // Animation
+  // Simplified animation
   useFrame((state, delta) => {
     time.current += delta
     if (groupRef.current) {
-      groupRef.current.rotation.x = Math.sin(time.current * 0.5) * 0.2
-      groupRef.current.rotation.y = time.current * 0.5
-      groupRef.current.rotation.z = Math.cos(time.current * 0.5) * 0.2
+      groupRef.current.rotation.y = time.current * 0.3
     }
   })
 
@@ -183,45 +178,12 @@ function Tesseract({ depth = 0, maxDepth = 2, scale = 1.5, position = [0, 0, 0],
     <group ref={groupRef} position={position} rotation={rotation}>
       <lineSegments geometry={geometry}>
         <lineBasicMaterial 
-          color={depth === 0 ? "#00ff88" : "#00ccff"} 
-          opacity={0.7 - (depth / maxDepth) * 0.4} 
+          color="#00ff88" 
+          opacity={0.6} 
           transparent 
-          linewidth={depth === 0 ? 2 : 1}
+          linewidth={1}
         />
       </lineSegments>
-
-      {depth < maxDepth && (
-        <>
-          <Tesseract 
-            depth={depth + 1} 
-            maxDepth={maxDepth} 
-            scale={scale * 0.6} 
-            position={[scale * 0.5, scale * 0.5, scale * 0.5]} 
-            rotation={[Math.PI / 4, Math.PI / 4, 0]}
-          />
-          <Tesseract 
-            depth={depth + 1} 
-            maxDepth={maxDepth} 
-            scale={scale * 0.6} 
-            position={[-scale * 0.5, scale * 0.5, scale * 0.5]} 
-            rotation={[-Math.PI / 4, Math.PI / 4, 0]}
-          />
-          <Tesseract 
-            depth={depth + 1} 
-            maxDepth={maxDepth} 
-            scale={scale * 0.6} 
-            position={[scale * 0.5, -scale * 0.5, scale * 0.5]} 
-            rotation={[Math.PI / 4, -Math.PI / 4, 0]}
-          />
-          <Tesseract 
-            depth={depth + 1} 
-            maxDepth={maxDepth} 
-            scale={scale * 0.6} 
-            position={[-scale * 0.5, -scale * 0.5, scale * 0.5]} 
-            rotation={[-Math.PI / 4, -Math.PI / 4, 0]}
-          />
-        </>
-      )}
     </group>
   )
 }
@@ -229,12 +191,11 @@ function Tesseract({ depth = 0, maxDepth = 2, scale = 1.5, position = [0, 0, 0],
 function Scene() {
   return (
     <group>
-      <Tesseract scale={2} maxDepth={2} />
+      <Tesseract scale={2} />
       <ForceBarrier radius={5} />
-      <EnergyParticles count={300} />
+      <EnergyParticles count={150} />
       <ambientLight intensity={0.4} />
       <pointLight position={[10, 10, 10]} intensity={0.6} />
-      <pointLight position={[-10, -10, -10]} intensity={0.4} />
     </group>
   )
 }
@@ -248,7 +209,7 @@ export default function Hero3D() {
           enableZoom={false}
           enablePan={false}
           autoRotate
-          autoRotateSpeed={0.2}
+          autoRotateSpeed={0.1}
         />
       </Canvas>
     </div>
