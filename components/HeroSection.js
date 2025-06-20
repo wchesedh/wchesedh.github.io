@@ -92,7 +92,7 @@ export default function HeroSection() {
             className="flex flex-col sm:flex-row justify-center gap-4 mb-12"
           >
             <button
-              onClick={scrollToSection}
+              onClick={() => scrollToSection('projects')}
               className="px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold shadow-lg hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105"
             >
               View Projects
@@ -112,7 +112,7 @@ export default function HeroSection() {
             className="grid grid-cols-2 gap-8 max-w-2xl mx-auto"
           >
             <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
-              <div className="text-4xl font-bold text-white mb-2">5+</div>
+              <div className="text-4xl font-bold text-white mb-2">4+</div>
               <div className="text-gray-400">Years of Experience</div>
             </div>
             <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
