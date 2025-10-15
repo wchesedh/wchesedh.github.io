@@ -35,7 +35,7 @@
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             padding: 50px 70px;
-            overflow-y: auto;
+            overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch;
             animation: slideIn 0.5s ease-out;
             position: relative;
         }
@@ -177,7 +177,7 @@
             }
 
             .demo-text-editor {
-                min-height: 100px;
+                min-height: 80px;
                 font-size: 1em;
             }
 
@@ -244,7 +244,7 @@
             }
 
             .vs-icon {
-                font-size: 2.5em !important;
+                font-size: 2em !important;
             }
 
             .vs-text {
@@ -256,7 +256,7 @@
             }
 
             .image-placeholder {
-                font-size: 2.5em !important;
+                font-size: 2em !important;
             }
 
             .software-badge {
@@ -309,7 +309,7 @@
 
         h1 {
             color: #2d3748;
-            font-size: 3em;
+            font-size: 2.5em;
             margin-bottom: 30px;
             text-align: center;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
@@ -398,7 +398,7 @@
         .modal {
             display: none;
             position: fixed;
-            z-index: 2000;
+            z-index: 9999;
             left: 0;
             top: 0;
             width: 100%;
@@ -418,7 +418,7 @@
             width: 80%;
             max-width: 900px;
             max-height: 85vh;
-            overflow-y: auto;
+            overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch;
             background: white;
             border-radius: 20px;
             padding: 40px;
@@ -453,7 +453,7 @@
 
         .comparison-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr; gap: 15px;
             gap: 25px;
             margin: 25px 0;
         }
@@ -481,7 +481,7 @@
         .timeline {
             position: relative;
             padding-left: 50px;
-            margin: 30px 0;
+            margin: 15px 0;
         }
 
         .timeline::before {
@@ -545,7 +545,7 @@
         }
 
         .feature-icon {
-            font-size: 3em;
+            font-size: 2.5em;
             margin-bottom: 15px;
             display: block;
         }
@@ -581,7 +581,7 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
-            margin: 30px 0;
+            margin: 15px 0;
         }
 
         .stat-box {
@@ -593,7 +593,7 @@
         }
 
         .stat-number {
-            font-size: 3em;
+            font-size: 2.5em;
             font-weight: bold;
             margin-bottom: 10px;
         }
@@ -732,9 +732,9 @@
 
         .pro-con-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr; gap: 15px;
             gap: 20px;
-            margin: 30px 0;
+            margin: 15px 0;
         }
 
         .pro-box {
@@ -758,9 +758,9 @@
             background: white;
             border: 2px solid #2d3748;
             border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            min-height: 150px;
+            padding: 25px;
+            margin: 12px 0;
+            min-height: 120px;
             font-size: 1em;
         }
 
@@ -824,7 +824,7 @@
                 <div class="hero-icon">⚡📝💻</div>
                 <h1>WORD PROCESSORS</h1>
                 <p class="subtitle">From Typewriters to Cloud Magic ☁️</p>
-                <p style="font-size: 1.3em; margin-top: 30px; color: #4a5568;">
+                <p style="font-size: 1.15em; margin-top: 30px; color: #4a5568;">
                     The Revolutionary Journey of Digital Writing in Academia
                 </p>
             </div>
@@ -970,7 +970,7 @@
                     <div>Academic Democratization</div>
                 </div>
             </div>
-            <p style="font-size: 1.3em; text-align: center; margin-top: 30px;">
+            <p style="font-size: 1.15em; text-align: center; margin-top: 30px;">
                 From $20,000 institutional machines ➡️ $500 software that ANY student could use! 🎉
             </p>
         </div>
@@ -1130,7 +1130,7 @@
                 </div>
                 <div class="click-hint">🔍 Meet the champions!</div>
             </div>
-            <div style="text-align: center; margin: 30px 0;">
+            <div style="text-align: center; margin: 15px 0;">
                 <div class="software-badge">Microsoft Word 👑</div>
                 <div class="software-badge">Google Docs ☁️</div>
                 <div class="software-badge">LibreOffice Writer 🆓</div>
@@ -1178,7 +1178,7 @@
                     <strong>Invitations</strong>
                 </div>
             </div>
-            <p style="text-align: center; font-size: 1.3em; margin-top: 30px;">
+            <p style="text-align: center; font-size: 1.15em; margin-top: 30px;">
                 The possibilities are ENDLESS! 🚀
             </p>
         </div>
@@ -1304,7 +1304,7 @@
                     </ul>
                 </div>
             </div>
-            <p style="text-align: center; font-size: 1.3em; margin-top: 20px;">
+            <p style="text-align: center; font-size: 1.15em; margin-top: 20px;">
                 <strong>The Truth:</strong> Use BOTH depending on what you need! 🎯
             </p>
         </div>
@@ -1384,21 +1384,21 @@
             <div class="quiz-container">
                 <h3>Which feature would you use for each situation?</h3>
                 
-                <div style="margin: 20px 0;">
+                <div style="margin: 12px 0;">
                     <p><strong>1️⃣ You made a BIG mistake and want to go back:</strong></p>
                     <div class="quiz-option">A) Delete everything and start over 😭</div>
                     <div class="quiz-option">B) Press UNDO! ✅</div>
                     <div class="quiz-option">C) Cry and give up 😢</div>
                 </div>
 
-                <div style="margin: 20px 0;">
+                <div style="margin: 12px 0;">
                     <p><strong>2️⃣ You want to work with 3 friends on the same project:</strong></p>
                     <div class="quiz-option">A) Email the file back and forth 📧</div>
                     <div class="quiz-option">B) Use Google Docs for real-time collaboration! ✅</div>
                     <div class="quiz-option">C) Everyone writes separately and combine later 📝</div>
                 </div>
 
-                <div style="margin: 20px 0;">
+                <div style="margin: 12px 0;">
                     <p><strong>3️⃣ You need to change the word "cat" to "dog" 50 times:</strong></p>
                     <div class="quiz-option">A) Change each one manually (RIP your time) ⏰</div>
                     <div class="quiz-option">B) Use Find & Replace! ✅</div>
@@ -1445,7 +1445,7 @@
             </div>
             <div style="text-align: center; margin-top: 40px;">
                 <h1 style="color: #667eea;">Thank You! 🎉</h1>
-                <p style="font-size: 1.3em; color: #764ba2;">Now go create something AWESOME! ✨</p>
+                <p style="font-size: 1.15em; color: #764ba2;">Now go create something AWESOME! ✨</p>
             </div>
         </div>
 
@@ -1464,7 +1464,7 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('modal1')">&times;</span>
             <h2>💻 Word Processor in Action!</h2>
-            <div style="text-align: center; font-size: 4em; margin: 40px 0;">
+            <div style="text-align: center; font-size: 2.5em; margin: 40px 0;">
                 ⌨️ ➡️ 📝 ➡️ 🎨 ➡️ 🖨️
             </div>
             <p style="font-size: 1em;">A word processor is like a <strong>Swiss Army knife for writing</strong>! It combines:</p>
@@ -1482,19 +1482,19 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('modal2')">&times;</span>
             <h2>⌨️ The Typewriter Struggle!</h2>
-            <div style="text-align: center; font-size: 5em; margin: 40px 0;">
+            <div style="text-align: center; font-size: 3.5em; margin: 40px 0;">
                 😫 ➡️ ⌨️ ➡️ 🔔 ➡️ 😭
             </div>
             <h3>Imagine this nightmare:</h3>
             <p style="font-size: 1em;">You're typing your final essay... 45 pages done... almost finished... and then...</p>
-            <p style="font-size: 2em; text-align: center; color: red; margin: 30px 0;">TYPO ON PAGE 3! 💥</p>
+            <p style="font-size: 2em; text-align: center; color: red; margin: 15px 0;">TYPO ON PAGE 3! 💥</p>
             <p style="font-size: 1em;"><strong>Your only options:</strong></p>
             <ul style="font-size: 1em;">
                 <li>❌ Retype EVERYTHING from page 3</li>
                 <li>❌ Use messy correction fluid (looks unprofessional)</li>
                 <li>❌ Cry and accept the typo 😭</li>
             </ul>
-            <p style="font-size: 1.3em; text-align: center; margin-top: 30px;"><strong>That's why word processors are REVOLUTIONARY! 🎉</strong></p>
+            <p style="font-size: 1.15em; text-align: center; margin-top: 30px;"><strong>That's why word processors are REVOLUTIONARY! 🎉</strong></p>
         </div>
     </div>
 
@@ -1502,7 +1502,7 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('modal3')">&times;</span>
             <h2>🏢 The First Word Processors</h2>
-            <div style="text-align: center; font-size: 5em; margin: 40px 0;">
+            <div style="text-align: center; font-size: 3.5em; margin: 40px 0;">
                 🖥️ 💰 🏢
             </div>
             <h3>IBM's Revolutionary Machine:</h3>
@@ -1512,7 +1512,7 @@
                 <li>👔 <strong>Who used it:</strong> Only big companies & trained professionals</li>
                 <li>⚡ <strong>Special feature:</strong> Magnetic tape storage (revolutionary for 1960s!)</li>
             </ul>
-            <div style="background: #ffe0e0; padding: 20px; border-radius: 10px; margin-top: 20px;">
+            <div style="background: #ffe0e0; padding: 25px; border-radius: 10px; margin-top: 20px;">
                 <p style="font-size: 1em;"><strong>🤯 Reality Check:</strong> These machines couldn't even show you what you were typing - you had to print it to see it!</p>
             </div>
         </div>
@@ -1522,16 +1522,16 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('modal4')">&times;</span>
             <h2>📺 The Screen Revolution!</h2>
-            <div style="text-align: center; font-size: 5em; margin: 40px 0;">
+            <div style="text-align: center; font-size: 3.5em; margin: 40px 0;">
                 ✨ 📺 ✨
             </div>
             <h3>Why Was This SO Important?</h3>
-            <div style="background: #e0ffe0; padding: 25px; border-radius: 15px; margin: 20px 0;">
-                <p style="font-size: 1.3em;"><strong>BEFORE screens:</strong></p>
+            <div style="background: #e0ffe0; padding: 12px; border-radius: 8px; margin: 12px 0;">
+                <p style="font-size: 1.15em;"><strong>BEFORE screens:</strong></p>
                 <p style="font-size: 1em;">Type ➡️ Print ➡️ See mistakes ➡️ Waste paper ➡️ Start over ➡️ 😭</p>
             </div>
-            <div style="background: #fff3cd; padding: 25px; border-radius: 15px;">
-                <p style="font-size: 1.3em;"><strong>AFTER screens:</strong></p>
+            <div style="background: #fff3cd; padding: 12px; border-radius: 8px;">
+                <p style="font-size: 1.15em;"><strong>AFTER screens:</strong></p>
                 <p style="font-size: 1em;">Type ➡️ See on screen ➡️ Fix mistakes ➡️ Print perfect! ➡️ 🎉</p>
             </div>
             <p style="font-size: 1em; margin-top: 30px; text-align: center;">
@@ -1544,13 +1544,13 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('modal5')">&times;</span>
             <h2>💻 Personal Computers Change Everything!</h2>
-            <div style="text-align: center; font-size: 5em; margin: 40px 0;">
+            <div style="text-align: center; font-size: 3.5em; margin: 40px 0;">
                 🏠 💻 🎉
             </div>
             <h3>The Amazing Transformation:</h3>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0;">
-                <div style="background: #ffe0e0; padding: 20px; border-radius: 10px;">
-                    <h4 style="font-size: 1.4em; color: #dc3545;">1970s</h4>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 15px; gap: 20px; margin: 15px 0;">
+                <div style="background: #ffe0e0; padding: 25px; border-radius: 10px;">
+                    <h4 style="font-size: 1.05em; color: #dc3545;">1970s</h4>
                     <ul style="font-size: 1em;">
                         <li>💰 $20,000+</li>
                         <li>🏢 Offices only</li>
@@ -1558,8 +1558,8 @@
                         <li>📏 Desk-sized</li>
                     </ul>
                 </div>
-                <div style="background: #e0ffe0; padding: 20px; border-radius: 10px;">
-                    <h4 style="font-size: 1.4em; color: #28a745;">1980s-1990s</h4>
+                <div style="background: #e0ffe0; padding: 25px; border-radius: 10px;">
+                    <h4 style="font-size: 1.05em; color: #28a745;">1980s-1990s</h4>
                     <ul style="font-size: 1em;">
                         <li>💰 $100-500</li>
                         <li>🏠 Every home!</li>
@@ -1568,7 +1568,7 @@
                     </ul>
                 </div>
             </div>
-            <p style="font-size: 1.3em; text-align: center;">
+            <p style="font-size: 1.15em; text-align: center;">
                 <strong>Democracy of Writing: EVERYONE could now create professional documents! 🎯</strong>
             </p>
         </div>
@@ -1578,11 +1578,11 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('modal6')">&times;</span>
             <h2>✂️ Cut, Copy, Paste - The Magic Trio!</h2>
-            <div style="text-align: center; font-size: 5em; margin: 40px 0;">
+            <div style="text-align: center; font-size: 3.5em; margin: 40px 0;">
                 ✂️ 📋 ✅
             </div>
             <h3>Watch the Magic Happen:</h3>
-            <div style="background: #f8f9fa; padding: 25px; border-radius: 15px; margin: 20px 0;">
+            <div style="background: #f8f9fa; padding: 12px; border-radius: 8px; margin: 12px 0;">
                 <p style="font-size: 1em;"><strong>Original text:</strong></p>
                 <p style="font-size: 1em; padding: 15px; background: white; border-radius: 8px;">
                     "The cat sat on the mat. The dog played in the yard."
@@ -1592,7 +1592,7 @@
                     "The dog played in the yard. The cat sat on the mat."
                 </p>
             </div>
-            <p style="font-size: 1em; text-align: center; margin-top: 30px;">
+            <p style="font-size: 0.7em; text-align: center; margin-top: 30px;">
                 <strong>No retyping needed! Just select, cut, and paste! ⚡</strong>
             </p>
         </div>
@@ -1612,7 +1612,7 @@
                 <li>🆓 <strong>LibreOffice Writer:</strong> 200 million+ users - Free and powerful!</li>
                 <li>🍎 <strong>Apple Pages:</strong> Exclusive to Mac/iOS - Beautiful design!</li>
             </ul>
-            <div style="background: #fff3cd; padding: 20px; border-radius: 10px; margin-top: 20px;">
+            <div style="background: #fff3cd; padding: 25px; border-radius: 10px; margin-top: 20px;">
                 <p style="font-size: 1em;"><strong>💡 Cool Fact:</strong> If MS Word users were a country, it would be the 3rd largest in the world!</p>
             </div>
         </div>
@@ -1622,13 +1622,13 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('modal8')">&times;</span>
             <h2>☁️ The Cloud Revolution!</h2>
-            <div style="text-align: center; font-size: 5em; margin: 40px 0;">
+            <div style="text-align: center; font-size: 3.5em; margin: 40px 0;">
                 ☁️ 🌍 📱
             </div>
             <h3>What is "The Cloud"?</h3>
             <p style="font-size: 1em;">Think of it as a <strong>magical storage space in the sky</strong> (actually powerful servers around the world!) where your files live safely and you can access them from ANYWHERE!</p>
-            <div style="background: #e0f7ff; padding: 25px; border-radius: 15px; margin: 20px 0;">
-                <h4 style="font-size: 1.3em;">Amazing Example:</h4>
+            <div style="background: #e0f7ff; padding: 12px; border-radius: 8px; margin: 12px 0;">
+                <h4 style="font-size: 1.15em;">Amazing Example:</h4>
                 <p style="font-size: 1em;">
                     🏠 Start writing at home<br>
                     🚌 Continue on your phone during your commute<br>
@@ -1644,13 +1644,13 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('modal9')">&times;</span>
             <h2>📘 Google Docs Collaboration Magic!</h2>
-            <div style="text-align: center; font-size: 5em; margin: 40px 0;">
+            <div style="text-align: center; font-size: 3.5em; margin: 40px 0;">
                 👥 ➕ 📝 ⚡
             </div>
             <h3>See Real-Time Collaboration:</h3>
-            <div style="background: #f8f9fa; padding: 25px; border-radius: 15px;">
+            <div style="background: #f8f9fa; padding: 12px; border-radius: 8px;">
                 <p style="font-size: 1em;"><strong>Imagine seeing this LIVE:</strong></p>
-                <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0;">
+                <div style="background: white; padding: 25px; border-radius: 10px; margin: 12px 0;">
                     <p><span style="background: #ffeb3b; padding: 3px 8px;">👤 Alex is typing...</span></p>
                     <p style="margin: 10px 0;">"The project deadline is..."</p>
                     <p><span style="background: #81c784; padding: 3px 8px;">👤 Jamie edited</span></p>
@@ -1658,7 +1658,7 @@
                     <p><span style="background: #64b5f6; padding: 3px 8px;">👤 Sam added a comment</span></p>
                     <p style="margin: 10px 0; background: #fff9c4; padding: 10px; border-left: 3px solid #fbc02d;">"Should we add more details here?"</p>
                 </div>
-                <p style="font-size: 1em; text-align: center; margin-top: 20px;">
+                <p style="font-size: 0.7em; text-align: center; margin-top: 15px;">
                     <strong>All happening at the SAME TIME from different locations! 🌍</strong>
                 </p>
             </div>
@@ -1669,7 +1669,7 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('modal10')">&times;</span>
             <h2>📙 Microsoft 365 Word Online!</h2>
-            <div style="text-align: center; font-size: 5em; margin: 40px 0;">
+            <div style="text-align: center; font-size: 3.5em; margin: 40px 0;">
                 👑 ☁️ ✨
             </div>
             <h3>The Best of Both Worlds:</h3>
@@ -1680,7 +1680,7 @@
                 <li>🤖 <strong>AI Assistant:</strong> Smart writing suggestions!</li>
                 <li>📊 <strong>Pro Templates:</strong> Instant professional look!</li>
             </ul>
-            <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; margin-top: 20px;">
+            <div style="background: #e3f2fd; padding: 25px; border-radius: 10px; margin-top: 20px;">
                 <p style="font-size: 1em;"><strong>🎯 Perfect For:</strong> Students who need powerful features AND collaboration!</p>
             </div>
         </div>
@@ -1690,13 +1690,13 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('modal11')">&times;</span>
             <h2>🤝 Collaboration Superpowers!</h2>
-            <div style="text-align: center; font-size: 5em; margin: 40px 0;">
+            <div style="text-align: center; font-size: 3.5em; margin: 40px 0;">
                 🌍 👥 ⚡
             </div>
             <h3>Real-World Example:</h3>
-            <div style="background: #f5f5f5; padding: 25px; border-radius: 15px; margin: 20px 0;">
+            <div style="background: #f5f5f5; padding: 12px; border-radius: 8px; margin: 12px 0;">
                 <p style="font-size: 1em;"><strong>Group Project Magic:</strong></p>
-                <div style="margin: 20px 0;">
+                <div style="margin: 12px 0;">
                     <p>🕐 <strong>9:00 AM</strong> - Maria creates document and shares link</p>
                     <p>🕐 <strong>9:15 AM</strong> - John starts research section (Philippines)</p>
                     <p>🕑 <strong>10:00 AM</strong> - Sarah adds images (USA)</p>
@@ -1712,7 +1712,7 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal('modal12')">&times;</span>
             <h2>🚀 The AI-Powered Future!</h2>
-            <div style="text-align: center; font-size: 5em; margin: 40px 0;">
+            <div style="text-align: center; font-size: 3.5em; margin: 40px 0;">
                 🤖 ✨ 🎯
             </div>
             <h3>What's Coming (and Already Here!):</h3>
@@ -1723,7 +1723,7 @@
                 <li>🎤 <strong>Voice-to-Text:</strong> Just speak naturally, AI types AND formats!</li>
                 <li>📊 <strong>Smart Suggestions:</strong> AI predicts what you want to write next!</li>
             </ul>
-            <div style="background: #fff3e0; padding: 20px; border-radius: 10px; margin-top: 20px;">
+            <div style="background: #fff3e0; padding: 25px; border-radius: 10px; margin-top: 20px;">
                 <p style="font-size: 1em;"><strong>🌟 The Future:</strong> AI won't replace writers - it will make EVERYONE a better writer! ✨</p>
             </div>
         </div>
