@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Processors - Interactive Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .presentation-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide {
+            display: none;
+            width: 90%;
+            max-width: 1200px;
+            height: 80vh;
+            margin: 2vh auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 50px 70px;
+            overflow-y: auto;
+            animation: slideIn 0.5s ease-out;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                width: 95%;
+                height: 85vh;
+                padding: 30px 20px;
+                margin: 1vh auto;
+                border-radius: 15px;
+            }
+
+            h1 {
+                font-size: 2em !important;
+            }
+
+            h2 {
+                font-size: 1.6em !important;
+            }
+
+            h3 {
+                font-size: 1.3em !important;
+            }
+
+            p, li {
+                font-size: 1em !important;
+            }
+
+            .hero-icon {
+                font-size: 4em !important;
+            }
+
+            .subtitle {
+                font-size: 1.1em !important;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr !important;
+                gap: 15px;
+            }
+
+            .pro-con-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .vs-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .vs-icon {
+                font-size: 3em !important;
+            }
+
+            .image-container {
+                height: 200px;
+            }
+
+            .image-placeholder {
+                font-size: 3em !important;
+            }
+
+            .stat-number {
+                font-size: 2em !important;
+            }
+
+            .feature-icon {
+                font-size: 2em !important;
+            }
+
+            .timeline {
+                padding-left: 30px;
+            }
+
+            .timeline::before {
+                left: 8px;
+            }
+
+            .timeline-item::before {
+                left: -28px;
+                width: 12px;
+                height: 12px;
+            }
+
+            .controls {
+                bottom: 10px;
+                padding: 10px 15px;
+                gap: 10px;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+
+            .slide-counter {
+                font-size: 0.95em;
+            }
+
+            .software-badge {
+                font-size: 0.95em;
+                padding: 10px 20px;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 25px;
+                margin: 10% auto;
+            }
+
+            .close-modal {
+                font-size: 30px;
+                top: 10px;
+                right: 15px;
+            }
+
+            .toolbar {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+
+            .tool-btn {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+
+            .demo-text-editor {
+                min-height: 100px;
+                font-size: 1em;
+            }
+
+            .quiz-option {
+                font-size: 0.95em;
+            }
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #764ba2;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            border-left: 6px solid #667eea;
+            padding-left: 20px;
+        }
+
+        h3 {
+            color: #667eea;
+            font-size: 1.6em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        p, li {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .hero-icon {
+            font-size: 8em;
+            animation: float 3s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.4em;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .image-container {
+            width: 100%;
+            height: 350px;
+            background: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);
+            border-radius: 15px;
+            margin: 25px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #667eea;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .image-placeholder {
+            font-size: 6em;
+            color: #667eea;
+            text-align: center;
+        }
+
+        .click-hint {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(102, 126, 234, 0.9);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            animation: pulse 2s infinite;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            position: relative;
+            margin: 5% auto;
+            width: 80%;
+            max-width: 900px;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            animation: slideDown 0.4s;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            font-weight: bold;
+            color: #667eea;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: #764ba2;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 25px 0;
+        }
+
+        .comparison-card {
+            background: linear-gradient(135deg, #667eea10 0%, #764ba210 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #667eea;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .comparison-card h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+            margin: 30px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 30px;
+            animation: fadeIn 0.6s;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -41px;
+            top: 8px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px #667eea;
+            z-index: 1;
+        }
+
+        .timeline-year {
+            font-weight: bold;
+            color: #764ba2;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .feature-box {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            border: 3px solid #667eea;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .feature-box:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .interactive-demo {
+            background: #f8f9fa;
+            border: 3px dashed #667eea;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .demo-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s;
+        }
+
+        .demo-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .vs-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin: 40px 0;
+        }
+
+        .vs-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .vs-icon {
+            font-size: 6em;
+            margin-bottom: 20px;
+        }
+
+        .vs-text {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-counter {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1em;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #667eea40 0%, #667eea40 100%);
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .fun-fact {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            border-left: 6px solid #ff6b6b;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 10px;
+            font-size: 1.1em;
+        }
+
+        .quiz-container {
+            background: #f0f8ff;
+            border: 3px solid #667eea;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+
+        .quiz-option {
+            background: white;
+            border: 2px solid #667eea;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quiz-option:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(10px);
+        }
+
+        .software-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.2em;
+            display: inline-block;
+            margin: 10px;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .software-badge:hover {
+            transform: scale(1.1) rotate(-2deg);
+        }
+
+        ul {
+            margin-left: 30px;
+        }
+
+        li {
+            margin-bottom: 15px;
+        }
+
+        .pro-con-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .pro-box {
+            background: #d4edda;
+            border-left: 6px solid #28a745;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .con-box {
+            background: #f8d7da;
+            border-left: 6px solid #dc3545;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .animated-text {
+            animation: fadeIn 1s;
+        }
+
+        .demo-text-editor {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            min-height: 150px;
+            font-size: 1.1em;
+        }
+
+        .toolbar {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px 10px 0 0;
+            border-bottom: 2px solid #667eea;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tool-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        
+        <!-- Slide 1: Epic Title Slide -->
+        <div class="slide active">
+            <div class="hero-section">
+                <div class="hero-icon">⚡📝💻</div>
+                <h1>WORD PROCESSORS</h1>
+                <p class="subtitle">From Typewriters to Cloud Magic ☁️</p>
+                <p style="font-size: 1.3em; margin-top: 30px; color: #764ba2;">
+                    The Revolutionary Journey of Digital Writing
+                </p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number">60+</div>
+                    <div>Years of Evolution</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">1B+</div>
+                    <div>Users Worldwide</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">∞</div>
+                    <div>Possibilities</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: What is a Word Processor? -->
+        <div class="slide">
+            <h2>🤔 What IS a Word Processor?</h2>
+            <div class="image-container" onclick="openModal('modal1')">
+                <div class="image-placeholder">
+                    <div style="font-size: 0.5em;">💻 ➡️ 📄 ➡️ 🖨️</div>
+                    <div style="font-size: 0.3em; margin-top: 20px;">Your Digital Writing Superpower!</div>
+                </div>
+                <div class="click-hint">🔍 Click to learn more!</div>
+            </div>
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <h4>✍️ Create</h4>
+                    <p>Write documents from scratch with ease</p>
+                </div>
+                <div class="comparison-card">
+                    <h4>✏️ Edit</h4>
+                    <p>Make changes without retyping everything</p>
+                </div>
+                <div class="comparison-card">
+                    <h4>🎨 Format</h4>
+                    <p>Make your text look professional and beautiful</p>
+                </div>
+                <div class="comparison-card">
+                    <h4>💾 Save</h4>
+                    <p>Store your work and access it anytime</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Dark Ages (Typewriters) -->
+        <div class="slide">
+            <h2>🦖 Before Word Processors: The Typewriter Era</h2>
+            <div class="image-container" onclick="openModal('modal2')">
+                <div class="image-placeholder">
+                    <div style="font-size: 0.6em;">⌨️ 🔔</div>
+                    <div style="font-size: 0.3em; margin-top: 20px;">CLACK CLACK CLACK DING!</div>
+                </div>
+                <div class="click-hint">🔍 See the struggle!</div>
+            </div>
+            <div class="fun-fact">
+                <strong>😱 Fun Fact:</strong> One typo meant retyping the ENTIRE PAGE! Can you imagine writing a 50-page essay like that?
+            </div>
+            <h3>The Typewriter Problems:</h3>
+            <ul>
+                <li>❌ Made a mistake? Start over or use messy correction fluid!</li>
+                <li>❌ Want to move a paragraph? Too bad - no copy/paste!</li>
+                <li>❌ Need 10 copies? Type it 10 times or use carbon paper 📄</li>
+                <li>❌ No spell check = embarrassing mistakes forever!</li>
+            </ul>
+        </div>
+
+        <!-- Slide 4: The 1960s Revolution Begins -->
+        <div class="slide">
+            <h2>🚀 1960s: The Revolution Begins!</h2>
+            <div class="image-container" onclick="openModal('modal3')">
+                <div class="image-placeholder">
+                    <div style="font-size: 0.5em;">🏢 IBM 🖥️</div>
+                    <div style="font-size: 0.3em; margin-top: 20px;">The First "Word Processors"</div>
+                </div>
+                <div class="click-hint">🔍 See the machine!</div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1964</div>
+                    <p>IBM creates massive standalone machines called <span class="highlight">"word processors"</span></p>
+                    <p>These were NOT computers - they were specialized typing machines!</p>
+                </div>
+            </div>
+            <div class="fun-fact">
+                <strong>💰 Mind-Blowing Fact:</strong> These machines cost more than a house - up to $20,000 in the 1970s! (That's like $140,000 today! 🤯)
+            </div>
+        </div>
+
+        <!-- Slide 5: The Game Changer - Video Screens! -->
+        <div class="slide">
+            <h2>📺 Late 1970s: The GAME CHANGER!</h2>
+            <div class="image-container" onclick="openModal('modal4')">
+                <div class="image-placeholder">
+                    <div style="font-size: 0.5em;">📺✨</div>
+                    <div style="font-size: 0.3em; margin-top: 20px;">See BEFORE You Print!</div>
+                </div>
+                <div class="click-hint">🔍 Revolutionary!</div>
+            </div>
+            <h3>🎯 The Revolutionary Feature: VIDEO DISPLAY SCREENS!</h3>
+            <div class="comparison-grid">
+                <div class="comparison-card" style="background: #ffe0e0;">
+                    <h4>❌ BEFORE</h4>
+                    <p>Type blindly ➡️ Print ➡️ See mistakes ➡️ 😭</p>
+                </div>
+                <div class="comparison-card" style="background: #e0ffe0;">
+                    <h4>✅ AFTER</h4>
+                    <p>Type ➡️ See on screen ➡️ Fix mistakes ➡️ Print perfect! 🎉</p>
+                </div>
+            </div>
+            <div class="fun-fact">
+                <strong>🎪 This was HUGE!</strong> Imagine being able to see and fix your work BEFORE wasting paper and ink!
+            </div>
+        </div>
+
+        <!-- Slide 6: Personal Computer Revolution -->
+        <div class="slide">
+            <h2>💻 1980s: PCs Change EVERYTHING!</h2>
+            <div class="image-container" onclick="openModal('modal5')">
+                <div class="image-placeholder">
+                    <div style="font-size: 0.5em;">🖥️ 💾 🖱️</div>
+                    <div style="font-size: 0.3em; margin-top: 20px;">Word Processing for Everyone!</div>
+                </div>
+                <div class="click-hint">🔍 The PC Era!</div>
+            </div>
+            <h3>What Changed?</h3>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number">💰</div>
+                    <div>Affordable Prices</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">🏠</div>
+                    <div>Home Use</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">📚</div>
+                    <div>Easy to Learn</div>
+                </div>
+            </div>
+            <p style="font-size: 1.3em; text-align: center; margin-top: 30px;">
+                From $20,000 machines ➡️ $500 software that ANYONE could use! 🎉
+            </p>
+        </div>
+
+        <!-- Slide 7: Typewriter vs Word Processor Battle -->
+        <div class="slide">
+            <h2>⚔️ The ULTIMATE Showdown!</h2>
+            <div class="vs-container">
+                <div class="vs-item">
+                    <div class="vs-icon">⌨️</div>
+                    <div class="vs-text">Typewriter</div>
+                    <p style="color: red; margin-top: 20px;">❌ DEFEATED</p>
+                </div>
+                <div style="font-size: 4em; color: #667eea;">VS</div>
+                <div class="vs-item">
+                    <div class="vs-icon">💻</div>
+                    <div class="vs-text">Word Processor</div>
+                    <p style="color: green; margin-top: 20px;">✅ WINNER!</p>
+                </div>
+            </div>
+            <div class="fun-fact">
+                <strong>🏆 Why Word Processors Won:</strong> It's like comparing a bicycle to a sports car!
+            </div>
+        </div>
+
+        <!-- Slide 8: Superpowers of Word Processors -->
+        <div class="slide">
+            <h2>🦸 Word Processor SUPERPOWERS!</h2>
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <span class="feature-icon">✂️</span>
+                    <strong>Cut & Paste</strong>
+                    <p>Move text like magic!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">⏮️</span>
+                    <strong>Undo</strong>
+                    <p>Time travel for mistakes!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">🔍</span>
+                    <strong>Find & Replace</strong>
+                    <p>Change 100 words instantly!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">✅</span>
+                    <strong>Spell Check</strong>
+                    <p>No more embarrassing typos!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">🎨</span>
+                    <strong>Formatting</strong>
+                    <p>Make it beautiful!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">💾</span>
+                    <strong>Auto-Save</strong>
+                    <p>Never lose work again!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Interactive Demo Slide -->
+        <div class="slide">
+            <h2>🎮 Try It Yourself!</h2>
+            <div class="interactive-demo">
+                <h3>Mini Word Processor Demo</h3>
+                <div class="toolbar">
+                    <button class="tool-btn" onclick="demoFormat('bold')"><strong>B</strong></button>
+                    <button class="tool-btn" onclick="demoFormat('italic')"><em>I</em></button>
+                    <button class="tool-btn" onclick="demoFormat('underline')"><u>U</u></button>
+                    <button class="tool-btn" onclick="demoUndo()">↶ Undo</button>
+                    <button class="tool-btn" onclick="demoClear()">🗑️ Clear</button>
+                </div>
+                <div class="demo-text-editor" id="demoEditor" contenteditable="true">
+                    Type here and try the buttons above! ✨
+                </div>
+            </div>
+            <p style="text-align: center; font-size: 1.2em; margin-top: 20px;">
+                See? Word processors make formatting FUN and EASY! 🎉
+            </p>
+        </div>
+
+        <!-- Slide 10: Basic Features -->
+        <div class="slide">
+            <h2>🔧 Essential Features Everyone Uses</h2>
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <h4>✂️ Cut, Copy, Paste</h4>
+                    <p>Move or duplicate text without retyping!</p>
+                </div>
+                <div class="comparison-card">
+                    <h4>🔄 Undo/Redo</h4>
+                    <p>Made a mistake? Just undo it! Changed your mind? Redo!</p>
+                </div>
+                <div class="comparison-card">
+                    <h4>🔍 Search & Replace</h4>
+                    <p>Find any word and replace it in seconds!</p>
+                </div>
+                <div class="comparison-card">
+                    <h4>📏 Word Wrap</h4>
+                    <p>Text automatically moves to the next line - no more manual returns!</p>
+                </div>
+            </div>
+            <div class="image-container" onclick="openModal('modal6')">
+                <div class="image-placeholder">
+                    <div style="font-size: 0.4em;">⌨️ ➡️ ✂️ ➡️ 📋 ➡️ ✅</div>
+                </div>
+                <div class="click-hint">🔍 See it in action!</div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Advanced Features -->
+        <div class="slide">
+            <h2>🚀 PRO Features for Power Users!</h2>
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <span class="feature-icon">🎨</span>
+                    <strong>Fonts & Styles</strong>
+                    <p>Bold, italic, colors, sizes!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">📊</span>
+                    <strong>Tables & Charts</strong>
+                    <p>Organize data visually!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">🖼️</span>
+                    <strong>Images</strong>
+                    <p>Insert photos and graphics!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">🔢</span>
+                    <strong>Page Numbers</strong>
+                    <p>Auto-numbering pages!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">📝</span>
+                    <strong>Headers/Footers</strong>
+                    <p>Repeating content on every page!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">🤖</span>
+                    <strong>Macros</strong>
+                    <p>Automate repetitive tasks!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Popular Software -->
+        <div class="slide">
+            <h2>⭐ The Legends of Word Processing</h2>
+            <div class="image-container" onclick="openModal('modal7')">
+                <div class="image-placeholder">
+                    <div style="font-size: 0.4em;">📘 📙 📗 📕</div>
+                    <div style="font-size: 0.3em; margin-top: 20px;">The Big Players</div>
+                </div>
+                <div class="click-hint">🔍 Meet the champions!</div>
+            </div>
+            <div style="text-align: center; margin: 30px 0;">
+                <div class="software-badge">Microsoft Word 👑</div>
+                <div class="software-badge">Google Docs ☁️</div>
+                <div class="software-badge">LibreOffice Writer 🆓</div>
+                <div class="software-badge">Apple Pages 🍎</div>
+            </div>
+            <div class="fun-fact">
+                <strong>👑 Fun Fact:</strong> Microsoft Word has over 1.2 BILLION users worldwide! That's 1 in 7 people on Earth!
+            </div>
+        </div>
+
+        <!-- Slide 13: What Can You Create? -->
+        <div class="slide">
+            <h2>🎨 What Can YOU Create?</h2>
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <span class="feature-icon">📚</span>
+                    <strong>Books & Novels</strong>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">📄</span>
+                    <strong>Essays & Reports</strong>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">💼</span>
+                    <strong>Resumes</strong>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">✉️</span>
+                    <strong>Letters</strong>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">📰</span>
+                    <strong>Newsletters</strong>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">🎓</span>
+                    <strong>Homework</strong>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">📋</span>
+                    <strong>To-Do Lists</strong>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">🎉</span>
+                    <strong>Invitations</strong>
+                </div>
+            </div>
+            <p style="text-align: center; font-size: 1.3em; margin-top: 30px;">
+                The possibilities are ENDLESS! 🚀
+            </p>
+        </div>
+
+        <!-- Slide 14: The Internet Changes Everything -->
+        <div class="slide">
+            <h2>🌐 2000s: The Internet Changes EVERYTHING!</h2>
+            <div class="image-container" onclick="openModal('modal8')">
+                <div class="image-placeholder">
+                    <div style="font-size: 0.5em;">☁️ 🌍 💻</div>
+                    <div style="font-size: 0.3em; margin-top: 20px;">Welcome to the CLOUD!</div>
+                </div>
+                <div class="click-hint">🔍 The cloud revolution!</div>
+            </div>
+            <h3>The BIG Shift:</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">Before</div>
+                    <p>💾 Save on YOUR computer ➡️ Only access from THAT computer</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">After</div>
+                    <p>☁️ Save on the INTERNET ➡️ Access from ANYWHERE! 🌍</p>
+                </div>
+            </div>
+            <div class="fun-fact">
+                <strong>🤯 Mind-Blowing:</strong> You can start writing on your laptop, continue on your phone, and finish on your tablet!
+            </div>
+        </div>
+
+        <!-- Slide 15: Meet Google Docs -->
+        <div class="slide">
+            <h2>📘 Google Docs: The Collaboration King!</h2>
+            <div class="image-container" onclick="openModal('modal9')">
+                <div class="image-placeholder">
+                    <div style="font-size: 0.5em;">👥 + 📘 = 🎉</div>
+                    <div style="font-size: 0.3em; margin-top: 20px;">Work Together in Real-Time!</div>
+                </div>
+                <div class="click-hint">🔍 See collaboration magic!</div>
+            </div>
+            <h3>What Makes Google Docs AMAZING:</h3>
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <span class="feature-icon">👥</span>
+                    <strong>Real-Time Collaboration</strong>
+                    <p>See friends typing LIVE!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">💬</span>
+                    <strong>Comments & Chat</strong>
+                    <p>Talk while you work!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">🆓</span>
+                    <strong>100% FREE</strong>
+                    <p>Just need a Google account!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">🔄</span>
+                    <strong>Auto-Save</strong>
+                    <p>Never lose work again!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">🎤</span>
+                    <strong>Voice Typing</strong>
+                    <p>Talk instead of type!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">📱</span>
+                    <strong>Any Device</strong>
+                    <p>Phone, tablet, computer!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Microsoft 365 Word Online -->
+        <div class="slide">
+            <h2>📙 Microsoft 365: The Classic Goes Online!</h2>
+            <div class="image-container" onclick="openModal('modal10')">
+                <div class="image-placeholder">
+                    <div style="font-size: 0.5em;">👑 ➡️ ☁️</div>
+                    <div style="font-size: 0.3em; margin-top: 20px;">The King Joins the Cloud!</div>
+                </div>
+                <div class="click-hint">🔍 See MS Word online!</div>
+            </div>
+            <h3>Why Microsoft 365 Word is POWERFUL:</h3>
+            <ul>
+                <li>📱 <strong>Same Features, Anywhere:</strong> Desktop power in your browser!</li>
+                <li>🔄 <strong>OneDrive Integration:</strong> Automatic backup to the cloud</li>
+                <li>🤖 <strong>AI Assistance:</strong> Smart suggestions and writing help</li>
+                <li>📊 <strong>Professional Templates:</strong> Look like a pro instantly!</li>
+                <li>🔗 <strong>Easy Sharing:</strong> Send links instead of files</li>
+            </ul>
+            <div class="fun-fact">
+                <strong>💡 Pro Tip:</strong> Free version available at office.com - no subscription needed!
+            </div>
+        </div>
+
+        <!-- Slide 17: Online vs Desktop Showdown -->
+        <div class="slide">
+            <h2>🥊 Online vs Desktop: The Battle!</h2>
+            <div class="pro-con-grid">
+                <div class="pro-box">
+                    <h3 style="color: #28a745;">✅ ONLINE WINS</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>🌍 Access from anywhere</li>
+                        <li>👥 Real-time collaboration</li>
+                        <li>💾 Auto-save to cloud</li>
+                        <li>🆓 Often free</li>
+                        <li>📱 Works on any device</li>
+                        <li>🔄 Always updated</li>
+                    </ul>
+                </div>
+                <div class="con-box">
+                    <h3 style="color: #dc3545;">⚠️ DESKTOP WINS</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>⚡ Faster performance</li>
+                        <li>📶 Works offline</li>
+                        <li>🎨 More advanced features</li>
+                        <li>🔒 Complete privacy</li>
+                        <li>💪 Handles huge files</li>
+                        <li>🎯 More precise control</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="text-align: center; font-size: 1.3em; margin-top: 20px;">
+                <strong>The Truth:</strong> Use BOTH depending on what you need! 🎯
+            </p>
+        </div>
+
+        <!-- Slide 18: Real-Time Collaboration Demo -->
+        <div class="slide">
+            <h2>🤝 Collaboration: The SUPERPOWER!</h2>
+            <div class="image-container" onclick="openModal('modal11')">
+                <div class="image-placeholder">
+                    <div style="font-size: 0.4em;">
+                        😊 + 😎 + 🤓 = 📝✨
+                    </div>
+                    <div style="font-size: 0.3em; margin-top: 20px;">Multiple People, ONE Document!</div>
+                </div>
+                <div class="click-hint">🔍 See teamwork magic!</div>
+            </div>
+            <h3>Imagine This Scenario:</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <p><strong>Sarah in New York</strong> 🗽 starts writing the introduction</p>
+                </div>
+                <div class="timeline-item">
+                    <p><strong>John in London</strong> 🎡 adds research data (AT THE SAME TIME!)</p>
+                </div>
+                <div class="timeline-item">
+                    <p><strong>Maria in Tokyo</strong> 🗼 designs the layout (ALSO AT THE SAME TIME!)</p>
+                </div>
+                <div class="timeline-item">
+                    <p><strong>Result:</strong> Project done in 1 hour instead of 3 days! 🚀</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 19: Other Cool Alternatives -->
+        <div class="slide">
+            <h2>🌟 More Amazing Options!</h2>
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <span class="feature-icon">📁</span>
+                    <strong>ONLYOFFICE</strong>
+                    <p>Privacy-focused & powerful!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">📦</span>
+                    <strong>Dropbox Paper</strong>
+                    <p>Clean & simple design!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">📊</span>
+                    <strong>Zoho Docs</strong>
+                    <p>Great for businesses!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">💬</span>
+                    <strong>Quip</strong>
+                    <p>Documents + team chat!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">📝</span>
+                    <strong>Notion</strong>
+                    <p>Notes meet databases!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">✍️</span>
+                    <strong>Evernote</strong>
+                    <p>Note-taking champion!</p>
+                </div>
+            </div>
+            <div class="fun-fact">
+                <strong>🎯 Pro Tip:</strong> Try different ones and find YOUR favorite! They're mostly free!
+            </div>
+        </div>
+
+        <!-- Slide 20: Fun Quiz -->
+        <div class="slide">
+            <h2>🧠 Quick Knowledge Check!</h2>
+            <div class="quiz-container">
+                <h3>Which feature would you use for each situation?</h3>
+                
+                <div style="margin: 20px 0;">
+                    <p><strong>1️⃣ You made a BIG mistake and want to go back:</strong></p>
+                    <div class="quiz-option">A) Delete everything and start over 😭</div>
+                    <div class="quiz-option">B) Press UNDO! ✅</div>
+                    <div class="quiz-option">C) Cry and give up 😢</div>
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <p><strong>2️⃣ You want to work with 3 friends on the same project:</strong></p>
+                    <div class="quiz-option">A) Email the file back and forth 📧</div>
+                    <div class="quiz-option">B) Use Google Docs for real-time collaboration! ✅</div>
+                    <div class="quiz-option">C) Everyone writes separately and combine later 📝</div>
+                </div>
+
+                <div style="margin: 20px 0;">
+                    <p><strong>3️⃣ You need to change the word "cat" to "dog" 50 times:</strong></p>
+                    <div class="quiz-option">A) Change each one manually (RIP your time) ⏰</div>
+                    <div class="quiz-option">B) Use Find & Replace! ✅</div>
+                    <div class="quiz-option">C) Hire someone to do it 💸</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 21: The Future & Conclusion -->
+        <div class="slide">
+            <h2>🚀 The Future is HERE... and it's AMAZING!</h2>
+            <div class="image-container" onclick="openModal('modal12')">
+                <div class="image-placeholder">
+                    <div style="font-size: 0.5em;">🤖 AI + 📝 = 🎯✨</div>
+                    <div style="font-size: 0.3em; margin-top: 20px;">AI-Powered Writing is NOW!</div>
+                </div>
+                <div class="click-hint">🔍 Peek into the future!</div>
+            </div>
+            <h3>What's Coming Next?</h3>
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <span class="feature-icon">🤖</span>
+                    <strong>AI Writing Assistants</strong>
+                    <p>AI helps you write better!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">🎤</span>
+                    <strong>Voice Commands</strong>
+                    <p>Just talk, it types!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">🌐</span>
+                    <strong>Real-Time Translation</strong>
+                    <p>Write in any language instantly!</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">🎨</span>
+                    <strong>AI Design</strong>
+                    <p>Auto-format beautifully!</p>
+                </div>
+            </div>
+            <div class="fun-fact">
+                <strong>🎓 Remember:</strong> From $20,000 machines to FREE cloud apps in your pocket - that's the power of technology! 🚀
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <h1 style="color: #667eea;">Thank You! 🎉</h1>
+                <p style="font-size: 1.3em; color: #764ba2;">Now go create something AWESOME! ✨</p>
+            </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="controls">
+            <button id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+            <span class="slide-counter">
+                <span id="currentSlide">1</span> / <span id="totalSlides">21</span>
+            </span>
+            <button id="nextBtn" onclick="changeSlide(1)">Next →</button>
+        </div>
+    </div>
+
+    <!-- Modals for Images -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal1')">&times;</span>
+            <h2>💻 Word Processor in Action!</h2>
+            <div style="text-align: center; font-size: 4em; margin: 40px 0;">
+                ⌨️ ➡️ 📝 ➡️ 🎨 ➡️ 🖨️
+            </div>
+            <p style="font-size: 1.2em;">A word processor is like a <strong>Swiss Army knife for writing</strong>! It combines:</p>
+            <ul style="font-size: 1.1em;">
+                <li>✍️ A typewriter (but way better!)</li>
+                <li>✂️ Scissors and glue (for cutting & pasting)</li>
+                <li>🎨 An art studio (for making it pretty)</li>
+                <li>💾 A storage box (to save your work)</li>
+                <li>🔍 A detective (spell checker finds mistakes!)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal2')">&times;</span>
+            <h2>⌨️ The Typewriter Struggle!</h2>
+            <div style="text-align: center; font-size: 5em; margin: 40px 0;">
+                😫 ➡️ ⌨️ ➡️ 🔔 ➡️ 😭
+            </div>
+            <h3>Imagine this nightmare:</h3>
+            <p style="font-size: 1.2em;">You're typing your final essay... 45 pages done... almost finished... and then...</p>
+            <p style="font-size: 2em; text-align: center; color: red; margin: 30px 0;">TYPO ON PAGE 3! 💥</p>
+            <p style="font-size: 1.2em;"><strong>Your only options:</strong></p>
+            <ul style="font-size: 1.1em;">
+                <li>❌ Retype EVERYTHING from page 3</li>
+                <li>❌ Use messy correction fluid (looks unprofessional)</li>
+                <li>❌ Cry and accept the typo 😭</li>
+            </ul>
+            <p style="font-size: 1.3em; text-align: center; margin-top: 30px;"><strong>That's why word processors are REVOLUTIONARY! 🎉</strong></p>
+        </div>
+    </div>
+
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal3')">&times;</span>
+            <h2>🏢 The First Word Processors</h2>
+            <div style="text-align: center; font-size: 5em; margin: 40px 0;">
+                🖥️ 💰 🏢
+            </div>
+            <h3>IBM's Revolutionary Machine:</h3>
+            <ul style="font-size: 1.2em;">
+                <li>📏 <strong>Size:</strong> As big as a desk!</li>
+                <li>💰 <strong>Cost:</strong> $10,000 - $20,000 (price of a house!)</li>
+                <li>👔 <strong>Who used it:</strong> Only big companies & trained professionals</li>
+                <li>⚡ <strong>Special feature:</strong> Magnetic tape storage (revolutionary for 1960s!)</li>
+            </ul>
+            <div style="background: #ffe0e0; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                <p style="font-size: 1.2em;"><strong>🤯 Reality Check:</strong> These machines couldn't even show you what you were typing - you had to print it to see it!</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal4" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal4')">&times;</span>
+            <h2>📺 The Screen Revolution!</h2>
+            <div style="text-align: center; font-size: 5em; margin: 40px 0;">
+                ✨ 📺 ✨
+            </div>
+            <h3>Why Was This SO Important?</h3>
+            <div style="background: #e0ffe0; padding: 25px; border-radius: 15px; margin: 20px 0;">
+                <p style="font-size: 1.3em;"><strong>BEFORE screens:</strong></p>
+                <p style="font-size: 1.2em;">Type ➡️ Print ➡️ See mistakes ➡️ Waste paper ➡️ Start over ➡️ 😭</p>
+            </div>
+            <div style="background: #fff3cd; padding: 25px; border-radius: 15px;">
+                <p style="font-size: 1.3em;"><strong>AFTER screens:</strong></p>
+                <p style="font-size: 1.2em;">Type ➡️ See on screen ➡️ Fix mistakes ➡️ Print perfect! ➡️ 🎉</p>
+            </div>
+            <p style="font-size: 1.2em; margin-top: 30px; text-align: center;">
+                <strong>This simple change saved BILLIONS of sheets of paper and countless hours! 🌳</strong>
+            </p>
+        </div>
+    </div>
+
+    <div id="modal5" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal5')">&times;</span>
+            <h2>💻 Personal Computers Change Everything!</h2>
+            <div style="text-align: center; font-size: 5em; margin: 40px 0;">
+                🏠 💻 🎉
+            </div>
+            <h3>The Amazing Transformation:</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0;">
+                <div style="background: #ffe0e0; padding: 20px; border-radius: 10px;">
+                    <h4 style="font-size: 1.4em; color: #dc3545;">1970s</h4>
+                    <ul style="font-size: 1.1em;">
+                        <li>💰 $20,000+</li>
+                        <li>🏢 Offices only</li>
+                        <li>👔 Trained operators needed</li>
+                        <li>📏 Desk-sized</li>
+                    </ul>
+                </div>
+                <div style="background: #e0ffe0; padding: 20px; border-radius: 10px;">
+                    <h4 style="font-size: 1.4em; color: #28a745;">1980s-1990s</h4>
+                    <ul style="font-size: 1.1em;">
+                        <li>💰 $100-500</li>
+                        <li>🏠 Every home!</li>
+                        <li>👶 Kids could use it!</li>
+                        <li>💻 Fits on desk</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="font-size: 1.3em; text-align: center;">
+                <strong>Democracy of Writing: EVERYONE could now create professional documents! 🎯</strong>
+            </p>
+        </div>
+    </div>
+
+    <div id="modal6" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal6')">&times;</span>
+            <h2>✂️ Cut, Copy, Paste - The Magic Trio!</h2>
+            <div style="text-align: center; font-size: 5em; margin: 40px 0;">
+                ✂️ 📋 ✅
+            </div>
+            <h3>Watch the Magic Happen:</h3>
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 15px; margin: 20px 0;">
+                <p style="font-size: 1.2em;"><strong>Original text:</strong></p>
+                <p style="font-size: 1.1em; padding: 15px; background: white; border-radius: 8px;">
+                    "The cat sat on the mat. The dog played in the yard."
+                </p>
+                <p style="font-size: 1.2em; margin-top: 20px;"><strong>After cutting & pasting:</strong></p>
+                <p style="font-size: 1.1em; padding: 15px; background: white; border-radius: 8px;">
+                    "The dog played in the yard. The cat sat on the mat."
+                </p>
+            </div>
+            <p style="font-size: 1.2em; text-align: center; margin-top: 30px;">
+                <strong>No retyping needed! Just select, cut, and paste! ⚡</strong>
+            </p>
+        </div>
+    </div>
+
+    <div id="modal7" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal7')">&times;</span>
+            <h2>⭐ The Software Champions!</h2>
+            <div style="font-size: 4em; text-align: center; margin: 40px 0;">
+                📘 📙 📗 📕
+            </div>
+            <h3>Market Leaders:</h3>
+            <ul style="font-size: 1.2em;">
+                <li>👑 <strong>Microsoft Word:</strong> 1.2 billion users - The undisputed king!</li>
+                <li>☁️ <strong>Google Docs:</strong> 2 billion+ accounts - Collaboration master!</li>
+                <li>🆓 <strong>LibreOffice Writer:</strong> 200 million+ users - Free and powerful!</li>
+                <li>🍎 <strong>Apple Pages:</strong> Exclusive to Mac/iOS - Beautiful design!</li>
+            </ul>
+            <div style="background: #fff3cd; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                <p style="font-size: 1.2em;"><strong>💡 Cool Fact:</strong> If MS Word users were a country, it would be the 3rd largest in the world!</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal8" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal8')">&times;</span>
+            <h2>☁️ The Cloud Revolution!</h2>
+            <div style="text-align: center; font-size: 5em; margin: 40px 0;">
+                ☁️ 🌍 📱
+            </div>
+            <h3>What is "The Cloud"?</h3>
+            <p style="font-size: 1.2em;">Think of it as a <strong>magical storage space in the sky</strong> (actually powerful servers around the world!) where your files live safely and you can access them from ANYWHERE!</p>
+            <div style="background: #e0f7ff; padding: 25px; border-radius: 15px; margin: 20px 0;">
+                <h4 style="font-size: 1.3em;">Amazing Example:</h4>
+                <p style="font-size: 1.1em;">
+                    🏠 Start writing at home<br>
+                    🚌 Continue on your phone during your commute<br>
+                    🏫 Finish at school on a computer<br>
+                    📱 Show it to friends on your tablet<br>
+                    <strong>ALL THE SAME DOCUMENT! 🤯</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal9" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal9')">&times;</span>
+            <h2>📘 Google Docs Collaboration Magic!</h2>
+            <div style="text-align: center; font-size: 5em; margin: 40px 0;">
+                👥 ➕ 📝 ⚡
+            </div>
+            <h3>See Real-Time Collaboration:</h3>
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 15px;">
+                <p style="font-size: 1.2em;"><strong>Imagine seeing this LIVE:</strong></p>
+                <div style="background: white; padding: 20px; border-radius: 10px; margin: 15px 0;">
+                    <p><span style="background: #ffeb3b; padding: 3px 8px;">👤 Alex is typing...</span></p>
+                    <p style="margin: 10px 0;">"The project deadline is..."</p>
+                    <p><span style="background: #81c784; padding: 3px 8px;">👤 Jamie edited</span></p>
+                    <p style="margin: 10px 0;">"The project deadline is <strong>next Friday</strong>..."</p>
+                    <p><span style="background: #64b5f6; padding: 3px 8px;">👤 Sam added a comment</span></p>
+                    <p style="margin: 10px 0; background: #fff9c4; padding: 10px; border-left: 3px solid #fbc02d;">"Should we add more details here?"</p>
+                </div>
+                <p style="font-size: 1.2em; text-align: center; margin-top: 20px;">
+                    <strong>All happening at the SAME TIME from different locations! 🌍</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal10" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal10')">&times;</span>
+            <h2>📙 Microsoft 365 Word Online!</h2>
+            <div style="text-align: center; font-size: 5em; margin: 40px 0;">
+                👑 ☁️ ✨
+            </div>
+            <h3>The Best of Both Worlds:</h3>
+            <ul style="font-size: 1.2em;">
+                <li>💪 <strong>Desktop Power:</strong> All the features you love!</li>
+                <li>☁️ <strong>Cloud Flexibility:</strong> Access anywhere!</li>
+                <li>🔄 <strong>Perfect Sync:</strong> Start on desktop, finish on phone!</li>
+                <li>🤖 <strong>AI Assistant:</strong> Smart writing suggestions!</li>
+                <li>📊 <strong>Pro Templates:</strong> Instant professional look!</li>
+            </ul>
+            <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                <p style="font-size: 1.2em;"><strong>🎯 Perfect For:</strong> Students who need powerful features AND collaboration!</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal11" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal11')">&times;</span>
+            <h2>🤝 Collaboration Superpowers!</h2>
+            <div style="text-align: center; font-size: 5em; margin: 40px 0;">
+                🌍 👥 ⚡
+            </div>
+            <h3>Real-World Example:</h3>
+            <div style="background: #f5f5f5; padding: 25px; border-radius: 15px; margin: 20px 0;">
+                <p style="font-size: 1.2em;"><strong>Group Project Magic:</strong></p>
+                <div style="margin: 20px 0;">
+                    <p>🕐 <strong>9:00 AM</strong> - Maria creates document and shares link</p>
+                    <p>🕐 <strong>9:15 AM</strong> - John starts research section (Philippines)</p>
+                    <p>🕑 <strong>10:00 AM</strong> - Sarah adds images (USA)</p>
+                    <p>🕒 <strong>11:30 AM</strong> - Ali proofreads everything (UK)</p>
+                    <p>🕓 <strong>12:00 PM</strong> - <strong>PROJECT DONE!</strong> 🎉</p>
+                </div>
+                <p style="font-size: 1.1em;"><strong>Without collaboration:</strong> Would take 3-4 days of emailing files back and forth! 📧😫</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal12" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal12')">&times;</span>
+            <h2>🚀 The AI-Powered Future!</h2>
+            <div style="text-align: center; font-size: 5em; margin: 40px 0;">
+                🤖 ✨ 🎯
+            </div>
+            <h3>What's Coming (and Already Here!):</h3>
+            <ul style="font-size: 1.2em;">
+                <li>🤖 <strong>AI Writing Assistants:</strong> Tools like ChatGPT, Claude, and Copilot help you write better!</li>
+                <li>🎨 <strong>Auto-Design:</strong> AI suggests layouts and formats automatically!</li>
+                <li>🌐 <strong>Instant Translation:</strong> Write in English, share in ANY language!</li>
+                <li>🎤 <strong>Voice-to-Text:</strong> Just speak naturally, AI types AND formats!</li>
+                <li>📊 <strong>Smart Suggestions:</strong> AI predicts what you want to write next!</li>
+            </ul>
+            <div style="background: #fff3e0; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                <p style="font-size: 1.2em;"><strong>🌟 The Future:</strong> AI won't replace writers - it will make EVERYONE a better writer! ✨</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('totalSlides').textContent = totalSlides;
+
+        function showSlide(n) {
+            if (n > totalSlides) currentSlide = totalSlides;
+            if (n < 1) currentSlide = 1;
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentSlide - 1].classList.add('active');
+            
+            document.getElementById('currentSlide').textContent = currentSlide;
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+        }
+
+        function changeSlide(n) {
+            currentSlide += n;
+            showSlide(currentSlide);
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        // Demo editor functions
+        let editorHistory = [];
+        function demoFormat(command) {
+            const editor = document.getElementById('demoEditor');
+            editorHistory.push(editor.innerHTML);
+            document.execCommand(command, false, null);
+        }
+
+        function demoUndo() {
+            const editor = document.getElementById('demoEditor');
+            if (editorHistory.length > 0) {
+                editor.innerHTML = editorHistory.pop();
+            }
+        }
+
+        function demoClear() {
+            const editor = document.getElementById('demoEditor');
+            editorHistory.push(editor.innerHTML);
+            editor.innerHTML = 'Start typing here! ✨';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.style.display = 'none';
+                });
+            }
+        });
+
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
