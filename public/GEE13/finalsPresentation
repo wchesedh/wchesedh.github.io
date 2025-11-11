@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Computing & Digital Technology - Lecture</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #2a2a2a;
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 100vw;
+            margin: 0;
+            background: #ffffff;
+            min-height: 100vh;
+        }
+        
+        .slide {
+            display: none;
+            padding: 25px 30px 80px 30px;
+            min-height: 100vh;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        h1 {
+            font-size: 1.9em;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+            font-weight: 700;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+            margin: 20px 0 12px 0;
+            font-weight: 600;
+            color: #2a2a2a;
+            border-left: 4px solid #666;
+            padding-left: 12px;
+        }
+        
+        h3 {
+            font-size: 1.2em;
+            margin: 16px 0 8px 0;
+            font-weight: 600;
+            color: #3a3a3a;
+        }
+        
+        h4 {
+            font-size: 1em;
+            margin-bottom: 6px;
+            color: #4a4a4a;
+            font-weight: 600;
+        }
+        
+        p {
+            margin: 10px 0;
+            color: #3a3a3a;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+        
+        .concept-box {
+            background: #f8f8f8;
+            padding: 14px;
+            margin: 12px 0;
+            border-left: 3px solid #666;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .example-box {
+            background: #fafafa;
+            padding: 14px;
+            margin: 12px 0;
+            border-left: 3px solid #888;
+            border: 1px solid #e5e5e5;
+        }
+        
+        .highlight {
+            background: #f0f0f0;
+            color: #1a1a1a;
+            padding: 14px 16px;
+            margin: 12px 0;
+            border: 1px solid #d0d0d0;
+        }
+        
+        .info-card {
+            background: #ffffff;
+            padding: 14px;
+            margin: 12px 0;
+            border: 1px solid #d5d5d5;
+        }
+        
+        ul {
+            margin: 10px 0 10px 22px;
+        }
+        
+        li {
+            margin: 7px 0;
+            line-height: 1.6;
+            color: #3a3a3a;
+            font-size: 0.95em;
+        }
+        
+        .controls {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            padding: 12px 15px;
+            border-top: 1px solid #d0d0d0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+        }
+        
+        button {
+            background: #f5f5f5;
+            color: #2a2a2a;
+            border: 1px solid #c0c0c0;
+            padding: 8px 18px;
+            margin: 0 8px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 400;
+            transition: all 0.2s;
+            min-width: 45px;
+        }
+        
+        button:hover {
+            background: #e8e8e8;
+            border-color: #a0a0a0;
+        }
+        
+        button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        
+        .slide-counter {
+            color: #4a4a4a;
+            margin: 0 12px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+        
+        .section-title {
+            background: #2a2a2a;
+            color: #ffffff;
+            padding: 12px 15px;
+            margin: -25px -30px 20px -30px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        
+        .comparison-table {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 12px 0;
+        }
+        
+        .comparison-item {
+            background: #fafafa;
+            padding: 12px;
+            border-left: 3px solid #888;
+            border: 1px solid #e5e5e5;
+        }
+        
+        strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+        
+        em {
+            color: #5a5a5a;
+        }
+        
+        /* Mobile Responsive */
+        @media screen and (max-width: 768px) {
+            .slide {
+                padding: 15px 15px 70px 15px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+                margin-bottom: 12px;
+                padding-bottom: 8px;
+            }
+            
+            h2 {
+                font-size: 1.3em;
+                margin: 16px 0 10px 0;
+                padding-left: 10px;
+            }
+            
+            h3 {
+                font-size: 1.1em;
+                margin: 12px 0 6px 0;
+            }
+            
+            h4 {
+                font-size: 0.95em;
+            }
+            
+            p, li {
+                font-size: 0.9em;
+            }
+            
+            .section-title {
+                margin: -15px -15px 15px -15px;
+                padding: 10px 12px;
+                font-size: 1.1em;
+            }
+            
+            .concept-box, .example-box, .highlight, .info-card {
+                padding: 10px;
+                margin: 10px 0;
+            }
+            
+            .comparison-table {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .controls {
+                padding: 10px;
+            }
+            
+            button {
+                padding: 7px 14px;
+                font-size: 16px;
+                margin: 0 6px;
+                min-width: 40px;
+            }
+            
+            .slide-counter {
+                font-size: 12px;
+                margin: 0 8px;
+            }
+            
+            ul {
+                margin: 8px 0 8px 18px;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .slide {
+                padding: 12px 12px 65px 12px;
+            }
+            
+            h1 {
+                font-size: 1.3em;
+            }
+            
+            h2 {
+                font-size: 1.2em;
+            }
+            
+            .section-title {
+                margin: -12px -12px 12px -12px;
+                padding: 8px 10px;
+                font-size: 1em;
+            }
+            
+            button {
+                padding: 6px 12px;
+                font-size: 15px;
+                min-width: 38px;
+            }
+        }
+        
+        @media print {
+            .controls { display: none; }
+            .slide { display: block !important; page-break-after: always; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Slide 1: Cloud Storage Basics -->
+        <div class="slide active">
+            <div class="section-title">Module 1: Cloud Storage Services</div>
+            <h2>Understanding Cloud Storage</h2>
+            
+            <p>Cloud storage allows users to store data on remote servers accessed via the internet, rather than relying solely on local hardware. This paradigm shift has revolutionized how businesses and individuals manage their data.</p>
+            
+            <h3>Why Cloud Storage?</h3>
+            
+            <p>Traditional storage methods require physical hardware maintenance, have limited capacity, and risk data loss from hardware failure. Cloud storage addresses these issues by providing:</p>
+            
+            <ul>
+                <li><strong>Scalability:</strong> Easily expand storage capacity without purchasing new hardware</li>
+                <li><strong>Accessibility:</strong> Access files from any device with internet connection</li>
+                <li><strong>Backup & Recovery:</strong> Automatic backups protect against data loss</li>
+                <li><strong>Cost-Efficiency:</strong> Pay only for storage you use</li>
+                <li><strong>Collaboration:</strong> Share files easily with team members</li>
+            </ul>
+            
+            <h3>Major Cloud Storage Providers</h3>
+            
+            <div class="info-card">
+                <h4>Google Cloud Storage</h4>
+                <p>Known for seamless integration with Google Cloud Platform (GCP), offering scalable object storage for enterprises and developers. Particularly strong for storing large amounts of unstructured data like images, videos, and backups. Integrates well with Google Workspace, making it ideal for organizations already using Gmail, Docs, and Drive.</p>
+            </div>
+            
+            <div class="info-card">
+                <h4>Microsoft OneDrive</h4>
+                <p>Provides file synchronization and seamless integration with Microsoft Office applications (Word, Excel, PowerPoint). When you save a document to OneDrive, it syncs across all your devices automatically. It's the go-to choice for businesses using the Microsoft ecosystem, offering real-time co-authoring and version history.</p>
+            </div>
+            
+            <div class="info-card">
+                <h4>Amazon S3 (Simple Storage Service)</h4>
+                <p>Industry-leading object storage service with 99.999999999% durability. Widely used for backup, archiving, big data analytics, and content delivery. Powers many websites and applications you use daily. Offers various storage classes optimized for different access patterns and costs.</p>
+            </div>
+            
+            <div class="info-card">
+                <h4>Dropbox</h4>
+                <p>User-friendly cloud storage focused on simplicity and cross-platform sync. Popular among individuals and small teams for its intuitive interface and reliable file synchronization across devices.</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Types of Cloud Storage -->
+        <div class="slide">
+            <h2>Types of Cloud Storage</h2>
+            
+            <p>Different cloud storage types serve different purposes based on data structure and access patterns. Understanding these differences helps you choose the right solution.</p>
+            
+            <div class="comparison-table">
+                <div class="comparison-item">
+                    <h4><strong>Object Storage</strong></h4>
+                    <p>Ideal for unstructured data like images, videos, backups, and log files. Each object includes the data, metadata, and a unique identifier. Highly scalable and cost-effective for massive datasets.</p>
+                    <p style="margin-top: 8px;"><em>Example: YouTube uses object storage for billions of videos.</em></p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4><strong>Block Storage</strong></h4>
+                    <p>High-performance storage for databases and applications requiring low latency and high throughput. Data is divided into fixed-size blocks, each with a unique address.</p>
+                    <p style="margin-top: 8px;"><em>Example: Database servers running MySQL or PostgreSQL.</em></p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4><strong>File Storage</strong></h4>
+                    <p>Traditional hierarchical file system (folders and files) perfect for shared file access across multiple systems. Works like a network drive.</p>
+                    <p style="margin-top: 8px;"><em>Example: Shared department folders in an office network.</em></p>
+                </div>
+            </div>
+            
+            <h3>Choosing the Right Storage Type</h3>
+            
+            <ul>
+                <li><strong>Use Object Storage</strong> for: Media files, backups, archives, static website content</li>
+                <li><strong>Use Block Storage</strong> for: Databases, virtual machine disks, high-performance applications</li>
+                <li><strong>Use File Storage</strong> for: Shared documents, home directories, content management systems</li>
+            </ul>
+        </div>
+        
+        <!-- Slide 3: Cloud Service Models -->
+        <div class="slide">
+            <h2>Cloud Service Models</h2>
+            
+            <p>Cloud computing offers different service models, each providing varying levels of control, flexibility, and management. Understanding these models helps organizations choose the right cloud strategy.</p>
+            
+            <div class="concept-box">
+                <h4>SaaS (Software as a Service)</h4>
+                <p>Delivers software applications over the Internet. Users access applications through web browsers without installing, maintaining, or managing underlying infrastructure.</p>
+                <p style="margin-top: 8px;"><strong>Examples:</strong> Gmail (email), Salesforce (CRM), Microsoft 365 (productivity), Netflix (streaming), Slack (communication)</p>
+                <p style="margin-top: 8px;"><strong>Best for:</strong> End-users who need ready-to-use applications</p>
+                <p style="margin-top: 8px;"><strong>You manage:</strong> Your data and user settings</p>
+                <p style="margin-top: 8px;"><strong>Provider manages:</strong> Application, runtime, middleware, OS, servers, storage, networking</p>
+            </div>
+            
+            <div class="concept-box">
+                <h4>PaaS (Platform as a Service)</h4>
+                <p>Provides development platforms and tools for building, testing, and deploying applications without managing servers and infrastructure. Developers focus on writing code while the platform handles everything else.</p>
+                <p style="margin-top: 8px;"><strong>Examples:</strong> Google App Engine, Heroku, Microsoft Azure App Service</p>
+                <p style="margin-top: 8px;"><strong>Best for:</strong> Developers building custom applications</p>
+                <p style="margin-top: 8px;"><strong>You manage:</strong> Your application and data</p>
+                <p style="margin-top: 8px;"><strong>Provider manages:</strong> Runtime, middleware, OS, servers, storage, networking</p>
+            </div>
+            
+            <div class="concept-box">
+                <h4>IaaS (Infrastructure as a Service)</h4>
+                <p>Offers virtualized computing resources over the internet. You rent virtual machines, storage, and networks, gaining control over operating systems, applications, and data while avoiding physical hardware management.</p>
+                <p style="margin-top: 8px;"><strong>Examples:</strong> Amazon EC2, Google Compute Engine, Microsoft Azure VMs</p>
+                <p style="margin-top: 8px;"><strong>Best for:</strong> IT administrators needing maximum control and flexibility</p>
+                <p style="margin-top: 8px;"><strong>You manage:</strong> Applications, data, runtime, middleware, OS</p>
+                <p style="margin-top: 8px;"><strong>Provider manages:</strong> Servers, storage, networking</p>
+            </div>
+            
+            <h3>Comparison Summary</h3>
+            
+            <p>Think of it like transportation: <strong>SaaS</strong> is taking a taxi (just tell the driver where to go), <strong>PaaS</strong> is renting a car (you drive but don't maintain it), and <strong>IaaS</strong> is leasing a car long-term (more control but more responsibility).</p>
+        </div>
+
+        <!-- Slide 4: Cloud Storage Challenges -->
+        <div class="slide">
+            <h2>Cloud Storage: Challenges & Considerations</h2>
+            
+            <p>While cloud storage offers numerous benefits, it's important to understand potential limitations and plan accordingly. Every technology has trade-offs, and being aware of these helps you make informed decisions.</p>
+            
+            <h3>Key Challenges</h3>
+            
+            <div class="example-box">
+                <h4>Internet Dependency</h4>
+                <p>Cloud storage requires a stable internet connection. For freelancers or remote workers, internet outages can result in <strong>inability to access your data</strong>, affecting productivity and deadlines.</p>
+                <p style="margin-top: 8px;"><strong>Scenario:</strong> A freelance graphic designer working on a client deadline experiences an internet outage. Without local copies, they cannot access project files stored in the cloud, potentially missing the deadline.</p>
+                <p style="margin-top: 8px;"><strong>Mitigation:</strong> Maintain local backups of critical files, use selective sync to keep important folders offline-accessible, consider mobile hotspot as backup internet.</p>
+            </div>
+            
+            <div class="example-box">
+                <h4>Configuration Complexity</h4>
+                <p>Small business owners with limited IT expertise may face challenges with <strong>complex configuration</strong> settings, security policies, user permissions, and access controls.</p>
+                <p style="margin-top: 8px;"><strong>Scenario:</strong> A small retail shop owner wants to use cloud storage for inventory management but struggles with setting up user roles, sharing permissions, and backup schedules.</p>
+                <p style="margin-top: 8px;"><strong>Mitigation:</strong> Many providers now offer simplified interfaces, setup wizards, and managed services. Consider hiring IT consultants for initial configuration.</p>
+            </div>
+            
+            <div class="example-box">
+                <h4>Security & Privacy Concerns</h4>
+                <p>Storing sensitive data remotely raises questions about data ownership, government access, and unauthorized breaches. Requires robust security measures including encryption, multi-factor authentication, and compliance with regulations like GDPR or HIPAA.</p>
+                <p style="margin-top: 8px;"><strong>Scenario:</strong> A healthcare clinic storing patient records must ensure HIPAA compliance, encrypt data at rest and in transit, and maintain strict access controls.</p>
+            </div>
+            
+            <div class="example-box">
+                <h4>Cost Management</h4>
+                <p>While cloud storage eliminates upfront hardware costs, ongoing subscription fees and data transfer charges can accumulate. Organizations must monitor usage to avoid unexpected bills.</p>
+                <p style="margin-top: 8px;"><strong>Scenario:</strong> A startup's cloud storage costs balloon when employees upload large video files without archiving old data, leading to budget overruns.</p>
+            </div>
+            
+            <div class="example-box">
+                <h4>Vendor Lock-In</h4>
+                <p>Migrating large amounts of data from one cloud provider to another can be time-consuming, expensive, and technically challenging. This creates dependency on a single vendor.</p>
+            </div>
+            
+            <div class="highlight">
+                <strong>Key Point:</strong> Cloud storage relies on remote servers, not local hardware. Your data accessibility depends on both internet connectivity and the cloud provider's uptime. Always have contingency plans for critical business operations.
+            </div>
+        </div>
+
+        <!-- Slide 5: Advanced Cloud Technologies -->
+        <div class="slide">
+            <h2>Emerging Cloud Technologies</h2>
+            
+            <h3>Edge Computing</h3>
+            
+            <p>Edge computing brings computation and data storage closer to the data sources (at the "edge" of the network), enabling real-time analytics and faster processing. Instead of sending all data to centralized cloud servers, processing happens locally where data is generated.</p>
+            
+            <div class="concept-box">
+                <h4>How It Works</h4>
+                <p>Traditional cloud computing sends data from devices → Internet → Cloud data center → Process → Return results. Edge computing processes data locally on nearby edge servers, reducing latency from seconds to milliseconds.</p>
+            </div>
+            
+            <div class="example-box">
+                <h4>Retail Application: Real-Time Customer Analytics</h4>
+                <p>Retail businesses use edge computing to <strong>analyze customer behavior data in real-time</strong>. Smart cameras and sensors track shopping patterns, foot traffic, and product interactions.</p>
+                <p style="margin-top: 8px;"><strong>Benefits:</strong> Immediate personalized recommendations on digital displays, dynamic pricing adjustments, automated inventory alerts when shelves run low—all without delays from sending data to distant cloud servers.</p>
+                <p style="margin-top: 8px;"><strong>Example:</strong> A customer picks up a product, and within milliseconds, nearby screens display complementary items and special offers based on their browsing pattern.</p>
+            </div>
+            
+            <div class="example-box">
+                <h4>Other Edge Computing Applications</h4>
+                <ul>
+                    <li><strong>Autonomous Vehicles:</strong> Split-second decisions require local processing</li>
+                    <li><strong>Smart Cities:</strong> Traffic light optimization based on real-time traffic flow</li>
+                    <li><strong>Manufacturing:</strong> Quality control inspection and predictive maintenance</li>
+                    <li><strong>Healthcare:</strong> Real-time patient monitoring and emergency alerts</li>
+                </ul>
+            </div>
+            
+            <h3>Serverless Computing</h3>
+            
+            <p>Serverless computing eliminates server management responsibilities. Despite the name, servers still exist, but developers don't manage them. The cloud provider automatically handles server provisioning, scaling, and maintenance.</p>
+            
+            <div class="concept-box">
+                <h4>How It Works</h4>
+                <p>Instead of running applications on dedicated servers 24/7, serverless runs code in response to events (HTTP requests, file uploads, database changes). Code executes only when needed, and you pay only for compute time consumed—measured in milliseconds.</p>
+            </div>
+            
+            <div class="concept-box">
+                <h4>Key Benefits</h4>
+                <ul>
+                    <li><strong>Automatic Scaling:</strong> Handles 10 or 10,000 users without configuration</li>
+                    <li><strong>Cost-Effective:</strong> Pay only when code runs, not for idle server time</li>
+                    <li><strong>Reduced Overhead:</strong> No server patching, updates, or maintenance</li>
+                    <li><strong>Faster Development:</strong> Focus on business logic, not infrastructure</li>
+                </ul>
+            </div>
+            
+            <div class="example-box">
+                <h4>Use Case: Photo Processing Application</h4>
+                <p>A photography platform automatically resizes and optimizes uploaded images. With serverless, each image upload triggers a function that processes the image and stores thumbnails—scaling automatically during high-traffic events.</p>
+                <p style="margin-top: 8px;"><strong>Traditional Approach:</strong> Provision servers for peak load, pay for idle capacity during low traffic.</p>
+                <p style="margin-top: 8px;"><strong>Serverless Approach:</strong> Pay only for actual image processing time, automatic scaling handles traffic spikes.</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Google Drive Collaboration -->
+        <div class="slide">
+            <div class="section-title">Module 2: Google Drive & Collaboration Tools</div>
+            <h2>Google Drive: Modern Collaboration</h2>
+            
+            <p>Google Drive has transformed how teams work together by enabling real-time collaboration and seamless file sharing across organizations. It's more than just storage—it's a complete productivity platform.</p>
+            
+            <h3>Real-Time Collaboration Features</h3>
+            
+            <div class="concept-box">
+                <h4>Simultaneous Editing</h4>
+                <p>To ensure team members can access and edit documents simultaneously, <strong>share the document and grant editing permissions</strong>. This allows multiple users to work together in real-time, seeing each other's changes instantly with color-coded cursors showing who's editing what.</p>
+            </div>
+            
+            <div class="example-box">
+                <h4>Scenario: Group Project Collaboration</h4>
+                <p>A team of 5 students working on a research paper can all edit the Google Doc simultaneously. One person writes the introduction, another adds citations, while a third formats tables—all at the same time.</p>
+                <p style="margin-top: 8px;"><strong>Version Control:</strong> Google Drive's real-time collaboration feature automatically ensures everyone works on the latest version. No more "Final_v2_FINAL_revised.docx" files or conflicting email attachments.</p>
+                <p style="margin-top: 8px;"><strong>Benefit:</strong> Eliminates the confusion of multiple file versions being emailed back and forth.</p>
+            </div>
+            
+            <div class="concept-box">
+                <h4>Comment & Suggestion Mode</h4>
+                <p>Collaborators can add comments for discussion without changing the document, or suggest edits that require owner approval. Perfect for peer review and feedback processes.</p>
+            </div>
+            
+            <h3>Organization & File Management</h3>
+            
+            <div class="info-card">
+                <h4>Folder Structure</h4>
+                <p>Students and professionals can organize their work efficiently by creating a hierarchical folder structure. This helps categorize projects, courses, and documents for easy retrieval.</p>
+                <p style="margin-top: 8px;"><strong>Example Structure for Students:</strong></p>
+                <ul style="font-size: 0.9em;">
+                    <li>Semester 1 → Course 1 → Assignments, Lectures, Projects</li>
+                    <li>Semester 1 → Course 2 → ...</li>
+                    <li>Extracurricular → Club Name → Events, Minutes</li>
+                </ul>
+            </div>
+            
+            <div class="info-card">
+                <h4>Search & Filters</h4>
+                <p>Google Drive's powerful search functionality allows you to find files by name, content, owner, modification date, or even text within images (OCR). You can filter by file type (documents, spreadsheets, PDFs) or shared status.</p>
+                <p style="margin-top: 8px;"><strong>Advanced Search:</strong> Use operators like "owner:me" or "type:spreadsheet" to narrow results.</p>
+            </div>
+            
+            <div class="info-card">
+                <h4>Shared Drives (Team Drives)</h4>
+                <p>Unlike My Drive where individuals own files, Shared Drives are owned by teams. If someone leaves the organization, files stay accessible to the team. Perfect for departments, project teams, and organizations.</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Google Drive Features -->
+        <div class="slide">
+            <h2>Permission Levels & File Sharing</h2>
+            
+            <p>Understanding permission levels is crucial for maintaining document security and facilitating appropriate collaboration.</p>
+            
+            <div class="comparison-table">
+                <div class="comparison-item">
+                    <h4><strong>Owner</strong></h4>
+                    <p>Full control over the file. When an editor uploads files to a shared drive, they become the owner of those files.</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4><strong>Editor</strong></h4>
+                    <p>Can make changes, accept or reject suggestions, and share the file with others.</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4><strong>Commenter</strong></h4>
+                    <p>Can only comment and suggest edits. Perfect for advisers reviewing student research or managers providing feedback.</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4><strong>Viewer</strong></h4>
+                    <p>Read-only access. Users can view and download but cannot make any changes.</p>
+                </div>
+            </div>
+            
+            <h3>Document Formatting in Google Docs</h3>
+            
+            <div class="concept-box">
+                <p>To format tables for visual appeal, add borders and shading to cells. This improves readability and helps organize information effectively in reports and presentations.</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Google Slides & Sheets -->
+        <div class="slide">
+            <h2>Google Slides Fundamentals</h2>
+            
+            <p>Google Slides is a powerful presentation tool that enables creating, editing, and presenting slideshows collaboratively.</p>
+            
+            <div class="concept-box">
+                <strong>Getting Started:</strong> When you create a new presentation, it opens with the default title "Untitled Presentation." Always rename your presentation to something descriptive for better organization.
+            </div>
+            
+            <h3>Slide Management</h3>
+            
+            <p>To reorder slides, use the <strong>Slide Navigation Pane</strong> on the left side of the screen. Simply click and drag slides to rearrange them in your desired order. This pane provides a thumbnail overview of your entire presentation.</p>
+            
+            <h3>Google Sheets Basics</h3>
+            
+            <div class="info-card">
+                <h4>The Formula Bar</h4>
+                <p>Located above the spreadsheet grid, the Formula Bar is used for entering data, formulas, and functions into cells. It displays the contents of the currently selected cell and allows for easy editing of complex formulas.</p>
+            </div>
+            
+            <div class="info-card">
+                <h4>Cell Selection Methods</h4>
+                <p>You can select a range of cells using multiple methods:</p>
+                <ul>
+                    <li><strong>Click and drag</strong> the mouse across cells</li>
+                    <li><strong>Hold Shift</strong> and click individual cells to extend selection</li>
+                    <li>Use keyboard shortcuts for faster navigation</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 9: Google Sheets Functions -->
+        <div class="slide">
+            <h2>Essential Google Sheets Formulas</h2>
+            
+            <p>Spreadsheet formulas automate calculations and data analysis, making Google Sheets a powerful tool for business and academic work.</p>
+            
+            <h3>The SUM Function</h3>
+            
+            <div class="concept-box">
+                <p><strong>=SUM(A1:A5)</strong></p>
+                <p style="margin-top: 10px;">This formula adds the values in cells A1 through A5. The SUM function is one of the most fundamental spreadsheet functions, perfect for calculating totals, subtotals, and aggregating numerical data.</p>
+                <p style="margin-top: 10px;"><em>Note: SUM adds values together; it does not multiply them.</em></p>
+            </div>
+            
+            <h3>Common Formula Patterns</h3>
+            
+            <div class="info-card">
+                <h4>AVERAGE(range)</h4>
+                <p>Calculates the mean of a range of numbers</p>
+            </div>
+            
+            <div class="info-card">
+                <h4>COUNT(range)</h4>
+                <p>Counts the number of cells containing numerical values</p>
+            </div>
+            
+            <div class="info-card">
+                <h4>MAX(range) / MIN(range)</h4>
+                <p>Finds the maximum or minimum value in a range</p>
+            </div>
+        </div>
+
+        <!-- Slide 10: Social Media -->
+        <div class="slide">
+            <div class="section-title">Module 3: Social Media & Digital Platforms</div>
+            <h2>Understanding Social Networking</h2>
+            
+            <p><strong>Social networking sites</strong> are online communities where users create profiles, share content, and connect with others. These platforms have revolutionized communication, business, and information sharing globally.</p>
+            
+            <h3>Evolution of Social Media</h3>
+            
+            <div class="concept-box">
+                <h4>Facebook's Public Launch</h4>
+                <p>Facebook, one of the most influential social networks, was made available to public users in <strong>2006</strong>. Its journey:</p>
+                <ul style="font-size: 0.9em; margin-top: 8px;">
+                    <li><strong>2004:</strong> Launched exclusively for Harvard students</li>
+                    <li><strong>2004-2005:</strong> Expanded to other universities</li>
+                    <li><strong>2006:</strong> Opened to anyone 13+ with valid email</li>
+                    <li><strong>Today:</strong> Nearly 3 billion monthly active users worldwide</li>
+                </ul>
+                <p style="margin-top: 8px;">This public opening marked a turning point in how people connect, share information, and conduct business online.</p>
+            </div>
+            
+            <div class="concept-box">
+                <h4>Other Major Social Platforms Timeline</h4>
+                <ul style="font-size: 0.9em;">
+                    <li><strong>LinkedIn (2003):</strong> Professional networking</li>
+                    <li><strong>YouTube (2005):</strong> Video sharing</li>
+                    <li><strong>Twitter/X (2006):</strong> Microblogging</li>
+                    <li><strong>Instagram (2010):</strong> Photo/video sharing</li>
+                    <li><strong>TikTok (2016):</strong> Short-form video</li>
+                </ul>
+            </div>
+            
+            <h3>Foundational Internet Communication</h3>
+            
+            <p>Despite the explosive growth of social media, <strong>email</strong> remains the most widely used feature of the internet. Over 4 billion people use email daily—more than any single social platform.</p>
+            
+            <div class="info-card">
+                <h4>Why Email Endures</h4>
+                <ul style="font-size: 0.9em;">
+                    <li><strong>Universal:</strong> Works across all platforms and services</li>
+                    <li><strong>Professional:</strong> Standard for business communication</li>
+                    <li><strong>Required:</strong> Needed to create accounts on virtually every online service</li>
+                    <li><strong>Formal:</strong> Provides official record of communications</li>
+                    <li><strong>Direct:</strong> One-to-one or specific group communication</li>
+                </ul>
+            </div>
+            
+            <h3>Community Platforms</h3>
+            
+            <div class="info-card">
+                <h4>Message Boards & Forums</h4>
+                <p><strong>Message boards</strong> are online forums where users with similar interests discuss topics or share information. Unlike social media's broad approach, message boards foster deep, niche communities.</p>
+                <p style="margin-top: 8px;"><strong>Examples:</strong></p>
+                <ul style="font-size: 0.9em;">
+                    <li><strong>Reddit:</strong> Thousands of topic-specific "subreddits"</li>
+                    <li><strong>Stack Overflow:</strong> Programming Q&A community</li>
+                    <li><strong>XDA Developers:</strong> Mobile device customization</li>
+                    <li><strong>Gaming Forums:</strong> Strategy discussions and fan communities</li>
+                </ul>
+                <p style="margin-top: 8px;"><strong>Advantage:</strong> More focused, in-depth discussions compared to social media's quick posts.</p>
+            </div>
+        </div>
+
+        <!-- Slide 11: Social Media Impact -->
+        <div class="slide">
+            <h2>Social Media: Critical Evaluation</h2>
+            
+            <h3>The Information Speed Paradox</h3>
+            
+            <p>Social media enables unprecedented speed in information dissemination. A single post can reach millions within minutes. However, faster information spread is not always beneficial—rapid sharing can amplify false information before fact-checking occurs.</p>
+            
+            <div class="example-box">
+                <h4>Case Study: Misinformation Spread</h4>
+                <p>During breaking news events, false information often spreads faster than verified facts. A 2018 MIT study found that false news stories are 70% more likely to be retweeted than true stories.</p>
+                <p style="margin-top: 8px;"><strong>Example:</strong> Fake celebrity death announcements trend on Twitter before official sources can respond. By the time corrections are issued, millions have already seen and shared the false information.</p>
+                <p style="margin-top: 8px;"><strong>Why?</strong> False information is often more sensational and emotionally provocative, making people more likely to share without verification.</p>
+            </div>
+            
+            <div class="highlight">
+                <strong>Critical Thinking Principle:</strong> Always verify information sources before sharing. Speed doesn't guarantee accuracy. Check multiple reputable sources, look for primary sources, and be skeptical of sensational claims. Remember: You're responsible for what you share.
+            </div>
+            
+            <h3>Benefits of Social Media</h3>
+            
+            <div class="comparison-table">
+                <div class="comparison-item">
+                    <h4><strong>Global Connectivity</strong></h4>
+                    <p>Connect with people worldwide instantly. Maintain relationships across distances, find old friends, and meet people with shared interests regardless of geography.</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4><strong>Business Opportunities</strong></h4>
+                    <p>Small businesses can reach global audiences without expensive advertising. Influencers build careers. Companies engage customers directly and build brand loyalty.</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4><strong>Information Access</strong></h4>
+                    <p>Real-time news updates, breaking stories, diverse perspectives from around the world. Crowdsourced information during emergencies (traffic, disasters).</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4><strong>Community Building</strong></h4>
+                    <p>Find and engage with like-minded individuals. Support groups for health conditions, hobbyist communities, professional networks, activist movements.</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4><strong>Education & Awareness</strong></h4>
+                    <p>Educational content reaches millions. Awareness campaigns spread quickly. Tutorials, life hacks, and skill-sharing democratize knowledge.</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4><strong>Creative Expression</strong></h4>
+                    <p>Artists, writers, musicians, and creators share work directly with audiences. Portfolio building and talent discovery opportunities.</p>
+                </div>
+            </div>
+            
+            <h3>Risks and Challenges</h3>
+            
+            <div class="comparison-table">
+                <div class="comparison-item">
+                    <h4><strong>Misinformation & Disinformation</strong></h4>
+                    <p>False news spreads rapidly. Echo chambers reinforce biases. Sophisticated deepfakes and manipulated content. Foreign interference in elections.</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4><strong>Privacy Concerns</strong></h4>
+                    <p>Extensive data collection tracks behavior, preferences, location. Data breaches expose personal information. Third-party data sharing and targeted advertising.</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4><strong>Mental Health Impact</strong></h4>
+                    <p>Social comparison leads to anxiety and depression. FOMO (Fear of Missing Out). Addiction and compulsive checking. Validation-seeking behavior through likes and comments.</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4><strong>Cyberbullying & Harassment</strong></h4>
+                    <p>Online harassment, trolling, and coordinated attacks. Anonymity emboldens toxic behavior. Public shaming and cancel culture. Lasting psychological damage.</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4><strong>Time Consumption</strong></h4>
+                    <p>Average person spends 2+ hours daily on social media. Reduced productivity, sleep disruption, and decreased face-to-face interactions.</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4><strong>Professional Consequences</strong></h4>
+                    <p>Old posts resurface to harm careers. Employers screen candidates' social media. Inappropriate content damages professional reputation permanently.</p>
+                </div>
+            </div>
+            
+            <h3>Responsible Social Media Use</h3>
+            
+            <ul>
+                <li><strong>Verify before sharing:</strong> Check sources and facts</li>
+                <li><strong>Protect privacy:</strong> Review settings regularly, limit personal info</li>
+                <li><strong>Be kind:</strong> Think before posting, avoid contributing to negativity</li>
+                <li><strong>Set boundaries:</strong> Limit screen time, take digital detoxes</li>
+                <li><strong>Think long-term:</strong> Consider how posts might affect future opportunities</li>
+            </ul>
+        </div>
+
+        <!-- Slide 12: Digital Content Creation -->
+        <div class="slide">
+            <h2>Digital Content Creation & Gaming</h2>
+            
+            <h3>Types of Digital Gaming</h3>
+            
+            <div class="comparison-table">
+                <div class="comparison-item">
+                    <h4><strong>Role-Playing Games (RPG)</strong></h4>
+                    <p>Players assume character roles in fictional settings. Example: A streamer playing as a healing shaman in "Hero of the Universe" is experiencing RPG gameplay.</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4><strong>Console Games</strong></h4>
+                    <p>Games played on dedicated gaming consoles like Xbox, PlayStation, or Nintendo Switch. Content creators often live-stream console gameplay.</p>
+                </div>
+            </div>
+            
+            <h3>Content Creation Platforms</h3>
+            
+            <div class="concept-box">
+                <strong>Blogging:</strong> Writing and publishing articles or stories on a website. Travel bloggers, for instance, share their experiences, tips, and stories with global audiences, often monetizing through ads or sponsorships.
+            </div>
+            
+            <div class="concept-box">
+                <strong>Live Streaming:</strong> Broadcasting real-time video content on platforms like Twitch, YouTube Live, or Facebook Gaming. Popular for gaming, tutorials, and entertainment.
+            </div>
+        </div>
+
+        <!-- Slide 13: Digital Gaming History -->
+        <div class="slide">
+            <h2>Evolution of Digital Gaming</h2>
+            
+            <h3>Early Gaming History</h3>
+            
+            <p>While early computing experiments with games existed in the 1940s, gaming as we know it evolved significantly over decades. The <strong>Magnavox Odyssey (1972)</strong> became the first commercially successful home video game console, launching the home gaming revolution.</p>
+            
+            <p>Early digital games were primarily developed for academic research and entertainment, not competitive tournaments. The concept of organized esports came much later.</p>
+            
+            <h3>Modern Gaming Landscape</h3>
+            
+            <div class="concept-box">
+                <strong>Esports Revolution:</strong> Competitive gaming gained mainstream popularity through events like the Fortnite World Cup and League of Legends Championships, with prize pools reaching millions of dollars.
+            </div>
+            
+            <div class="concept-box">
+                <strong>Cloud Gaming:</strong> Modern technology allows players to stream games on various devices without requiring high-powered local hardware. Services process games on remote servers and stream video to players' devices.
+            </div>
+            
+            <div class="concept-box">
+                <strong>Console Evolution:</strong> Modern console games offer extensive internet connectivity and multiplayer features, enabling global competition and cooperation. Unlike early consoles, today's systems are deeply integrated with online services.
+            </div>
+        </div>
+
+        <!-- Slide 14: Digital Platforms -->
+        <div class="slide">
+            <h2>Understanding Digital Platforms</h2>
+            
+            <p>Digital platforms enable digital transactions and interactions on a global scale, not just local markets. They connect users, content, and services across geographical boundaries.</p>
+            
+            <h3>Types of Digital Platforms</h3>
+            
+            <div class="info-card">
+                <h4>E-Commerce Platforms</h4>
+                <p>These platforms facilitate online shopping and transactions, enabling businesses to sell products and services to global customers. Examples include Amazon, Shopify, and eBay.</p>
+            </div>
+            
+            <div class="info-card">
+                <h4>Media-Sharing Platforms</h4>
+                <p>Platforms like Instagram and YouTube allow users to share photos, videos, and creative content. These are media-sharing platforms, not review networks.</p>
+            </div>
+            
+            <div class="info-card">
+                <h4>Social Media Platforms</h4>
+                <p>Networks focused on social interaction, connection, and communication. Examples: Facebook, Twitter, LinkedIn.</p>
+            </div>
+            
+            <div class="info-card">
+                <h4>Review Platforms</h4>
+                <p>Dedicated to user reviews and ratings. Examples: Yelp, TripAdvisor, Google Reviews.</p>
+            </div>
+        </div>
+
+        <!-- Slide 15: Emerging Tech Applications -->
+        <div class="slide">
+            <h2>Emerging Technologies for Business</h2>
+            
+            <h3>Virtual Reality (VR) Applications</h3>
+            
+            <div class="concept-box">
+                <p><strong>Business Opportunity:</strong> Small businesses can leverage VR technology by offering virtual tours of physical stores or product demonstrations. This allows customers to experience products remotely before making purchase decisions.</p>
+            </div>
+            
+            <h3>The Metaverse</h3>
+            
+            <div class="concept-box">
+                <p>Businesses can leverage the Metaverse by creating virtual showrooms where customers explore products in immersive 3D environments. This technology enables new forms of customer engagement and shopping experiences.</p>
+            </div>
+            
+            <h3>Short-Form Video Content</h3>
+            
+            <p>The rise of platforms like TikTok, Instagram Reels, and YouTube Shorts has revolutionized content marketing.</p>
+            
+            <div class="example-box">
+                <h4>Marketing Strategy</h4>
+                <p>Marketers should create <strong>visually appealing and concise videos</strong> that capture attention quickly. Short-form content is highly shareable and performs well with algorithm-driven platforms.</p>
+                <ul>
+                    <li>Keep videos under 60 seconds</li>
+                    <li>Hook viewers in the first 3 seconds</li>
+                    <li>Use trending audio and effects</li>
+                    <li>Include clear calls-to-action</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 16: Healthcare & E-commerce Platforms -->
+        <div class="slide">
+            <h2>Industry-Specific Digital Platforms</h2>
+            
+            <h3>Healthcare Platforms</h3>
+            
+            <div class="concept-box">
+                <p><strong>Telemedicine Solutions:</strong> Healthcare platforms like Teladoc benefit medical practices by enabling patients to schedule online appointments and consultations with healthcare professionals remotely. This expands access to care and improves patient convenience.</p>
+            </div>
+            
+            <h3>E-Commerce for Small Businesses</h3>
+            
+            <div class="example-box">
+                <h4>Case Study: Bakery Expansion</h4>
+                <p>A local bakery owner can expand their business reach by creating an online store to showcase baked goods. E-commerce platforms enable customers to browse products, place orders, and pay remotely—extending the business beyond walk-in traffic.</p>
+                <p style="margin-top: 10px;"><strong>Key Features:</strong></p>
+                <ul>
+                    <li>Product catalogs with photos</li>
+                    <li>Online ordering and payment processing</li>
+                    <li>Delivery scheduling</li>
+                    <li>Customer reviews and feedback</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 17: Intellectual Property -->
+        <div class="slide">
+            <div class="section-title">Module 4: Intellectual Property & Cybercrime</div>
+            <h2>Intellectual Property Rights</h2>
+            
+            <p>Intellectual property (IP) protects creations of the mind, giving creators exclusive rights over their innovations and creative works. These legal protections incentivize innovation and creativity by allowing creators to benefit financially from their work.</p>
+            
+            <h3>Types of Intellectual Property</h3>
+            
+            <div class="info-card">
+                <h4>Patent</h4>
+                <p>Grants an inventor <strong>exclusive rights</strong> to make, use, and sell an invention for a limited period (typically 20 years). Patents protect new inventions, processes, technological innovations, and even some business methods.</p>
+                <p style="margin-top: 8px;"><strong>Requirements:</strong> Must be novel, non-obvious, and useful</p>
+                <p style="margin-top: 8px;"><strong>Examples:</strong></p>
+                <ul style="font-size: 0.9em;">
+                    <li>Pharmaceutical drug formulations</li>
+                    <li>Smartphone technology (touchscreen, processors)</li>
+                    <li>Manufacturing processes</li>
+                    <li>Software algorithms (in some jurisdictions)</li>
+                </ul>
+                <p style="margin-top: 8px;"><strong>Why it matters:</strong> Without patents, companies wouldn't invest billions in R&D if competitors could immediately copy their inventions.</p>
+            </div>
+            
+            <div class="info-card">
+                <h4>Trademark</h4>
+                <p>Protects words, signs, symbols, or logos that identify the source of goods or services. Trademarks establish <strong>brand identity</strong> and prevent consumer confusion about product origins.</p>
+                <p style="margin-top: 8px;"><strong>Famous Examples:</strong></p>
+                <ul style="font-size: 0.9em;">
+                    <li>Nike "swoosh" symbol</li>
+                    <li>Apple's bitten apple logo</li>
+                    <li>McDonald's golden arches</li>
+                    <li>Coca-Cola's distinctive script font</li>
+                    <li>Intel's "Intel Inside" jingle (sound trademark)</li>
+                </ul>
+                <p style="margin-top: 8px;"><strong>Duration:</strong> Can last indefinitely if properly maintained and renewed</p>
+                <p style="margin-top: 8px;"><strong>Why it matters:</strong> Trademarks protect consumers from counterfeit products and help companies build brand reputation and loyalty.</p>
+            </div>
+            
+            <div class="info-card">
+                <h4>Copyright</h4>
+                <p>Protects original creative works including books, music, art, software code, films, photographs, and architectural designs. Copyright gives creators control over reproduction, distribution, public performance, and derivative works.</p>
+                <p style="margin-top: 8px;"><strong>What's protected:</strong></p>
+                <ul style="font-size: 0.9em;">
+                    <li>Literary works (novels, articles, poems)</li>
+                    <li>Musical compositions and recordings</li>
+                    <li>Visual arts (paintings, photographs, graphics)</li>
+                    <li>Software and computer programs</li>
+                    <li>Films and videos</li>
+                    <li>Choreography and dramatic works</li>
+                </ul>
+                <p style="margin-top: 8px;"><strong>Duration:</strong> Generally author's lifetime + 70 years</p>
+                <p style="margin-top: 8px;"><strong>Automatic Protection:</strong> Copyright exists automatically upon creation; registration provides additional legal benefits.</p>
+            </div>
+            
+            <div class="info-card">
+                <h4>Trade Secret</h4>
+                <p>Confidential business information providing competitive advantage. Unlike patents, trade secrets can last indefinitely but aren't publicly disclosed.</p>
+                <p style="margin-top: 8px;"><strong>Famous Example:</strong> Coca-Cola's formula, KFC's recipe, Google's search algorithm</p>
+            </div>
+            
+            <div class="highlight">
+                <strong>Quick Reference:</strong> Patent = Inventions & Processes | Trademark = Brand Identity & Symbols | Copyright = Creative Works & Expressions | Trade Secret = Confidential Business Information
+            </div>
+            
+            <h3>Why IP Protection Matters</h3>
+            
+            <ul>
+                <li><strong>Encourages Innovation:</strong> Creators can profit from their work</li>
+                <li><strong>Economic Growth:</strong> IP-intensive industries contribute significantly to GDP</li>
+                <li><strong>Consumer Protection:</strong> Ensures product authenticity and quality</li>
+                <li><strong>Cultural Development:</strong> Supports artists, writers, and creators</li>
+            </ul>
+        </div>
+
+        <!-- Slide 18: Cybercrime Prevention Act -->
+        <div class="slide">
+            <h2>Cybercrime Prevention Act of 2012</h2>
+            
+            <p>The Cybercrime Prevention Act of 2012 (Republic Act No. 10175) provides legal framework for prosecuting cybercrimes in the Philippines.</p>
+            
+            <h3>Scope and Jurisdiction</h3>
+            
+            <div class="concept-box">
+                <p>The Act criminalizes <strong>unauthorized access to computer systems</strong> (hacking) and applies to cybercrimes committed beyond the Philippines' borders if they affect Philippine citizens or systems.</p>
+            </div>
+            
+            <h3>Offenses Under the Act</h3>
+            
+            <div class="comparison-table">
+                <div class="comparison-item">
+                    <h4><strong>Illegal Access</strong></h4>
+                    <p>Unauthorized access to computer systems or networks</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4><strong>Data Interference</strong></h4>
+                    <p>Intentional alteration, deletion, or destruction of computer data</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4><strong>Illegal Interception</strong></h4>
+                    <p>Unauthorized interception of computer data transmissions</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4><strong>Cybersex & Child Pornography</strong></h4>
+                    <p>Prohibited sexual content online</p>
+                </div>
+            </div>
+            
+            <p style="margin-top: 20px;"><em>Note: SIM Registration is covered under separate legislation, not the Cybercrime Prevention Act.</em></p>
+        </div>
+
+        <!-- Slide 19: Computer Ethics - Ten Commandments Part 1 -->
+        <div class="slide">
+            <h2>Ten Commandments of Computer Ethics</h2>
+            
+            <p>Established by the Computer Ethics Institute in 1992, these principles guide ethical behavior in digital spaces. They remain relevant today as technology continues to evolve.</p>
+            
+            <h3>The Ten Commandments</h3>
+            
+            <div class="concept-box">
+                <h4>1. Thou shalt not use a computer to harm other people</h4>
+                <p>Computers should not be used to inflict physical, emotional, or psychological harm on others.</p>
+                <p style="margin-top: 8px;"><strong>Examples of Harm:</strong></p>
+                <ul style="font-size: 0.9em;">
+                    <li><strong>Cyberbullying:</strong> Harassing a celebrity or classmate online for grammatical errors or personal characteristics causes real psychological harm</li>
+                    <li><strong>Doxxing:</strong> Publishing someone's private information (address, phone) to incite harassment</li>
+                    <li><strong>Swatting:</strong> Making false emergency calls to send police to someone's address</li>
+                    <li><strong>Revenge porn:</strong> Sharing intimate images without consent</li>
+                </ul>
+            </div>
+            
+            <div class="concept-box">
+                <h4>2. Thou shalt not interfere with other people's computer work</h4>
+                <p>Don't disrupt, sabotage, or prevent others from using their computers effectively.</p>
+                <p style="margin-top: 8px;"><strong>Violations:</strong></p>
+                <ul style="font-size: 0.9em;">
+                    <li><strong>Malware:</strong> Creating viruses, worms, or ransomware that disrupts computer processes</li>
+                    <li><strong>DDoS Attacks:</strong> Overwhelming websites with traffic to make them unavailable</li>
+                    <li><strong>Network Sabotage:</strong> Intentionally slowing down or disrupting office networks</li>
+                    <li><strong>Email Bombing:</strong> Flooding someone's inbox to prevent legitimate email access</li>
+                </ul>
+            </div>
+            
+            <div class="concept-box">
+                <h4>3. Thou shalt not snoop around in other people's computer files</h4>
+                <p>Respect digital privacy. Don't access files, emails, or data you're not authorized to view.</p>
+                <p style="margin-top: 8px;"><strong>Examples:</strong></p>
+                <ul style="font-size: 0.9em;">
+                    <li>Reading your coworker's emails when they leave their computer unlocked</li>
+                    <li>Accessing private files on a shared computer</li>
+                    <li>Browsing through someone's photo library without permission</li>
+                    <li>Using keyloggers to capture passwords</li>
+                </ul>
+            </div>
+            
+            <div class="concept-box">
+                <h4>4. Thou shalt not use a computer to steal</h4>
+                <p>Don't use computers for theft of money, data, intellectual property, or resources.</p>
+                <p style="margin-top: 8px;"><strong>Forms of Digital Theft:</strong></p>
+                <ul style="font-size: 0.9em;">
+                    <li><strong>Software Piracy:</strong> Downloading copyrighted software and sharing with friends without paying</li>
+                    <li><strong>Corporate Espionage:</strong> Using confidential company reports for competitive advantage</li>
+                    <li><strong>Credit Card Fraud:</strong> Stealing payment information online</li>
+                    <li><strong>Identity Theft:</strong> Stealing personal information to impersonate someone</li>
+                    <li><strong>Cryptocurrency Theft:</strong> Hacking digital wallets</li>
+                </ul>
+            </div>
+            
+            <div class="concept-box">
+                <h4>5. Thou shalt not use a computer to bear false witness</h4>
+                <p>Don't spread misinformation, create fake evidence, or deceive others using technology.</p>
+                <p style="margin-top: 8px;"><strong>Scenarios:</strong></p>
+                <ul style="font-size: 0.9em;">
+                    <li><strong>Death Hoaxes:</strong> Spreading false information about celebrities being dead trends on social media before verification</li>
+                    <li><strong>Deepfakes:</strong> Creating fake videos of people saying things they never said</li>
+                    <li><strong>Photoshopped Evidence:</strong> Manipulating images to falsely incriminate someone</li>
+                    <li><strong>Fake Reviews:</strong> Posting false reviews to harm competitors or boost your business</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Slide 20: Computer Ethics - Ten Commandments Part 2 -->
+        <div class="slide">
+            <h2>Ten Commandments of Computer Ethics (Continued)</h2>
+            
+            <div class="concept-box">
+                <h4>6. Thou shalt not copy or use proprietary software for which you have not paid</h4>
+                <p>Respect software licenses and intellectual property rights. Piracy harms developers and violates legal agreements.</p>
+                <p style="margin-top: 8px;"><strong>Examples:</strong></p>
+                <ul style="font-size: 0.9em;">
+                    <li>Using cracked versions of Adobe Photoshop or Microsoft Office</li>
+                    <li>Sharing licensed software with friends who haven't purchased it</li>
+                    <li>Using business software with personal licenses (or vice versa)</li>
+                    <li>Ignoring software activation requirements</li>
+                </ul>
+                <p style="margin-top: 8px;"><strong>Alternatives:</strong> Use free open-source alternatives (GIMP instead of Photoshop, LibreOffice instead of MS Office) or take advantage of student discounts.</p>
+            </div>
+            
+            <div class="concept-box">
+                <h4>7. Thou shalt not use other people's computer resources without authorization or proper compensation</h4>
+                <p>Don't exploit computing resources that don't belong to you without permission.</p>
+                <p style="margin-top: 8px;"><strong>Violations:</strong></p>
+                <ul style="font-size: 0.9em;">
+                    <li><strong>Code Licensing:</strong> Using code snippets under restrictive licenses without permission in profit-generating projects</li>
+                    <li><strong>Cryptojacking:</strong> Using someone's computer to mine cryptocurrency without their knowledge</li>
+                    <li><strong>Cloud Resources:</strong> Using someone else's AWS account or API keys</li>
+                    <li><strong>Bandwidth Theft:</strong> Using neighbor's WiFi without permission</li>
+                </ul>
+            </div>
+            
+            <div class="concept-box">
+                <h4>8. Thou shalt not appropriate other people's intellectual output</h4>
+                <p>Give credit where credit is due. Don't plagiarize or claim others' work as your own.</p>
+                <p style="margin-top: 8px;"><strong>Examples:</strong></p>
+                <ul style="font-size: 0.9em;">
+                    <li><strong>Academic Plagiarism:</strong> Copying sections from academic papers without proper citation</li>
+                    <li><strong>Code Theft:</strong> Copying open-source code without attribution</li>
+                    <li><strong>Content Theft:</strong> Reposting social media content without crediting creators</li>
+                    <li><strong>Design Theft:</strong> Copying website designs or graphics without permission</li>
+                </ul>
+                <p style="margin-top: 8px;"><strong>Proper Practice:</strong> Always cite sources, use quotation marks for direct quotes, and give credit to original authors.</p>
+            </div>
+            
+            <div class="concept-box">
+                <h4>9. Thou shalt think about the social consequences of the program you are writing or the system you are designing</h4>
+                <p>Consider how your technology might impact society, including unintended consequences.</p>
+                <p style="margin-top: 8px;"><strong>Scenarios:</strong></p>
+                <ul style="font-size: 0.9em;">
+                    <li><strong>Ignoring Bugs:</strong> A developer discovers a critical security bug but ignores it to avoid project delays, potentially exposing thousands of users to data breaches</li>
+                    <li><strong>Algorithmic Bias:</strong> Creating recommendation systems that reinforce discrimination</li>
+                    <li><strong>Addictive Design:</strong> Using psychological tricks to make apps addictive</li>
+                    <li><strong>Environmental Impact:</strong> Designing inefficient systems that waste energy</li>
+                </ul>
+                <p style="margin-top: 8px;"><strong>Responsibility:</strong> Software bugs can cause data loss, security breaches, financial losses, or even endanger lives (medical devices, autonomous vehicles).</p>
+            </div>
+            
+            <div class="concept-box">
+                <h4>10. Thou shalt always use a computer in ways that ensure consideration and respect for your fellow humans</h4>
+                <p>Use technology responsibly, ethically, and with respect for others' dignity and rights.</p>
+                <p style="margin-top: 8px;"><strong>Applications:</strong></p>
+                <ul style="font-size: 0.9em;">
+                    <li><strong>Professional Responsibility:</strong> Network admin discovers employee using company resources for personal financial gain but ignores it, showing lack of consideration for the organization</li>
+                    <li><strong>Accessibility:</strong> Designing websites that work for people with disabilities</li>
+                    <li><strong>Digital Inclusion:</strong> Considering users in developing countries with limited connectivity</li>
+                    <li><strong>Respectful Communication:</strong> Being courteous in emails, forums, and social media</li>
+                    <li><strong>Fair AI:</strong> Ensuring AI systems don't discriminate against protected groups</li>
+                </ul>
+            </div>
+            
+            <div class="highlight">
+                <strong>Core Principle:</strong> These commandments emphasize that technology is a tool that should be used to benefit humanity, not harm it. Every technical decision has ethical implications.
+            </div>
+        </div>
+
+        <!-- Slide 20: Ethical Scenarios Analysis -->
+        <div class="slide">
+            <h2>Data Privacy & Transparency Ethics</h2>
+            
+            <p>Modern technology raises complex ethical questions about data collection, transparency, and user consent.</p>
+            
+            <div class="concept-box">
+                <h4>Informed Consent Principle</h4>
+                <p>Developing an app that analyzes users' social media data without informing them is unethical. <strong>Users should always be informed about how their data is collected and used</strong>, and they must have the option to consent or decline.</p>
+            </div>
+            
+            <h3>Information Credibility</h3>
+            
+            <div class="concept-box">
+                <p>When encountering information from unprofessional websites with no sources, the ethical approach is to <strong>search for the information from a more credible source</strong> before using or sharing it. Using unverified information can spread misinformation and damage your credibility.</p>
+            </div>
+            
+            <div class="highlight">
+                Best Practice: Always verify sources, cite references, and prioritize transparency in data handling.
+            </div>
+        </div>
+
+        <!-- Slide 21: Content Creator Ethics -->
+        <div class="slide">
+            <h2>Ethics in Content Creation</h2>
+            
+            <h3>Authenticity and Integrity</h3>
+            
+            <div class="example-box">
+                <h4>Sponsored Content Dilemma</h4>
+                <p>Consider a YouTuber offered payment to promote a product they've never used. The ethical response is to <strong>decline the offer and explain to viewers why you don't feel comfortable promoting the product</strong>.</p>
+                <p style="margin-top: 10px;">This maintains trust with your audience and upholds professional integrity. Accepting such offers can mislead followers and damage long-term credibility.</p>
+            </div>
+            
+            <h3>Guidelines for Ethical Content Creation</h3>
+            
+            <ul>
+                <li><strong>Personal Experience:</strong> Only endorse products you've genuinely used and believe in</li>
+                <li><strong>Disclosure:</strong> Clearly label sponsored content and partnerships</li>
+                <li><strong>Honesty:</strong> Share both pros and cons of products</li>
+                <li><strong>Audience First:</strong> Prioritize audience value over financial gain</li>
+            </ul>
+        </div>
+
+        <!-- Slide 22: Computer Ethics - Intellectual Property -->
+        <div class="slide">
+            <h2>Respecting Digital Resources</h2>
+            
+            <h3>Authorization and Licensing</h3>
+            
+            <div class="example-box">
+                <h4>Thou shalt not use other people's computer resources without authorization</h4>
+                <p><strong>Case:</strong> A developer uses a code snippet under a restrictive license without permission in a profit-generating project. This violates both the license terms and ethical principles.</p>
+                <p style="margin-top: 10px;"><strong>Proper Approach:</strong> Always check license requirements, obtain necessary permissions, and comply with usage terms.</p>
+            </div>
+            
+            <div class="example-box">
+                <h4>Thou shalt not appropriate other people's intellectual output</h4>
+                <p><strong>Case:</strong> Copying sections from academic papers without proper citation constitutes plagiarism and intellectual property theft.</p>
+                <p style="margin-top: 10px;"><strong>Proper Approach:</strong> Always cite sources, use quotation marks for direct quotes, and give credit to original authors.</p>
+            </div>
+        </div>
+
+        <!-- Slide 23: Computer Ethics - Professional Responsibility -->
+        <div class="slide">
+            <h2>Professional Responsibility in Tech</h2>
+            
+            <div class="example-box">
+                <h4>Thou shalt think about the social consequences of the program you write</h4>
+                <p><strong>Scenario:</strong> A software developer discovers a critical bug but chooses to ignore it to avoid project delays. This decision prioritizes deadlines over user safety and demonstrates poor professional ethics.</p>
+                <p style="margin-top: 10px;"><strong>Impact:</strong> Software bugs can cause data loss, security breaches, or system failures affecting thousands of users.</p>
+            </div>
+            
+            <div class="example-box">
+                <h4>Thou shalt use a computer in ways that show consideration and respect</h4>
+                <p><strong>Scenario:</strong> A network administrator discovers an employee using company resources for personal financial gain but ignores it. This shows lack of consideration for the organization and other employees.</p>
+                <p style="margin-top: 10px;"><strong>Responsibility:</strong> Administrators must enforce fair resource usage policies consistently.</p>
+            </div>
+        </div>
+
+        <!-- Slide 24: Emerging Tech Ethics -->
+        <div class="slide">
+            <h2>Ethics in Emerging Technologies</h2>
+            
+            <h3>Biometric Data and Privacy</h3>
+            
+            <div class="concept-box">
+                <p><strong>Metaverse Data Collection:</strong> Companies operating Metaverse platforms collecting biometric data must provide clear information and obtain explicit consent from users. Transparency about data usage is not optional—it's an ethical imperative.</p>
+            </div>
+            
+            <h3>Security Vulnerability Disclosure</h3>
+            
+            <div class="concept-box">
+                <p><strong>DeFi Platform Security:</strong> If a developer discovers a security vulnerability in a DeFi platform before launch, they should immediately report the vulnerability, even if it delays the launch. User security must take precedence over timelines.</p>
+            </div>
+            
+            <h3>Digital Equity and Access</h3>
+            
+            <div class="concept-box">
+                <p><strong>Digital Health Passports:</strong> Systems should include alternatives for those without access to digital devices or vaccinations. Ethical technology design considers accessibility and doesn't create barriers for disadvantaged populations.</p>
+            </div>
+        </div>
+
+        <!-- Slide 25: Data Security & Privacy -->
+        <div class="slide">
+            <div class="section-title">Module 5: Security & Privacy</div>
+            <h2>Comprehensive Security for Businesses</h2>
+            
+            <p>Protecting sensitive data requires a multi-layered security approach combining technical, physical, and administrative controls.</p>
+            
+            <h3>Protecting Offline Systems</h3>
+            
+            <p>Even offline computers with sensitive client data need robust protection:</p>
+            
+            <div class="comparison-table">
+                <div class="comparison-item">
+                    <h4><strong>Strong Passwords</strong></h4>
+                    <p>Use complex, unique passwords for all systems and accounts</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4><strong>Automatic Updates</strong></h4>
+                    <p>Enable automatic security patches to address vulnerabilities</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4><strong>Physical Security</strong></h4>
+                    <p>Implement locks, surveillance, and access logs</p>
+                </div>
+                
+                <div class="comparison-item">
+                    <h4><strong>Access Restrictions</strong></h4>
+                    <p>Limit server room access to authorized personnel only</p>
+                </div>
+            </div>
+            
+            <h3>Remote Worker Security</h3>
+            
+            <div class="concept-box">
+                <p>Remote workers must maintain strong security practices to protect company data:</p>
+                <ul>
+                    <li><strong>Strong, unique passwords</strong> for all accounts</li>
+                    <li><strong>Two-factor authentication (2FA)</strong> for additional security layers</li>
+                    <li><strong>Keep software up-to-date</strong> with latest security patches</li>
+                    <li>Use VPNs when accessing company networks</li>
+                    <li>Secure home Wi-Fi networks</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 26: Online Privacy -->
+        <div class="slide">
+            <h2>Managing Your Digital Footprint</h2>
+            
+            <p>Every online action contributes to your digital footprint—the trail of data you leave behind. Managing this footprint is crucial for privacy and reputation.</p>
+            
+            <h3>Minimizing Your Digital Footprint</h3>
+            
+            <div class="concept-box">
+                <p><strong>Be mindful of what you post online and limit the information you share publicly.</strong> Once information is online, it's difficult to completely remove, and it may affect future opportunities.</p>
+            </div>
+            
+            <h3>Privacy Best Practices</h3>
+            
+            <div class="info-card">
+                <h4>Adjust Privacy Settings</h4>
+                <p>Regularly review and tighten privacy settings on social media platforms. Limit who can see your posts and personal information.</p>
+            </div>
+            
+            <div class="info-card">
+                <h4>Be Selective with Connections</h4>
+                <p>Carefully evaluate friend requests and connection invitations. Not everyone needs access to your personal information.</p>
+            </div>
+            
+            <div class="info-card">
+                <h4>Think Before You Post</h4>
+                <p>Consider the long-term implications of sharing content. Ask: "Would I be comfortable with my employer, family, or future self seeing this?"</p>
+            </div>
+        </div>
+
+        <!-- Slide 27: Advanced Security -->
+        <div class="slide">
+            <h2>Zero Trust Security & Data Privacy Laws</h2>
+            
+            <h3>Zero Trust Security Model</h3>
+            
+            <p>Zero Trust is a security framework that assumes no user or system should be automatically trusted, even within the organization's network.</p>
+            
+            <div class="concept-box">
+                <p><strong>Healthcare Application:</strong> Zero Trust principles protect patient information by requiring authentication for every user accessing patient data. No one gets automatic access based on network location—everyone must verify their identity for each access request.</p>
+            </div>
+            
+            <h3>Data Privacy Act of 2012 (Philippines)</h3>
+            
+            <p>The Data Privacy Act establishes comprehensive data protection framework for personal information.</p>
+            
+            <div class="highlight">
+                <strong>Data Breach Notification Requirements:</strong>
+                <ul style="margin-top: 10px;">
+                    <li>Organizations must inform the National Privacy Commission (NPC) of data breaches</li>
+                    <li>Affected individuals must be notified of breaches that may result in harm</li>
+                    <li>Organizations must take appropriate actions to mitigate damage and prevent future breaches</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 28: Netiquette -->
+        <div class="slide">
+            <h2>Netiquette: Digital Communication Standards</h2>
+            
+            <p><strong>Netiquette</strong> refers to the set of rules governing online etiquette. It encompasses proper behavior across all digital platforms—not just email—including social media, forums, video calls, and messaging apps.</p>
+            
+            <h3>Core Principles of Netiquette</h3>
+            
+            <div class="info-card">
+                <h4>Respect Others' Opinions</h4>
+                <p>Engage in respectful discourse even when disagreeing. Personal attacks and inflammatory language have no place in professional communication.</p>
+            </div>
+            
+            <div class="info-card">
+                <h4>Maintain Courtesy</h4>
+                <p>Use polite language, proper greetings, and professional tone. Remember that written communication lacks vocal cues and can be easily misinterpreted.</p>
+            </div>
+            
+            <div class="info-card">
+                <h4>Think Before You Post</h4>
+                <p>Consider how your message might be received. Once sent, digital communications can be forwarded, screenshot, and preserved indefinitely.</p>
+            </div>
+            
+            <div class="info-card">
+                <h4>Universal Application</h4>
+                <p>Netiquette principles apply to ALL online platforms—social media, professional networks, forums, gaming communities, and messaging apps.</p>
+            </div>
+        </div>
+
+        <!-- Slide 29: Computer Ethics - Theft & Violations -->
+        <div class="slide">
+            <h2>Digital Theft and Intellectual Property</h2>
+            
+            <h3>Thou shalt not use a computer to steal</h3>
+            
+            <p>Theft in the digital realm takes many forms, from software piracy to unauthorized use of confidential information.</p>
+            
+            <div class="example-box">
+                <h4>Scenario 1: Software Piracy</h4>
+                <p>Downloading copyrighted software without paying and sharing it with friends constitutes theft. This deprives creators of rightful compensation and violates intellectual property laws.</p>
+            </div>
+            
+            <div class="example-box">
+                <h4>Scenario 2: Corporate Espionage</h4>
+                <p>Using a confidential company report for competitive advantage—whether for personal benefit or to help a competitor—is theft of trade secrets and breach of trust.</p>
+            </div>
+            
+            <div class="highlight">
+                Both scenarios violate the commandment "Thou shalt not use a computer to steal." Digital theft is as serious as physical theft and carries legal consequences.
+            </div>
+            
+            <h3>Forms of Digital Theft</h3>
+            <ul>
+                <li>Software piracy and unauthorized distribution</li>
+                <li>Theft of trade secrets and confidential data</li>
+                <li>Credential theft (phishing, keylogging)</li>
+                <li>Identity theft and fraud</li>
+                <li>Unauthorized use of computing resources</li>
+            </ul>
+        </div>
+
+        <!-- Slide 30: Emerging Technologies -->
+        <div class="slide">
+            <div class="section-title">Module 6: Emerging Technologies & Applications</div>
+            <h2>Precision Agriculture</h2>
+            
+            <p>Precision agriculture applies data analytics and IoT sensors to optimize farming operations, improving yields while reducing resource waste.</p>
+            
+            <div class="concept-box">
+                <h4>Smart Farm Management</h4>
+                <p>Farmers can optimize operations by <strong>using sensors to monitor soil moisture and optimize irrigation</strong>. This technology-driven approach conserves water, reduces costs, and improves crop health by delivering precise amounts of water when and where needed.</p>
+            </div>
+            
+            <h3>Additional Precision Agriculture Applications</h3>
+            <ul>
+                <li>Drone monitoring for crop health assessment</li>
+                <li>GPS-guided equipment for precise planting</li>
+                <li>Predictive analytics for pest management</li>
+                <li>Automated harvesting systems</li>
+            </ul>
+            
+            <h3>Genomic IT in Healthcare</h3>
+            
+            <div class="concept-box">
+                <p><strong>Genetic Counseling Applications:</strong> Genomic IT benefits genetic counselors by analyzing clients' DNA to identify potential health risks and tailor personalized treatment plans. This enables preventive medicine and targeted therapies based on individual genetic profiles.</p>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn" onclick="changeSlide(-1)">←</button>
+        <span class="slide-counter"><span id="currentSlide">1</span> / <span id="totalSlides">30</span></span>
+        <button id="nextBtn" onclick="changeSlide(1)">→</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('totalSlides').textContent = totalSlides;
+        
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            document.getElementById('currentSlide').textContent = currentSlide + 1;
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+        
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowLeft' && currentSlide > 0) {
+                changeSlide(-1);
+            } else if (event.key === 'ArrowRight' && currentSlide < totalSlides - 1) {
+                changeSlide(1);
+            }
+        });
+        
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
