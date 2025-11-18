@@ -17,7 +17,7 @@ export default function ContactMe() {
           <span className="text-white text-xl font-semibold">LinkedIn</span>
         </a>
         <a
-          href="https://www.facebook.com/welj/" // Replace with your Facebook URL
+          href="https://www.facebook.com/weljo.chesedh.2024/" // Replace with your Facebook URL
           target="_blank"
           rel="noopener noreferrer"
           className="flex flex-col items-center p-6 bg-gray-800 rounded-lg shadow-lg hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
@@ -26,7 +26,7 @@ export default function ContactMe() {
           <span className="text-white text-xl font-semibold">Facebook</span>
         </a>
         <a
-          href="" // Replace with your Gmail address
+          href="gmail.com"
           className="flex flex-col items-center p-6 bg-gray-800 rounded-lg shadow-lg hover:bg-red-700 transition-all duration-300 transform hover:scale-105"
         >
           <FaEnvelope className="text-red-500 text-6xl mb-4" /> {/* Using FaEnvelope for generic email, but could use SiGmail if you install react-icons/si */}
@@ -42,7 +42,7 @@ export default function ContactMe() {
           <span className="text-white text-xl font-semibold">Instagram</span>
         </a>
         <a
-          href="https://twitter.com/welj" // Replace with your X (Twitter) URL
+          href="https://twitter.com/wlibnao" // Replace with your X (Twitter) URL
           target="_blank"
           rel="noopener noreferrer"
           className="flex flex-col items-center p-6 bg-gray-800 rounded-lg shadow-lg hover:bg-gray-700 transition-all duration-300 transform hover:scale-105"
