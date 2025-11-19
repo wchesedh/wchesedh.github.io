@@ -303,7 +303,10 @@ export default function Projects() {
   return (
     <section id="projects" className="relative bg-gradient-to-b from-gray-900 to-black py-20">
       <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-8">My Projects</h2>
+        <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-4">My Projects</h2>
+        <p className="text-gray-400 text-center mb-2 text-sm md:text-base">
+          Sample projects showcased below. I also have projects running locally and desktop applications.
+        </p>
         <div className="flex justify-center space-x-4 mb-8">
           <button
             onClick={() => setActiveTab('3d')}
