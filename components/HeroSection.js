@@ -82,7 +82,7 @@ export default function HeroSection() {
                 Weljo Chesedh
               </span>
             </h1>
-            <h2 className="text-2xl md:text-3xl text-gray-300 mb-8">Full Stack Developer & Web3 Specialist</h2>
+            <h2 className="text-2xl md:text-3xl text-gray-300 mb-8">Programmer/Fullstack Dev</h2>
           </motion.div>
 
           <motion.div

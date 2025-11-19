@@ -12,7 +12,7 @@ import { AsteroidBelt } from './AsteroidBelt'
 
 const projectLinks = [
   { name: 'Aguaboo', url: 'https://aguaboo.com', image: '/images/aguaboo.png', description: 'A modern water delivery platform for ordering and management.' },
-  { name: 'Bullisch Bull Official Site', url: 'https://bull-token-site.vercel.app/', image: '/images/bullisch1.png', description: 'Successful launch of BULL token on Solana' },
+  { name: 'TrackWise', url: 'https://teacher-app-seven.vercel.app/', image: '/images/trackwise.png', description: 'A teacher-parent forum for discussing children\'s daily activities.' },
   { name: 'University Online Document Request', url: 'https://sis.cmu.edu.ph/odrms', image: '/images/odrms.png', description: 'Online Document Request Management System for CMU students and staff.' },
   { name: 'CMUPress', url: 'https://apps.cmu.edu.ph/cmupress', image: '/images/cmupress.png', description: 'CMU Press platform for academic publishing and resources.' },
   { name: 'HR Online Document Request', url: 'https://apps.cmu.edu.ph/hrodrs', image: '/images/hrodrs.png', description: 'HR Online Document Request System for CMU employees.' },
