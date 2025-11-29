@@ -17,6 +17,9 @@ const projectLinks = [
   { name: 'CMUPress', url: 'https://apps.cmu.edu.ph/cmupress', image: '/images/cmupress.png', description: 'CMU Press platform for academic publishing and resources.' },
   { name: 'HR Online Document Request', url: 'https://apps.cmu.edu.ph/hrodrs', image: '/images/hrodrs.png', description: 'HR Online Document Request System for CMU employees.' },
   { name: 'CAEP South East Asia', url: 'https://caepsea.com', image: '/images/caepsea.png', description: 'Study Work Travel Application System by CAEP South East Asia. Partners with Swiss program Study Work Travel to open doors for young adventurous individuals seeking programs and opportunities in Europe to hone professional skills, build credentials, and personal growth. Welcomes Filipinos and Indonesians to join the program.' },
+  { name: 'M.M. Stud Farm Management System', url: 'https://qhive-innovations.com/studfarm/', image: '/images/studfarm.png', description: 'A web-based management system for M.M. Stud Farm, providing access-controlled tools for managing stud farm operations and records.' },
+  { name: 'Point of Sale System', url: 'https://wcplpointofsale.onrender.com', image: '/images/pospic.png', description: 'A point-of-sale web application, featuring managing sales and transactions.' },
+  { name: 'Dental Clinic Management System', url: 'https://rodrigoorthodentalclinic.onrender.com/', image: '/images/dmspic.png', description: 'A dental clinic management system that enables staff to securely manage patient-related operations.' },
 ]
 
 function FinancialVisualization() {
