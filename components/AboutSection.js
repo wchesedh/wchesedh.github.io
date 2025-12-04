@@ -24,10 +24,10 @@ export default function AboutSection() {
             className="space-y-6"
           >
             <p className="text-gray-300 text-lg leading-relaxed">
-              I am a passionate Full Stack Developer with a strong focus on creating modern, responsive web applications. With expertise in both frontend and backend technologies, I strive to build intuitive and efficient solutions that enhance user experiences.
+            Building software from the ground up comes naturally, starting from learning the business rules, designing the database, coding both frontend and backend, and taking the app all the way through deployment. Experienced in creating modern, responsive web apps using the latest tools and best practices, always focused on making solutions that work smoothly and scale well.
             </p>
             <p className="text-gray-300 text-lg leading-relaxed">
-              With expertise in both front-end and back-end development, I specialize in creating responsive web applications using modern technologies and best practices. I'm constantly learning and adapting to new technologies to stay at the forefront of web development.
+              With expertise in both front-end and back-end development, I specialize in creating responsive web applications using modern technologies and best practices. I'm constantly adapting to new technologies to stay at the forefront of web development.
             </p>
           </motion.div>
 
@@ -45,7 +45,7 @@ export default function AboutSection() {
               </div>
               <div>
                 <h4 className="text-xl text-purple-400 mb-2">Backend Development</h4>
-                <p className="text-gray-300">Node.js, Express, MongoDB, PostgreSQL, Laravel, CodeIgniter, RESTful APIs</p>
+                <p className="text-gray-300">Supabase, Node.js, Express, MongoDB, PostgreSQL, Laravel, CodeIgniter, RESTful APIs</p>
               </div>
               <div>
                 <h4 className="text-xl text-green-400 mb-2">Programming Languages</h4>
@@ -53,7 +53,7 @@ export default function AboutSection() {
               </div>
               <div>
                 <h4 className="text-xl text-yellow-400 mb-2">Tools & Technologies</h4>
-                <p className="text-gray-300">Git, Docker, AWS, CI/CD, Agile Methodologies</p>
+                <p className="text-gray-300">Git, Docker, AWS, CI/CD, Agile Methodologies, Render, Hostinger, Railway</p>
               </div>
             </div>
           </motion.div>
