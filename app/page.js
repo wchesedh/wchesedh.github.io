@@ -253,7 +253,7 @@ export default function Home() {
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-8">Full-Stack Developer</p>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
-              Building software from the ground up—from business rules to deployment. 
+              Building software from the ground up, from business rules to deployment. 
               Creating modern, scalable web applications with clean code and best practices.
             </p>
           </motion.div>
