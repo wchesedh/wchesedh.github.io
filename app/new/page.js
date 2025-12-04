@@ -102,27 +102,20 @@ const skillsByCategory = [
   },
 ]
 
-export default function Home() {
+export default function NewPortfolio() {
   return (
     <main className="min-h-screen bg-white text-gray-900">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <motion.a
-              href="/"
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="flex items-center"
+              className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
             >
-              <Image
-                src="/images/weljIcon.png"
-                alt="Weljo Chesedh"
-                width={56}
-                height={56}
-                className="object-contain"
-              />
-            </motion.a>
+              WC
+            </motion.div>
             <div className="hidden md:flex gap-8 items-center">
               {['About', 'Skills', 'Projects', 'Certifications', 'Contact'].map((item) => (
                 <a
@@ -622,3 +615,4 @@ export default function Home() {
     </main>
   )
 }
+
