@@ -36,7 +36,7 @@ export default function ContactMe() {
           href="https://www.instagram.com/welj/" // Replace with your Instagram URL
           target="_blank"
           rel="noopener noreferrer"
-          className="flex flex-col items-center p-6 bg-gray-800 rounded-lg shadow-lg hover:bg-purple-700 transition-all duration-300 transform hover:scale-105"
+          className="flex flex-col items-center p-6 bg-gray-800 rounded-lg shadow-lg hover:bg-pink-700 transition-all duration-300 transform hover:scale-105"
         >
           <FaInstagram className="text-pink-500 text-6xl mb-4" />
           <span className="text-white text-xl font-semibold">Instagram</span>

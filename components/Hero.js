@@ -49,7 +49,7 @@ export default function Hero() {
           className="w-full md:w-1/2 flex justify-start mb-8 md:mb-0"
         >
           <div className="relative w-64 h-64 md:w-80 md:h-80">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur-xl opacity-50 animate-pulse"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full blur-xl opacity-50 animate-pulse"></div>
             <Image
               src="/images/profile.jpg"
               alt="Weljo Chesedh"
@@ -69,7 +69,7 @@ export default function Hero() {
         >
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
             Hi, I'm{' '}
-            <span className="bg-gradient-to-r from-blue-500 to-purple-600 text-transparent bg-clip-text">
+            <span className="bg-gradient-to-r from-blue-500 to-cyan-600 text-transparent bg-clip-text">
               Weljo Chesedh
             </span>
           </h1>
@@ -81,7 +81,7 @@ export default function Hero() {
               href="#projects"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all"
+              className="px-8 py-3 bg-gradient-to-r from-blue-500 to-cyan-600 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all"
             >
               View Projects
             </motion.a>

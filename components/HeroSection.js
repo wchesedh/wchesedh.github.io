@@ -69,7 +69,7 @@ export default function HeroSection() {
             className="mb-8"
           >
             <div className="relative w-48 h-48 mx-auto mb-8">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur-xl opacity-50 animate-pulse"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full blur-xl opacity-50 animate-pulse"></div>
               <Image
                 src="/images/profilePic.png"
                 alt="Weljo Chesedh"
@@ -78,7 +78,7 @@ export default function HeroSection() {
               />
             </div>
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-600">
                 Weljo Chesedh
               </span>
             </h1>
@@ -93,7 +93,7 @@ export default function HeroSection() {
           >
             <button
               onClick={() => scrollToSection('projects')}
-              className="px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold shadow-lg hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105"
+              className="px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-600 text-white font-semibold shadow-lg hover:from-blue-600 hover:to-cyan-700 transition-all transform hover:scale-105"
             >
               View Projects
             </button>

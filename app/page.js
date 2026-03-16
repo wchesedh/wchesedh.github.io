@@ -37,7 +37,7 @@ const keySkills = [
   },
   {
     category: 'Backend Development',
-    color: 'from-purple-500 to-pink-500',
+    color: 'from-sky-500 to-cyan-500',
     items: ['Supabase', 'Node.js', 'Express', 'MongoDB', 'PostgreSQL', 'Laravel', 'CodeIgniter', 'RESTful APIs']
   },
   {
@@ -243,7 +243,7 @@ export default function Home() {
             className="mb-8"
           >
             <div className="relative w-32 h-32 mx-auto mb-6">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur-2xl opacity-30"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full blur-2xl opacity-30"></div>
               <Image
                 src="/images/profilePic.png"
                 alt="Weljo Chesedh"
@@ -251,7 +251,7 @@ export default function Home() {
                 className="rounded-full object-cover border-4 border-white shadow-xl"
               />
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-gray-900 via-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-gray-900 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
               Weljo Chesedh
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-8">Full-Stack Developer</p>
@@ -269,7 +269,7 @@ export default function Home() {
           >
             <a
               href="#projects"
-              className="px-8 py-3 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
+              className="px-8 py-3 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all"
             >
               View Projects
             </a>
@@ -381,7 +381,7 @@ export default function Home() {
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1 + itemIndex * 0.03, duration: 0.4, ease: "easeOut" }}
                       whileHover={{ scale: 1.05, y: -2 }}
-                      className="px-4 py-2 bg-gray-100 rounded-full text-sm font-medium text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-blue-700 transition-all duration-300 cursor-default"
+                      className="px-4 py-2 bg-gray-100 rounded-full text-sm font-medium text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50 hover:text-blue-700 transition-all duration-300 cursor-default"
                     >
                       {item}
                     </motion.span>

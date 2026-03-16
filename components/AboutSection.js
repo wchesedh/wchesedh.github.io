@@ -13,7 +13,7 @@ export default function AboutSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">About Me</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-600 mx-auto"></div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -44,7 +44,7 @@ export default function AboutSection() {
                 <p className="text-gray-300">React, Next.js, Three.js, Tailwind CSS, Framer Motion</p>
               </div>
               <div>
-                <h4 className="text-xl text-purple-400 mb-2">Backend Development</h4>
+                <h4 className="text-xl text-cyan-400 mb-2">Backend Development</h4>
                 <p className="text-gray-300">Supabase, Node.js, Express, MongoDB, PostgreSQL, Laravel, CodeIgniter, RESTful APIs</p>
               </div>
               <div>
