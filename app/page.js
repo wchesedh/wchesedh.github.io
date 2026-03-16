@@ -7,17 +7,17 @@ import { SiNextdotjs, SiTailwindcss, SiPostgresql, SiMongodb, SiTypescript, SiLa
 
 const projectLinks = [
   { name: 'Aguaboo', url: 'https://aguaboo.com', image: '/images/aguaboo.png', description: 'A modern water delivery platform for ordering and management.' },
-  { name: 'TrackWise', url: 'https://teacher-app-seven.vercel.app/', image: '/images/trackwise.png', description: 'A teacher-parent forum for discussing children\'s daily activities.' },
+  { name: 'QHive Innovations', url: 'https://qhive-innovations.com/', image: '/images/qhive.png', description: 'QuantumHive Innovations—seamless digital solutions: custom software, mobile and web apps, UI/UX, and IT support.' },
+  { name: 'Software Development Department', url: 'https://apps.cmu.edu.ph/', image: '/images/sdd.png', description: 'CMU Software Development Department—where your software needs are assessed, developed, and maintained.' },
+  { name: 'CMU Palaro', url: 'https://apps.cmu.edu.ph/palaro/', image: '/images/palaro.png', description: 'CMU Palaro medal tally and sports event results—lead beyond limits through sports excellence.' },
   { name: 'University Online Document Request', url: 'https://sis.cmu.edu.ph/odrms', image: '/images/odrms.png', description: 'Online Document Request Management System for CMU students and staff.' },
-  { name: 'CMUPress', url: 'https://apps.cmu.edu.ph/cmupress', image: '/images/cmupress.png', description: 'CMU Press platform for academic publishing and resources.' },
   { name: 'HR Online Document Request', url: 'https://apps.cmu.edu.ph/hrodrs', image: '/images/hrodrs.png', description: 'HR Online Document Request System for CMU employees.' },
+  { name: 'TrackWise', url: 'https://teacher-app-seven.vercel.app/', image: '/images/trackwise.png', description: 'A teacher-parent forum for discussing children\'s daily activities.' },
+  { name: 'CMUPress', url: 'https://apps.cmu.edu.ph/cmupress', image: '/images/cmupress.png', description: 'CMU Press platform for academic publishing and resources.' },
   { name: 'CAEP South East Asia', url: 'https://caepsea.com', image: '/images/caepsea.png', description: 'Study Work Travel Application System by CAEP South East Asia.' },
   { name: 'M.M. Stud Farm Management System', url: 'https://qhive-innovations.com/studfarm/', image: '/images/studfarm.png', description: 'A web-based management system for M.M. Stud Farm operations.' },
   { name: 'Point of Sale System', url: 'https://wcplpointofsale.onrender.com', image: '/images/pospic.png', description: 'A point-of-sale web application for managing sales and transactions.' },
   { name: 'Dental Clinic Management System', url: 'https://rodrigoorthodentalclinic.onrender.com/', image: '/images/dmspic.png', description: 'A dental clinic management system for patient operations.' },
-  { name: 'CMU Palaro', url: 'https://apps.cmu.edu.ph/palaro/', image: '/images/palaro.png', description: 'CMU Palaro medal tally and sports event results—lead beyond limits through sports excellence.' },
-  { name: 'QHive Innovations', url: 'https://qhive-innovations.com/', image: '/images/qhive.png', description: 'QuantumHive Innovations—seamless digital solutions: custom software, mobile and web apps, UI/UX, and IT support.' },
-  { name: 'Software Development Department', url: 'https://apps.cmu.edu.ph/', image: '/images/sdd.png', description: 'CMU Software Development Department—where your software needs are assessed, developed, and maintained.' },
 ]
 
 const certificationsData = [
