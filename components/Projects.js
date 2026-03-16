@@ -20,6 +20,9 @@ const projectLinks = [
   { name: 'M.M. Stud Farm Management System', url: 'https://qhive-innovations.com/studfarm/', image: '/images/studfarm.png', description: 'A web-based management system for M.M. Stud Farm, providing access-controlled tools for managing stud farm operations and records.' },
   { name: 'Point of Sale System', url: 'https://wcplpointofsale.onrender.com', image: '/images/pospic.png', description: 'A point-of-sale web application, featuring managing sales and transactions.' },
   { name: 'Dental Clinic Management System', url: 'https://rodrigoorthodentalclinic.onrender.com/', image: '/images/dmspic.png', description: 'A dental clinic management system that enables staff to securely manage patient-related operations.' },
+  { name: 'CMU Palaro', url: 'https://apps.cmu.edu.ph/palaro/', image: '/images/palaro.png', description: 'CMU Palaro medal tally and sports event results—lead beyond limits through sports excellence.' },
+  { name: 'QHive Innovations', url: 'https://qhive-innovations.com/', image: '/images/qhive.png', description: 'QuantumHive Innovations—seamless digital solutions: custom software, mobile and web apps, UI/UX, and IT support.' },
+  { name: 'Software Development Department', url: 'https://apps.cmu.edu.ph/', image: '/images/sdd.png', description: 'CMU Software Development Department—where your software needs are assessed, developed, and maintained.' },
 ]
 
 function FinancialVisualization() {
