@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { FaReact, FaNodeJs, FaPython, FaDocker, FaAws, FaGit, FaLinkedin, FaFacebook, FaInstagram, FaTwitter, FaEnvelope, FaServer, FaHtml5, FaLinux, FaPhp } from 'react-icons/fa'
 import { SiNextdotjs, SiTailwindcss, SiPostgresql, SiMongodb, SiTypescript, SiLaravel, SiCodeigniter, SiDotnet, SiVercel, SiStripe, SiSupabase, SiDjango, SiSolidity, SiEthereum, SiWeb3DotJs } from 'react-icons/si'
+import CoderVibeBackground from '@/components/CoderVibeBackground'
 
 const projectLinks = [
   { name: 'Aguaboo', url: 'https://aguaboo.com', image: '/images/aguaboo.png', description: 'A modern water delivery platform for ordering and management.' },
@@ -149,91 +150,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center pt-20 px-6 overflow-hidden">
-        {/* Animated Geometric Background */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ opacity: 0.15 }}>
-          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
-                <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#3B82F6" strokeWidth="0.8"/>
-              </pattern>
-              <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#3B82F6" />
-                <stop offset="100%" stopColor="#8B5CF6" />
-              </linearGradient>
-            </defs>
-            
-            {/* Subtle Animated Grid */}
-            <rect width="100%" height="100%" fill="url(#grid)">
-              <animateTransform
-                attributeName="transform"
-                type="translate"
-                values="0,0; 80,80; 0,0"
-                dur="25s"
-                repeatCount="indefinite"
-              />
-            </rect>
-            
-            {/* Floating Geometric Shapes */}
-            <g>
-              {/* Hexagon 1 - Top Left */}
-              <polygon points="180,160 220,180 220,220 180,240 140,220 140,180" fill="url(#grad1)" opacity="0.3">
-                <animateTransform
-                  attributeName="transform"
-                  type="translate"
-                  values="0,0; 20,-15; 0,0"
-                  dur="8s"
-                  repeatCount="indefinite"
-                />
-              </polygon>
-              
-              {/* Hexagon 2 - Top Right */}
-              <polygon points="960,320 1000,340 1000,380 960,400 920,380 920,340" fill="url(#grad1)" opacity="0.3">
-                <animateTransform
-                  attributeName="transform"
-                  type="translate"
-                  values="0,0; -15,20; 0,0"
-                  dur="10s"
-                  repeatCount="indefinite"
-                />
-              </polygon>
-              
-              {/* Hexagon 3 - Bottom Left */}
-              <polygon points="240,480 280,500 280,540 240,560 200,540 200,500" fill="url(#grad1)" opacity="0.3">
-                <animateTransform
-                  attributeName="transform"
-                  type="translate"
-                  values="0,0; 25,15; 0,0"
-                  dur="12s"
-                  repeatCount="indefinite"
-                />
-              </polygon>
-              
-              {/* Hexagon 4 - Bottom Right */}
-              <polygon points="1020,200 1060,220 1060,260 1020,280 980,260 980,220" fill="url(#grad1)" opacity="0.3">
-                <animateTransform
-                  attributeName="transform"
-                  type="translate"
-                  values="0,0; -12,-20; 0,0"
-                  dur="9s"
-                  repeatCount="indefinite"
-                />
-              </polygon>
-            </g>
-            
-            {/* Subtle Connecting Lines */}
-            <g stroke="url(#grad1)" strokeWidth="1" fill="none" opacity="0.2">
-              <line x1="120" y1="120" x2="360" y2="280">
-                <animate attributeName="x2" values="360;400;360" dur="6s" repeatCount="indefinite" />
-              </line>
-              <line x1="1080" y1="160" x2="840" y2="320">
-                <animate attributeName="x2" values="840;800;840" dur="7s" repeatCount="indefinite" />
-              </line>
-              <line x1="600" y1="40" x2="540" y2="200">
-                <animate attributeName="y2" values="200;240;200" dur="8s" repeatCount="indefinite" />
-              </line>
-            </g>
-          </svg>
-        </div>
+        <CoderVibeBackground />
         
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div
