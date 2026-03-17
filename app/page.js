@@ -274,13 +274,13 @@ export default function Home() {
             Where I’ve worked and what I did
           </motion.p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-2 md:grid md:grid-cols-4 md:overflow-visible">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6 }}
-              className="bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-xl hover:border-gray-300 transition-all duration-300"
+              className="min-w-[280px] snap-start bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-xl hover:border-gray-300 transition-all duration-300 md:min-w-0"
             >
               <div className="flex items-start justify-between gap-4 mb-4">
                 <div>
@@ -316,7 +316,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: 0.05 }}
-              className="bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-xl hover:border-gray-300 transition-all duration-300"
+              className="min-w-[280px] snap-start bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-xl hover:border-gray-300 transition-all duration-300 md:min-w-0"
             >
               <div className="flex items-start justify-between gap-4 mb-4">
                 <div>
@@ -351,8 +351,44 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="min-w-[280px] snap-start bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-xl hover:border-gray-300 transition-all duration-300 md:min-w-0"
+            >
+              <div className="flex items-start justify-between gap-4 mb-4">
+                <div>
+                  <div className="text-sm font-semibold text-blue-700">2023 – 2026</div>
+                  <h3 className="text-xl font-bold text-gray-900 mt-1">Affiliate Instructor</h3>
+                  <p className="text-gray-600">Central Mindanao University</p>
+                </div>
+                <div className="h-10 w-10 rounded-xl bg-white border border-gray-200 shadow-sm flex items-center justify-center overflow-hidden">
+                  <img
+                    src="https://www.google.com/s2/favicons?domain=cmu.edu.ph&sz=64"
+                    alt="Central Mindanao University logo"
+                    className="h-6 w-6"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              </div>
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                Supported instruction through lectures, mentoring, and course activities while continuing development work.
+              </p>
+              <a
+                href="https://www.cmu.edu.ph/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-sm font-semibold text-blue-700 hover:text-blue-800"
+              >
+                Visit site →
+              </a>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-xl hover:border-gray-300 transition-all duration-300"
+              className="min-w-[280px] snap-start bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-xl hover:border-gray-300 transition-all duration-300 md:min-w-0"
             >
               <div className="flex items-start justify-between gap-4 mb-4">
                 <div>
@@ -382,6 +418,8 @@ export default function Home() {
                 Visit site →
               </a>
             </motion.div>
+
+           
           </div>
         </div>
       </section>
