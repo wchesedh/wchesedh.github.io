@@ -162,10 +162,12 @@ export default function Home() {
             <div className="relative w-32 h-32 mx-auto mb-6">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full blur-2xl opacity-30"></div>
               <Image
-                src="/images/profilePic.png"
+                src="/images/profilePic.jpg"
                 alt="Weljo Chesedh"
                 fill
                 className="rounded-full object-cover border-4 border-white shadow-xl"
+                priority
+                sizes="128px"
               />
             </div>
             <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-gray-900 via-blue-600 to-cyan-600 bg-clip-text text-transparent">

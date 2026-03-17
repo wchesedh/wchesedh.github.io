@@ -71,10 +71,12 @@ export default function HeroSection() {
             <div className="relative w-48 h-48 mx-auto mb-8">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full blur-xl opacity-50 animate-pulse"></div>
               <Image
-                src="/images/profilePic.png"
+                src="/images/profilePic.jpg"
                 alt="Weljo Chesedh"
                 fill
                 className="rounded-full object-cover border-4 border-white shadow-lg"
+                priority
+                sizes="192px"
               />
             </div>
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
