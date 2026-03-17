@@ -4,31 +4,42 @@ import { useMemo } from 'react'
 
 const CODE_COLUMNS = [
   [
-    "const dev = { role: 'Full‑Stack', focus: 'DX' }",
-    "await api.deploy({ env: 'prod' })",
-    "git commit -m \"ship\"",
-    "if (bug) fix(bug)",
-    "export default function Portfolio() {}",
-    "SELECT * FROM projects WHERE shipped = true;",
-    "docker compose up -d",
+    "shipIt('pls') // ✨",
+    "git commit -m \"fix: the fix that fixed the fix\"",
+    "console.log('works on my machine ✅')",
+    "if (coffee === 0) throw new Error('compile requires caffeine')",
+    "SELECT * FROM bugs WHERE status = 'its fine' ORDER BY panic DESC;",
+    "const mood = Math.random() > 0.5 ? 'ship' : 'refactor' ",
+    "docker compose up -d && echo \"summoning containers…\"",
+    "TODO: remove TODOs (tomorrow)",
   ],
   [
-    "function build(feature) { return ship(feature) }",
-    "try { scale() } catch (e) { log(e) }",
-    "npm run dev",
-    "pnpm i && pnpm build",
-    "const latency = p95(responseTime)",
-    "cache.set(key, value, { ttl: 60 })",
+    "npm run dev // turbo mode (maybe)",
+    "pnpm i && pnpm build && pnpm pray",
+    "try { deploy() } catch (e) { rollback(); blameCache() }",
+    "const latency = p95(ms) // if you squint it's fast",
+    "cache.set(key, value, { ttl: 60, vibes: 'immaculate' })",
+    "assert(ux.isSmooth(), 'pls be smooth')",
+    "FeatureFlag.enable('funnyEasterEgg')",
+    "⚡ hot reload engaged",
   ],
   [
-    "curl -X POST /api/login",
-    "Auth: Bearer <token>",
-    "console.log('hello world')",
-    "type Project = { name: string; url: string }",
-    "router.get('/health', ok)",
-    "merge(main, featureBranch)",
+    "curl -X POST /api/login -H \"Authorization: Bearer <token>\"",
+    "HTTP 200 OK (suspiciously fast)",
+    "type Project = { name: string; url: string; shipped: true }",
+    "router.get('/health', () => 'green')",
+    "merge(main, featureBranch) // may the conflicts be gentle",
+    "refactor(): rename thing -> betterThing (no regrets)",
+    "ai.suggest('add tests') && dev.says('later')",
+    "/* 🐛 */ // not a bug, a feature with confidence",
   ],
 ]
+
+function pickPrefix(line, i) {
+  const prefixes = ['$', '>', 'λ', '›', '']
+  // deterministic-ish variety (no runtime randomness needed)
+  return prefixes[(line.length + i) % prefixes.length]
+}
 
 export default function CoderVibeBackground() {
   const columns = useMemo(() => CODE_COLUMNS, [])
@@ -56,7 +67,7 @@ export default function CoderVibeBackground() {
                   <div key={blockIdx} className="mb-6">
                     {col.map((line) => (
                       <div key={`${blockIdx}-${line}`} className="whitespace-nowrap">
-                        <span className="text-slate-500">$</span>{" "}
+                        <span className="text-slate-500">{pickPrefix(line, blockIdx)}</span>{" "}
                         <span className="opacity-90">{line}</span>
                       </div>
                     ))}

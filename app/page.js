@@ -128,7 +128,7 @@ export default function Home() {
               />
             </motion.a>
             <div className="hidden md:flex gap-8 items-center">
-              {['About', 'Skills', 'Projects', 'Certifications', 'Contact'].map((item) => (
+              {['About', 'Experience', 'Skills', 'Projects', 'Certifications', 'Contact'].map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
@@ -248,6 +248,139 @@ export default function Home() {
               technologies to stay at the forefront of web development.
             </p>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-bold mb-4 text-center"
+          >
+            Experience
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-center text-gray-600 mb-12"
+          >
+            Where I’ve worked and what I did
+          </motion.p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6 }}
+              className="bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-xl hover:border-gray-300 transition-all duration-300"
+            >
+              <div className="flex items-start justify-between gap-4 mb-4">
+                <div>
+                  <div className="text-sm font-semibold text-blue-700">2021 – 2022</div>
+                  <h3 className="text-xl font-bold text-gray-900 mt-1">Technical Support Engineer</h3>
+                  <p className="text-gray-600">Dataworld Computer</p>
+                </div>
+                <div className="h-10 w-10 rounded-xl bg-white border border-gray-200 shadow-sm flex items-center justify-center overflow-hidden">
+                  <img
+                    src="https://www.google.com/s2/favicons?domain=facebook.com&sz=64"
+                    alt="Dataworld Computer logo"
+                    className="h-6 w-6"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              </div>
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                Troubleshot hardware/software issues, supported end users, and helped keep systems running smoothly.
+              </p>
+              <a
+                href="https://www.facebook.com/dataworldcomputer/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-sm font-semibold text-blue-700 hover:text-blue-800"
+              >
+                View page →
+              </a>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: 0.05 }}
+              className="bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-xl hover:border-gray-300 transition-all duration-300"
+            >
+              <div className="flex items-start justify-between gap-4 mb-4">
+                <div>
+                  <div className="text-sm font-semibold text-blue-700">2022 – 2026</div>
+                  <h3 className="text-xl font-bold text-gray-900 mt-1">Full‑Stack Developer</h3>
+                  <p className="text-gray-600">Central Mindanao University</p>
+                </div>
+                <div className="h-10 w-10 rounded-xl bg-white border border-gray-200 shadow-sm flex items-center justify-center overflow-hidden">
+                  <img
+                    src="https://www.google.com/s2/favicons?domain=cmu.edu.ph&sz=64"
+                    alt="Central Mindanao University logo"
+                    className="h-6 w-6"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              </div>
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                Built and maintained web applications end‑to‑end—from requirements and database design to deployment.
+              </p>
+              <a
+                href="https://www.cmu.edu.ph/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-sm font-semibold text-blue-700 hover:text-blue-800"
+              >
+                Visit site →
+              </a>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-xl hover:border-gray-300 transition-all duration-300"
+            >
+              <div className="flex items-start justify-between gap-4 mb-4">
+                <div>
+                  <div className="text-sm font-semibold text-blue-700">2026 – Present</div>
+                  <h3 className="text-xl font-bold text-gray-900 mt-1">Prompt Engineer</h3>
+                  <p className="text-gray-600">feathery.io</p>
+                </div>
+                <div className="h-10 w-10 rounded-xl bg-white border border-gray-200 shadow-sm flex items-center justify-center overflow-hidden">
+                  <img
+                    src="https://www.google.com/s2/favicons?domain=feathery.io&sz=64"
+                    alt="feathery.io logo"
+                    className="h-6 w-6"
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              </div>
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                Designed and iterated prompts/workflows to improve output quality, reliability, and user experience.
+              </p>
+              <a
+                href="https://feathery.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-sm font-semibold text-blue-700 hover:text-blue-800"
+              >
+                Visit site →
+              </a>
+            </motion.div>
+          </div>
         </div>
       </section>
 
