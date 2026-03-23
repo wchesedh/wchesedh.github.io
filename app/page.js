@@ -8,6 +8,7 @@ import CoderVibeBackground from '@/components/CoderVibeBackground'
 
 const projectLinks = [
   { name: 'Aguaboo', url: 'https://aguaboo.com', image: '/images/aguaboo.png', description: 'A modern water delivery platform for ordering and management.' },
+  { name: 'DKuryentecorp', url: 'https://dkuryentecorp.com', image: '/images/dkuryentecorp.png', description: 'Premier wholesale & retail supplier of cutting-edge E-bikes, powering Northern Mindanao\'s electric mobility revolution.' },
   { name: 'QHive Innovations', url: 'https://qhive-innovations.com/', image: '/images/qhive.png', description: 'QuantumHive Innovations—seamless digital solutions: custom software, mobile and web apps, UI/UX, and IT support.' },
   { name: 'Software Development Department', url: 'https://apps.cmu.edu.ph/', image: '/images/sdd.png', description: 'CMU Software Development Department—where your software needs are assessed, developed, and maintained.' },
   { name: 'CMU Palaro', url: 'https://apps.cmu.edu.ph/palaro/', image: '/images/palaro.png', description: 'CMU Palaro medal tally and sports event results—lead beyond limits through sports excellence.' },
