@@ -9,6 +9,9 @@ import CoderVibeBackground from '@/components/CoderVibeBackground'
 const projectLinks = [
   { name: 'Aguaboo', url: 'https://aguaboo.com', image: '/images/aguaboo.png', description: 'A modern water delivery platform for ordering and management.' },
   { name: 'DKuryentecorp', url: 'https://dkuryentecorp.com', image: '/images/dkuryentecorp.png', description: 'Premier wholesale & retail supplier of cutting-edge E-bikes, powering Northern Mindanao\'s electric mobility revolution.' },
+  { name: 'Submission Intake Workbench', url: 'https://ai-scribe-insure.lovable.app/', image: '/images/workbench.png', description: 'Mock app that is the basis of the developed workflow: email intake, uploaded files run through extraction, extracted data is rendered in the form, and maps auto-snapshot via logic rules then render.' },
+  { name: 'Tokio Marine Underwriting Form', url: 'https://tmkuwdemo.vercel.app/', image: '/images/uwdemo.png', description: 'Cyber underwriting mock for Tokio Marine: inbound emails and uploaded submissions are extracted, cyber-risk fields populate the UW form, and location maps auto-snapshot from underwriting logic before the case is rendered.' },
+  { name: 'CMU HR Job Listing System', url: 'https://job-listing.cmuohrm.site/', image: '/images/cmujoblisting.png', description: 'Central Mindanao University HR job listing platform for posting openings, applicant registration, applications, HR review, interview scheduling, and offer and onboarding.' },
   { name: 'QHive Innovations', url: 'https://qhive-innovations.com/', image: '/images/qhive.png', description: 'QuantumHive Innovations—seamless digital solutions: custom software, mobile and web apps, UI/UX, and IT support.' },
   { name: 'Software Development Department', url: 'https://apps.cmu.edu.ph/', image: '/images/sdd.png', description: 'CMU Software Development Department—where your software needs are assessed, developed, and maintained.' },
   { name: 'CMU Palaro', url: 'https://apps.cmu.edu.ph/palaro/', image: '/images/palaro.png', description: 'CMU Palaro medal tally and sports event results—lead beyond limits through sports excellence.' },
@@ -16,8 +19,6 @@ const projectLinks = [
   { name: 'HR Online Document Request', url: 'https://apps.cmu.edu.ph/hrodrs', image: '/images/hrodrs.png', description: 'HR Online Document Request System for CMU employees.' },
   { name: 'TrackWise', url: 'https://teacher-app-seven.vercel.app/', image: '/images/trackwise.png', description: 'A teacher-parent forum for discussing children\'s daily activities.' },
   { name: 'CMUPress', url: 'https://apps.cmu.edu.ph/cmupress', image: '/images/cmupress.png', description: 'CMU Press platform for academic publishing and resources.' },
-  { name: 'CAEP South East Asia', url: 'https://caepsea.com', image: '/images/caepsea.png', description: 'Study Work Travel Application System by CAEP South East Asia.' },
-  { name: 'M.M. Stud Farm Management System', url: 'https://qhive-innovations.com/studfarm/', image: '/images/studfarm.png', description: 'A web-based management system for M.M. Stud Farm operations.' },
   { name: 'Point of Sale System', url: 'https://wcplpointofsale.onrender.com', image: '/images/pospic.png', description: 'A point-of-sale web application for managing sales and transactions.' },
   { name: 'Dental Clinic Management System', url: 'https://rodrigoorthodentalclinic.onrender.com/', image: '/images/dmspic.png', description: 'A dental clinic management system for patient operations.' },
 ]
@@ -174,10 +175,10 @@ export default function Home() {
             <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-gray-900 via-blue-600 to-cyan-600 bg-clip-text text-transparent">
               Weljo Chesedh
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8">Full-Stack Developer</p>
+            <p className="text-xl md:text-2xl text-gray-600 mb-4">Full-Stack Developer · Prompt Engineer · Implementation Engineer</p>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed">
-              Building software from the ground up, from business rules to deployment. 
-              Creating modern, scalable web applications with clean code and best practices.
+              Building software from the ground up, from business rules to deployment.
+              Prompt Engineer and Implementation Engineer at a US-based fintech SaaS company.
             </p>
           </motion.div>
 
@@ -208,11 +209,11 @@ export default function Home() {
             className="flex justify-center gap-12 text-center"
           >
             <div>
-              <div className="text-3xl font-bold text-gray-900 mb-1">4+</div>
+              <div className="text-3xl font-bold text-gray-900 mb-1">5</div>
               <div className="text-sm text-gray-500">Years Experience</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-gray-900 mb-1">10+</div>
+              <div className="text-3xl font-bold text-gray-900 mb-1">20+</div>
               <div className="text-sm text-gray-500">Projects</div>
             </div>
           </motion.div>
@@ -246,9 +247,9 @@ export default function Home() {
               always focused on making solutions that work smoothly and scale well.
             </p>
             <p>
-              With expertise in both front-end and back-end development, I specialize in creating responsive 
-              web applications using modern technologies and best practices. I'm constantly adapting to new 
-              technologies to stay at the forefront of web development.
+              With expertise in both front-end and back-end development, I specialize in creating responsive
+              web applications using modern technologies and best practices. I also work as a Prompt Engineer,
+              later promoted to Implementation Engineer, at a US-based fintech SaaS company.
             </p>
           </motion.div>
         </div>
@@ -586,18 +587,20 @@ export default function Home() {
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2 text-gray-900">{project.name}</h3>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">{project.description}</p>
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors"
-                  >
-                    Visit Site
-                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </a>
+                  <p className="text-gray-600 text-sm mb-4">{project.description}</p>
+                  {project.url && (
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors"
+                    >
+                      Visit Site
+                      <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  )}
                 </div>
               </motion.div>
             ))}

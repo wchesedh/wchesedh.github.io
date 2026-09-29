@@ -13,6 +13,9 @@ import { AsteroidBelt } from './AsteroidBelt'
 const projectLinks = [
   { name: 'Aguaboo', url: 'https://aguaboo.com', image: '/images/aguaboo.png', description: 'A modern water delivery platform for ordering and management.' },
   { name: 'DKuryentecorp', url: 'https://dkuryentecorp.com', image: '/images/dkuryentecorp.png', description: 'Premier wholesale & retail supplier of cutting-edge E-bikes, powering Northern Mindanao\'s electric mobility revolution.' },
+  { name: 'Submission Intake Workbench', url: 'https://ai-scribe-insure.lovable.app/', image: '/images/workbench.png', description: 'Mock app that is the basis of the developed workflow: email intake, uploaded files run through extraction, extracted data is rendered in the form, and maps auto-snapshot via logic rules then render.' },
+  { name: 'Tokio Marine UW Form', url: 'https://tmkuwdemo.vercel.app/', image: '/images/uwdemo.png', description: 'Cyber underwriting mock for Tokio Marine: inbound emails and uploaded submissions are extracted, cyber-risk fields populate the UW form, and location maps auto-snapshot from underwriting logic before the case is rendered.' },
+  { name: 'CMU HR Job Listing System', url: 'https://job-listing.cmuohrm.site/', image: '/images/cmujoblisting.png', description: 'Central Mindanao University HR job listing platform for posting openings, applicant registration, applications, HR review, interview scheduling, and offer and onboarding.' },
   { name: 'QHive Innovations', url: 'https://qhive-innovations.com/', image: '/images/qhive.png', description: 'QuantumHive Innovations—seamless digital solutions: custom software, mobile and web apps, UI/UX, and IT support.' },
   { name: 'Software Development Department', url: 'https://apps.cmu.edu.ph/', image: '/images/sdd.png', description: 'CMU Software Development Department—where your software needs are assessed, developed, and maintained.' },
   { name: 'CMU Palaro', url: 'https://apps.cmu.edu.ph/palaro/', image: '/images/palaro.png', description: 'CMU Palaro medal tally and sports event results—lead beyond limits through sports excellence.' },
@@ -20,8 +23,6 @@ const projectLinks = [
   { name: 'HR Online Document Request', url: 'https://apps.cmu.edu.ph/hrodrs', image: '/images/hrodrs.png', description: 'HR Online Document Request System for CMU employees.' },
   { name: 'TrackWise', url: 'https://teacher-app-seven.vercel.app/', image: '/images/trackwise.png', description: 'A teacher-parent forum for discussing children\'s daily activities.' },
   { name: 'CMUPress', url: 'https://apps.cmu.edu.ph/cmupress', image: '/images/cmupress.png', description: 'CMU Press platform for academic publishing and resources.' },
-  { name: 'CAEP South East Asia', url: 'https://caepsea.com', image: '/images/caepsea.png', description: 'Study Work Travel Application System by CAEP South East Asia. Partners with Swiss program Study Work Travel to open doors for young adventurous individuals seeking programs and opportunities in Europe to hone professional skills, build credentials, and personal growth. Welcomes Filipinos and Indonesians to join the program.' },
-  { name: 'M.M. Stud Farm Management System', url: 'https://qhive-innovations.com/studfarm/', image: '/images/studfarm.png', description: 'A web-based management system for M.M. Stud Farm, providing access-controlled tools for managing stud farm operations and records.' },
   { name: 'Point of Sale System', url: 'https://wcplpointofsale.onrender.com', image: '/images/pospic.png', description: 'A point-of-sale web application, featuring managing sales and transactions.' },
   { name: 'Dental Clinic Management System', url: 'https://rodrigoorthodentalclinic.onrender.com/', image: '/images/dmspic.png', description: 'A dental clinic management system that enables staff to securely manage patient-related operations.' },
 ]
@@ -257,18 +258,20 @@ function ProjectModal({ project, onClose }) {
           <h3 className="text-3xl font-bold text-white text-center mb-2">{project.name}</h3>
           <p className="text-gray-300 text-center mb-6">{project.description}</p>
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-medium shadow-lg hover:from-blue-700 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 text-center"
-            >
-              <span>Visit Site</span>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-              </svg>
-            </a>
+            {project.url && (
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-medium shadow-lg hover:from-blue-700 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 text-center"
+              >
+                <span>Visit Site</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                  <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                </svg>
+              </a>
+            )}
             <button
               onClick={onClose}
               className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-gray-700 text-white font-medium shadow-lg hover:bg-gray-600 transform hover:scale-105 transition-all duration-300 text-center"
@@ -404,19 +407,21 @@ export default function Projects() {
                   <div className="p-6 flex-1 flex flex-col">
                     <h3 className="text-xl font-bold text-white mb-2">{project.name}</h3>
                     <p className="text-gray-300 text-sm mb-4 flex-1">{project.description}</p>
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-medium shadow-lg hover:from-blue-700 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 text-sm"
-                      onClick={e => e.stopPropagation()}
-                    >
-                      <span>Visit Site</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                        <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-                      </svg>
-                    </a>
+                    {project.url && (
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-medium shadow-lg hover:from-blue-700 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 text-sm"
+                        onClick={e => e.stopPropagation()}
+                      >
+                        <span>Visit Site</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                          <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                        </svg>
+                      </a>
+                    )}
                   </div>
                 </motion.div>
               ))}

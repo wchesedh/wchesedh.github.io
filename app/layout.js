@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Weljo Chesedh - Portfolio',
-  description: 'Programmer/Fullstack Dev',
+  description: 'Full-Stack Developer, Prompt Engineer, and Implementation Engineer',
   icons: {
     icon: [
       { url: '/images/weljIcon.png', type: 'image/png' },

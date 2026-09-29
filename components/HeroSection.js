@@ -84,7 +84,7 @@ export default function HeroSection() {
                 Weljo Chesedh
               </span>
             </h1>
-            <h2 className="text-2xl md:text-3xl text-gray-300 mb-8">Programmer/Full-Stack Developer</h2>
+            <h2 className="text-2xl md:text-3xl text-gray-300 mb-8">Full-Stack Developer · Prompt Engineer · Implementation Engineer</h2>
           </motion.div>
 
           <motion.div
@@ -114,11 +114,11 @@ export default function HeroSection() {
             className="grid grid-cols-2 gap-8 max-w-2xl mx-auto"
           >
             <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
-              <div className="text-4xl font-bold text-white mb-2">4+</div>
+              <div className="text-4xl font-bold text-white mb-2">5</div>
               <div className="text-gray-400">Years of Experience</div>
             </div>
             <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
-              <div className="text-4xl font-bold text-white mb-2">10+</div>
+              <div className="text-4xl font-bold text-white mb-2">20+</div>
               <div className="text-gray-400">Count of Projects</div>
             </div>
           </motion.div>
